@@ -1,4 +1,19 @@
-import { html, css, LitElement } from "lit";
+import { html, LitElement } from "lit";
+import {
+  AreaChart,
+  AreaSplineChart,
+  BarChart,
+  BoxPlotChart,
+  BubbleChart,
+  ColumnChart,
+  FunnelChart,
+  HeatMapChart,
+  LineChart,
+  PieChart,
+  PolarChart,
+  PyramidChart,
+  TreeMapChart,
+} from "../chart-components/ChartMiddleware.js";
 
 export class Canvas extends LitElement {
   static properties = {
