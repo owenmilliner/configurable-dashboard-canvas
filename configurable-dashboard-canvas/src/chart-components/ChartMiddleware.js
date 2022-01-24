@@ -7,7 +7,7 @@ import { ColumnChart } from "./ColumnChart";
 import { FunnelChart } from "./FunnelChart";
 import { HeatMapChart } from "./HeatMapChart";
 import { LineChart } from "./LineChart";
-import { PieChart } from "./ChartMiddleware";
+import { PieChart } from "./PieChart";
 import { PolarChart } from "./PolarChart";
 import { PyramidChart } from "./PyramidChart";
 import { TreeMapChart } from "./TreeMapChart";
