@@ -1,72 +1,83 @@
 import { html, css, LitElement } from "lit";
 
-const arr = [];
-for (let i = 0; i < 27; i++) {
-  for (let j = 0; j < 38; j++) {
-    arr.push(`column-${i + 1}-${j + 1}`);
-  }
-}
-
 export class Canvas extends LitElement {
-  static get properties() {
-    return {
-      width: {
-        type: Number,
-      },
-      height: {
-        type: Number,
-      },
-    };
-  }
+  static properties = {
+    _canvasWidth: { state: true },
+    _canvasHeight: { state: true },
+    _gridSlotWidth: { state: true },
+    _gridSlotHeight: { state: true },
+    _margin: { state: true },
+    _rows: { state: true },
+    _columns: { state: true },
+  };
 
   constructor() {
     super();
-    (this._width = 105), (this._height = 143.5);
+    (this._canvasWidth = 210),
+      (this._canvasHeight = 297),
+      (this._gridSlotWidth = 3),
+      (this._gridSlotHeight = 3),
+      (this._margin = 19.05),
+      (this._rows = Math.floor(
+        (this._canvasHeight - this._margin * 2) / this._gridSlotHeight
+      )),
+      (this._columns = Math.floor(
+        (this._canvasWidth - this._margin * 2) / this._gridSlotWidth
+      ));
   }
 
-  static get styles() {
-    return css`
-      #canvas-background {
-        width: 105mm;
-        height: 143.5mm;
-        padding: 10mm;
-        margin: 15mm auto;
-        border: 1px #d3d3d3 solid;
-        background-color: white;
-        border-radius: 5px;
+  makeArray() {
+    console.log(this._rows, this._columns);
+    const arr = [];
+    for (let i = 0; i < this._columns; i++) {
+      for (let j = 0; j < this._rows; j++) {
+        arr.push(`column-${i + 1}-${j + 1}`);
       }
-      #page {
-        background-color: white;
-        border: 2px solid rgb(85, 179, 255);
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: repeat(27, 1fr);
-        grid-template-rows: repeat(38, 1fr);
-        overflow: visible;
-      }
-      .canvas__gridSlot {
-        border: 1px solid red;
-        width: 3.36mm;
-        height: 3.25mm;
-        overflow: visible;
-      }
-    `;
+    }
+    return arr;
   }
 
   render() {
-    return html` <div id="canvas-background">
-      <div id="page">
-        ${arr.map((item) => {
-          return html`<div
-            class="canvas__gridSlot"
-            id=${item}
-            ondrop="drop(event)"
-            ondragover="allowDrop(event)"
-          ></div>`;
-        })}
-      </div>
-    </div>`;
+    return html` <style>
+        #canvas-background {
+          width: ${this._canvasWidth}mm;
+          height: ${this._canvasHeight}mm;
+          padding: 10mm;
+          margin: ${this._margin}mm auto;
+          border: 1px #d3d3d3 solid;
+          background-color: white;
+          border-radius: 5px;
+        }
+        #page {
+          background-color: white;
+          border: 2px solid rgb(85, 179, 255);
+          width: 100%;
+          height: 100%;
+          display: grid;
+          grid-template-columns: repeat(${this._columns}, 1fr);
+          grid-template-rows: repeat(${this._rows}, 1fr);
+          overflow: visible;
+        }
+        .canvas__gridSlot {
+          border: 1px solid red;
+          width: ${this._gridSlotWidth}mm;
+          height: ${this._gridSlotHeight}mm;
+          overflow: visible;
+        }
+      </style>
+
+      <div id="canvas-background">
+        <div id="page">
+          ${this.makeArray().map((item) => {
+            return html`<div
+              class="canvas__gridSlot"
+              id=${item}
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            ></div>`;
+          })}
+        </div>
+      </div>`;
   }
 }
 
