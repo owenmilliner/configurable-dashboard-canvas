@@ -49,7 +49,7 @@ export class Canvas extends LitElement {
 
   render() {
     return html` <style>
-        #canvas-background {
+        #page {
           width: ${this._canvasWidth}mm;
           height: ${this._canvasHeight}mm;
           padding: 10mm;
@@ -58,7 +58,7 @@ export class Canvas extends LitElement {
           background-color: white;
           border-radius: 5px;
         }
-        #page {
+        #canvas {
           background-color: white;
           border: 2px solid rgb(85, 179, 255);
           width: 100%;
@@ -76,8 +76,8 @@ export class Canvas extends LitElement {
         }
       </style>
 
-      <div id="canvas-background">
-        <div id="page">
+      <div id="page">
+        <div id="canvas">
           ${this.makeArray().map((item) => {
             return html`<div
               class="canvas__gridSlot"
