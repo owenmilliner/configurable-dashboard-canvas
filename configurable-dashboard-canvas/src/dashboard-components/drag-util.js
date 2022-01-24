@@ -1,8 +1,7 @@
-// const canvasRoot = document.shadowRoot.querySelector("canvas-component");
-const hello = document.getElementById("#dashboard").querySelector("#display");
+const canvasRoot = document.querySelector("canvas-component");
 
 function drag(event, isNav) {
-  console.log(hello);
+  console.log(canvasRoot);
   event.dataTransfer.setData("text", event.target.id);
   event.dataTransfer.setData("isNav", isNav);
 }
