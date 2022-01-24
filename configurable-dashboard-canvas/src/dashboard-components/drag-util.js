@@ -1,12 +1,12 @@
 const canvas = document.querySelector("canvas-component");
-const canvasRoot = canvas.shadowRoot;
+var canvasRoot = "";
 
 function allowDrop(event) {
   event.preventDefault();
 }
 
 function drag(event, isNav) {
-  console.log(canvasRoot);
+  canvasRoot = canvas.shadowRoot;
   event.dataTransfer.setData("text", event.target.id);
   event.dataTransfer.setData("isNav", isNav);
 }
@@ -33,6 +33,7 @@ function drop(event) {
     event.target.appendChild(newDiv);
     count++;
   } else {
+    console.log("inside else");
     const chartToMove = canvasRoot.getElementById(data);
     event.target.appendChild(chartToMove);
   }
