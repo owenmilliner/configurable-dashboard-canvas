@@ -1,5 +1,5 @@
 // const canvasRoot = document.shadowRoot.querySelector("canvas-component");
-const hello = document.getElementById("#dashboard").querySelector("#display");
+const hello = document.querySelector("#dashboard");
 
 function drag(event, isNav) {
   console.log(hello);
@@ -33,8 +33,8 @@ function drop(event) {
     event.target.appendChild(newDiv);
     count++;
   } else {
-    const chartToMove = canvasRoot.getElementById(data);
-    event.target.appendChild(chartToMove);
+    // const chartToMove = canvasRoot.getElementById(data);
+    // event.target.appendChild(chartToMove);
   }
 }
 
