@@ -9,6 +9,7 @@ import { HeatMapChart } from "./HeatMapChart";
 import { LineChart } from "./LineChart";
 import { PieChart } from "./ChartMiddleware";
 import { PolarChart } from "./PolarChart";
+import { PyramidChart } from "./PyramidChart";
 
 export {
   AreaChart,
@@ -22,4 +23,5 @@ export {
   LineChart,
   PieChart,
   PolarChart,
+  PyramidChart,
 };
