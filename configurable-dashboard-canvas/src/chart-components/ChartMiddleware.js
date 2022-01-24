@@ -5,6 +5,7 @@ import { BoxPlotChart } from "./BoxPlotChart";
 import { BubbleChart } from "./BubbleChart";
 import { ColumnChart } from "./ColumnChart";
 import { FunnelChart } from "./FunnelChart";
+import { HeatMapChart } from "./HeatMapChart";
 
 export {
   AreaChart,
@@ -14,4 +15,5 @@ export {
   BubbleChart,
   ColumnChart,
   FunnelChart,
+  HeatMapChart,
 };
