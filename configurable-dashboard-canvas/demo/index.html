@@ -10,9 +10,12 @@
     <script type="module">
       import { html, render } from "lit";
       import "../src/dashboard-components/Canvas.js";
+      import "../src/dashboard-components/Navigation.js";
 
       render(
-        html`<canvas-component></canvas-component>`,
+        html`<navigation-component></navigation-component>
+          <canvas-component></canvas-component>`,
+
         document.querySelector("#dashboard")
       );
     </script>
