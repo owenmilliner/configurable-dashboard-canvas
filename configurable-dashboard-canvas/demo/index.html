@@ -9,9 +9,12 @@
 
     <script type="module">
       import { html, render } from "lit";
-      import "../configurable-dashboard-canvas.js";
+      import "../src/dashboard-components/Canvas.js";
 
-      render(html``, document.querySelector("#dashboard"));
+      render(
+        html`<canvas-component></canvas-component>`,
+        document.querySelector("#dashboard")
+      );
     </script>
   </body>
 </html>
