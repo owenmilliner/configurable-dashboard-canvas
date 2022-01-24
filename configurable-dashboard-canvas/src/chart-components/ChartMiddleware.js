@@ -10,6 +10,7 @@ import { LineChart } from "./LineChart";
 import { PieChart } from "./ChartMiddleware";
 import { PolarChart } from "./PolarChart";
 import { PyramidChart } from "./PyramidChart";
+import { TreeMapChart } from "./TreeMapChart";
 
 export {
   AreaChart,
@@ -24,4 +25,5 @@ export {
   PieChart,
   PolarChart,
   PyramidChart,
+  TreeMapChart,
 };
