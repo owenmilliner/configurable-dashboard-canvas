@@ -38,7 +38,6 @@ export class Canvas extends LitElement {
   }
 
   makeArray() {
-    console.log(this._rows, this._columns);
     const arr = [];
     for (let i = 0; i < this._rows; i++) {
       for (let j = 0; j < this._columns; j++) {
