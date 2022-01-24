@@ -6,7 +6,6 @@ export class HeatMapChart extends LitElement {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="heatmap"
-        style="height: 90%; width: 100%;"
         title="Sales per employee per weekday"
         tooltip
         additional-options='{

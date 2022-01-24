@@ -7,6 +7,7 @@ import { ColumnChart } from "./ColumnChart";
 import { FunnelChart } from "./FunnelChart";
 import { HeatMapChart } from "./HeatMapChart";
 import { LineChart } from "./LineChart";
+import { PieChart } from "./ChartMiddleware";
 
 export {
   AreaChart,
@@ -18,4 +19,5 @@ export {
   FunnelChart,
   HeatMapChart,
   LineChart,
+  PieChart,
 };

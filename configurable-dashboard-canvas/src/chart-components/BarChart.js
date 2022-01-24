@@ -6,7 +6,6 @@ export class BarChart extends LitElement {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="bar"
-        style="height: 90%; width: 100%;"
         title="Historic World Population by Region"
         subtitle='Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
         categories='["Africa", "America", "Asia", "Europe", "Oceania"]'

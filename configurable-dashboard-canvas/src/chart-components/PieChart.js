@@ -1,10 +1,10 @@
 import { html, LitElement } from "lit";
 import "@vaadin/charts";
 
-export class LineChart extends LitElement {
+export class PieChart extends LitElement {
   render() {
     return html` <link rel="stylesheet" href="./chart.css" />
-      <vaadin-chart type="line">
+      <vaadin-chart type="pie">
         <vaadin-chart-series
           values='[
         ["Firefox", 45.0],
@@ -19,4 +19,4 @@ export class LineChart extends LitElement {
   }
 }
 
-window.customElements.define("line-chart", LineChart);
+window.customElements.define("pie-chart", PieChart);

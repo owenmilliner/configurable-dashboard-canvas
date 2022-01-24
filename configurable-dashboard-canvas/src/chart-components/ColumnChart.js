@@ -7,7 +7,6 @@ export class ColumnChart extends LitElement {
       <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="column"
-        style="height: 90%; width: 100%;"
         title="Monthly Average Rainfall"
         subtitle="Source: WorldClimate.com"
         categories='["Jan", "Feb", "Mar", "Apr", "May", "Jun",

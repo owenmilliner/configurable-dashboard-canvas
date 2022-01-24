@@ -6,7 +6,6 @@ export class FunnelChart extends LitElement {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="funnel"
-        style="height: 90%; width: 100%;"
         title="Sales funnel"
         no-legend
         tooltip
