@@ -7,7 +7,7 @@ function allowDrop(event) {
 
 function drag(event, isNav) {
   canvasRoot = canvas.shadowRoot;
-  event.dataTransfer.setData("text", event.target.id);
+  event.dataTransfer.setData("targetNodeId", event.target.id);
   event.dataTransfer.setData("isNav", isNav);
 }
 
@@ -15,12 +15,12 @@ let count = 1;
 function drop(event) {
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
-  const data = event.dataTransfer.getData("text");
+  const nodeId = event.dataTransfer.getData("targetNodeId");
 
   if (fromNav === "true") {
     const newDiv = document.createElement("div");
-    newDiv.innerHTML = data;
-    newDiv.id = `chart${count}`;
+    newDiv.innerHTML = nodeId;
+    newDiv.id = `web-component-${count}`;
     newDiv.draggable = true;
     newDiv.ondragstart = function (ev) {
       drag(ev);
@@ -33,14 +33,13 @@ function drop(event) {
     event.target.appendChild(newDiv);
     count++;
   } else {
-    console.log("inside else");
-    const chartToMove = canvasRoot.getElementById(data);
+    const chartToMove = canvasRoot.getElementById(nodeId);
     event.target.appendChild(chartToMove);
   }
 }
 
 function remove(event) {
-  const data = event.dataTransfer.getData("text");
-  const chartToDelete = canvasRoot.getElementById(data);
+  const nodeId = event.dataTransfer.getData("targetNodeId");
+  const chartToDelete = canvasRoot.getElementById(nodeId);
   chartToDelete.remove();
 }
