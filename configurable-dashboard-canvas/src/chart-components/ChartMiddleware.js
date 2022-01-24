@@ -6,6 +6,7 @@ import { BubbleChart } from "./BubbleChart";
 import { ColumnChart } from "./ColumnChart";
 import { FunnelChart } from "./FunnelChart";
 import { HeatMapChart } from "./HeatMapChart";
+import { LineChart } from "./LineChart";
 
 export {
   AreaChart,
@@ -16,4 +17,5 @@ export {
   ColumnChart,
   FunnelChart,
   HeatMapChart,
+  LineChart,
 };
