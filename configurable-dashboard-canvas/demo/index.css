@@ -22,7 +22,7 @@ body {
   grid-template-rows: 10vh 90vh;
 }
 
-#headerComponent {
+#header {
   grid-area: header;
   height: 10vh;
 }
