@@ -1,20 +1,12 @@
-import { html, LitElement } from "lit";
+import { html, css, LitElement } from "lit";
 import "@vaadin/charts";
 
 export class AreaChart extends LitElement {
-  static get styles() {
-    return css`
-      .chart {
-        height: 60mm;
-        width: 50mm;
-        resize: both;
-        overflow: auto;
-      }
-    `;
-  }
   render() {
     return html`
+      <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
+        class="chart"
         type="area"
         title="test"
         subtitle="Source: Wikipedia.org"

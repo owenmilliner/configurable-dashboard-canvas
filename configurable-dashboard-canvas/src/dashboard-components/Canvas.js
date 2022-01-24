@@ -1,4 +1,5 @@
 import { html, css, LitElement } from "lit";
+import { AreaChart } from "../chart-components/ChartMiddleware.js";
 
 const arr = [];
 for (let i = 0; i < 27; i++) {
@@ -54,17 +55,19 @@ export class Canvas extends LitElement {
     `;
   }
 
+  // ${arr.map((item) => {
+  //   return html`<div
+  //     class="canvas__gridSlot"
+  //     id=${item}
+  //     ondrop="drop(event)"
+  //     ondragover="allowDrop(event)"
+  //   ></div>`;
+  // })}
+
   render() {
     return html` <div id="canvas-background">
       <div id="page">
-        ${arr.map((item) => {
-          return html`<div
-            class="canvas__gridSlot"
-            id=${item}
-            ondrop="drop(event)"
-            ondragover="allowDrop(event)"
-          ></div>`;
-        })}
+        <area-chart></area-chart>
       </div>
     </div>`;
   }
