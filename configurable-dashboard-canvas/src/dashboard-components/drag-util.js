@@ -1,14 +1,14 @@
-// const canvasRoot = document.shadowRoot.querySelector("canvas-component");
-const hello = document.querySelector("#dashboard");
-
-function drag(event, isNav) {
-  console.log(hello);
-  event.dataTransfer.setData("text", event.target.id);
-  event.dataTransfer.setData("isNav", isNav);
-}
+const canvas = document.querySelector("canvas-component");
+const canvasRoot = canvas.shadowRoot;
 
 function allowDrop(event) {
   event.preventDefault();
+}
+
+function drag(event, isNav) {
+  console.log(canvasRoot);
+  event.dataTransfer.setData("text", event.target.id);
+  event.dataTransfer.setData("isNav", isNav);
 }
 
 let count = 1;
@@ -33,8 +33,8 @@ function drop(event) {
     event.target.appendChild(newDiv);
     count++;
   } else {
-    // const chartToMove = canvasRoot.getElementById(data);
-    // event.target.appendChild(chartToMove);
+    const chartToMove = canvasRoot.getElementById(data);
+    event.target.appendChild(chartToMove);
   }
 }
 

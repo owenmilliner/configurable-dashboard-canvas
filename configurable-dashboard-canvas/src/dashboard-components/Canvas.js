@@ -1,4 +1,10 @@
 import { html, css, LitElement } from "lit";
+// import {
+//   PieChart,
+//   AreaChart,
+//   LineChart,
+//   ColumnChart,
+// } from "../chart-components/ChartMiddleware";
 
 const arr = [];
 for (let i = 0; i < 27; i++) {

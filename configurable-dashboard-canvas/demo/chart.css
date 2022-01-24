@@ -1,0 +1,6 @@
+.chart {
+  height: 60mm;
+  width: 50mm;
+  resize: both;
+  overflow: auto;
+}

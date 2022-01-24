@@ -4,25 +4,20 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./index.css" />
     <script src="../src/dashboard-components/drag-util.js" defer></script>
+    <script src="../src/dashboard-components/Canvas.js" type="module"></script>
+    <script
+      src="../src/dashboard-components/Navigation.js"
+      type="module"
+    ></script>
+    <script src="../src/dashboard-components/Header.js" type="module"></script>
   </head>
   <body>
-    <div id="dashboard"></div>
-
-    <script type="module">
-      import { html, render } from "lit";
-      import "../src/dashboard-components/Header.js";
-      import "../src/dashboard-components/Navigation.js";
-      import "../src/dashboard-components/Canvas.js";
-      render(
-        html`
-          <header-component id="header"></header-component>
-          <navigation-component id="navigation"></navigation-component>
-          <div id="display">
-            <canvas-component id="canvas"></canvas-component>
-          </div>
-        `,
-        document.querySelector("#dashboard")
-      );
-    </script>
+    <div id="dashboard">
+      <header-component id="header"></header-component>
+      <navigation-component id="navigation"></navigation-component>
+      <div id="display">
+        <canvas-component id="canvas"></canvas-component>
+      </div>
+    </div>
   </body>
 </html>
