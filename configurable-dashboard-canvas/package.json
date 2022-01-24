@@ -11,6 +11,7 @@
     "start": "web-dev-server"
   },
   "dependencies": {
+    "@vaadin/charts": "^22.0.3",
     "lit": "^2.0.2"
   },
   "devDependencies": {

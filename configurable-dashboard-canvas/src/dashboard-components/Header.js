@@ -27,6 +27,12 @@ export class Header extends LitElement {
         font-size: 4vh;
       }
 
+      #file__client {
+        color: #cccccc;
+        opacity: 0.3;
+        font-size: 3vh;
+      }
+
       #header__logo {
         grid-area: logo;
         margin: auto;
@@ -48,7 +54,7 @@ export class Header extends LitElement {
 
   constructor() {
     super();
-    this._client = "CRISP";
+    this._client = "Crisp";
     this._file = "Twitter_2022";
   }
 
@@ -56,7 +62,9 @@ export class Header extends LitElement {
     return html`
       <div id="header">
         <p id="header__app">CDC</p>
-        <h1 id="header__file">${this._client} / ${this._file}</h1>
+        <h1 id="header__file">
+          <span id="file__client">${this._client} / </span>${this._file}
+        </h1>
         <img
           id="header__logo"
           src="../src/images/crisp_logo.png"
