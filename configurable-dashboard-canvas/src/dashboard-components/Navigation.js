@@ -4,9 +4,6 @@ import { imgData } from "./navigation-data";
 export class Navigation extends LitElement {
   static get styles() {
     return css`
-      :host {
-        color: white;
-      }
       #navigation {
         display: grid;
         grid-template-rows: repeat(4, 1fr);
@@ -14,7 +11,7 @@ export class Navigation extends LitElement {
       }
 
       img {
-        width: 40vh;
+        width: 100%;
         height: 20vh;
       }
     `;
