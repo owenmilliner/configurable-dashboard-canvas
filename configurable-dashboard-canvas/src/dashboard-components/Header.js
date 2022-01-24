@@ -3,15 +3,10 @@ import { html, css, LitElement } from "lit";
 export class Header extends LitElement {
   static get styles() {
     return css`
-      :host {
-        height: 50vh;
-      }
-
       #header {
         height: 100%;
-        color: red;
+        color: white;
         background-color: #06152c;
-        font-weight: 300;
         display: grid;
         grid-template-areas: "app file logo";
         grid-template-columns: 12vw auto 12vw;
@@ -22,11 +17,13 @@ export class Header extends LitElement {
         grid-area: app;
         margin: auto;
         font-size: 3vh;
+        font-weight: 300;
       }
 
       #header__file {
         grid-area: file;
         margin: auto;
+        font-weight: 300;
         font-size: 4vh;
       }
 

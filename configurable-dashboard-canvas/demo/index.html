@@ -3,6 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./index.css" />
+    <script src="../src/dashboard-components/Header.js" type="module"></script>
+    <script
+      src="../src/dashboard-components/Navigation.js"
+      type="module"
+    ></script>
+    <script src="../src/dashboard-components/Canvas.js" type="module"></script>
+  </head>
+  <body>
+    <div id="dashboard">
+      <header-component id="headerComponent"></header-component>
+      <navigation-component></navigation-component>
+      <div>
+        <canvas-component></canvas-component>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <div id="dashboard"></div>
@@ -10,11 +33,17 @@
     <script type="module">
       import { html, render } from "lit";
       import "../src/dashboard-components/Header.js";
+      import "../src/dashboard-components/Navigation.js";
+      import "../src/dashboard-components/Canvas.js";
 
       render(
-        html`<header-component id="headerComponent" />`,
+        html`
+          <header-component id="headerComponent"></header-component>
+          <navigation-component></navigation-component>
+          <canvas-component></canvas-component>
+        `,
         document.querySelector("#dashboard")
       );
     </script>
   </body>
-</html>
+</html> -->
