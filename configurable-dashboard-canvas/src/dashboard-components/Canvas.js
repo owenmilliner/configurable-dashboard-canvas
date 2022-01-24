@@ -18,19 +18,15 @@ export class Canvas extends LitElement {
       (this._gridSlotWidth = 3),
       (this._gridSlotHeight = 3),
       (this._margin = 19.05),
-      (this._rows = Math.floor(
-        (this._canvasHeight - this._margin * 2) / this._gridSlotHeight
-      )),
-      (this._columns = Math.floor(
-        (this._canvasWidth - this._margin * 2) / this._gridSlotWidth
-      ));
+      (this._rows = Math.floor(this._canvasHeight / this._gridSlotHeight)),
+      (this._columns = Math.floor(this._canvasWidth / this._gridSlotWidth));
   }
 
   makeArray() {
     console.log(this._rows, this._columns);
     const arr = [];
-    for (let i = 0; i < this._columns; i++) {
-      for (let j = 0; j < this._rows; j++) {
+    for (let i = 0; i < this._rows; i++) {
+      for (let j = 0; j < this._columns; j++) {
         arr.push(`column-${i + 1}-${j + 1}`);
       }
     }
@@ -54,8 +50,8 @@ export class Canvas extends LitElement {
           width: 100%;
           height: 100%;
           display: grid;
-          grid-template-columns: repeat(${this._columns}, 1fr);
-          grid-template-rows: repeat(${this._rows}, 1fr);
+          grid-template-columns: repeat(${this._columns}, 3mm);
+          grid-template-rows: repeat(${this._rows}, 3mm);
           overflow: visible;
         }
         .canvas__gridSlot {
