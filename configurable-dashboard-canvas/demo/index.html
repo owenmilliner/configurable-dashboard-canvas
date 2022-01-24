@@ -1,29 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <style>
-    body {
-      background: #fafafa;
-    }
-  </style>
-</head>
-<body>
-  <div id="demo"></div>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="dashboard"></div>
 
-  <script type="module">
-    import { html, render } from 'lit';
-    import '../configurable-dashboard-canvas.js';
+    <script type="module">
+      import { html, render } from "lit";
+      import "../configurable-dashboard-canvas.js";
 
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <configurable-dashboard-canvas .title=${title}>
-          some light-dom
-        </configurable-dashboard-canvas>
-      `,
-      document.querySelector('#demo')
-    );
-  </script>
-</body>
+      render(html``, document.querySelector("#dashboard"));
+    </script>
+  </body>
 </html>
