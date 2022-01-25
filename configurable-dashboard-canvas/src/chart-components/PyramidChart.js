@@ -22,7 +22,7 @@ export class PyramidChart extends LitElement {
   render() {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
-        ondblclick="formPopUp(event,true)"
+        ondblclick="formPopUp(event, true)"
         type="pyramid"
         title="${this.title}"
         no-legend

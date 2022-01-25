@@ -30,26 +30,25 @@ export class ChartForm extends LitElement {
     this._chartValues = [];
   }
 
-  updateChartProperties(newTitle, newValues) {}
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const title = event.path[0].title.value;
-    const values = event.path[0].data.value;
-    this.updateChartProperties(title, values);
-    const page = document
-      .querySelector("canvas-component")
-      .shadowRoot.getElementById("page");
-
-    page.style.opacity = 1;
-    event.path[1].remove();
+  updateChartProperties(chartProperties) {
+    console.log(chartProperties);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
-    console.log(event.path[0].title.value);
-    console.log("Form submitted.");
+    const canvas = document.querySelector("canvas-component").shadowRoot;
+    const page = canvas.getElementById("page");
+    const chartForm = canvas.getElementById("chartInputForm");
+
+    const title = event.path[0].title.value;
+    const values = event.path[0].data.value;
+    const headings = event.path[0].dataHeading.value;
+    const chartId = chartForm.getAttribute("chartId");
+
+    this.updateChartProperties({ title, values, headings, chartId });
+    page.style.opacity = 1;
+    console.log(event.path[1]);
+    chartForm.remove();
   }
 
   render() {

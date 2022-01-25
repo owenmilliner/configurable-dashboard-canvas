@@ -48,15 +48,21 @@ function remove(event) {
 }
 
 function formPopUp(event, isActive) {
-  if (isActive) {
-    console.log(event.path[8]);
-  }
-
   const chartInputForm = document.createElement("div");
   chartInputForm.innerHTML = `<chart-form></chart-form>`;
   chartInputForm.id = "chartInputForm";
-  canvasRoot = canvas.shadowRoot;
-  const page = canvasRoot.getElementById("page");
+
+  if (isActive) {
+    const path = event.path;
+    for (let i = 0; i < path.length; i++) {
+      if (path[i].id && path[i].id.includes("web-component")) {
+        chartInputForm.setAttribute("chartId", path[i].id);
+      }
+    }
+  } else {
+  }
+
+  const page = canvas.shadowRoot.getElementById("page");
   page.style.opacity = 0.2;
   canvasRoot.appendChild(chartInputForm);
 }
