@@ -22,17 +22,7 @@ export class PyramidChart extends LitElement {
       }
     }'
       >
-        <vaadin-chart-series
-          title="Unique users"
-          values='[
-      ["20012022", 121],
-      ["21012022", 118],
-      ["22012022", 110],
-      ["23012022", 91],
-      ["24012022", 41]
-    ]'
-        >
-        </vaadin-chart-series>
+        <vaadin-chart-series title="" values="[]"> </vaadin-chart-series>
       </vaadin-chart>`;
   }
 }

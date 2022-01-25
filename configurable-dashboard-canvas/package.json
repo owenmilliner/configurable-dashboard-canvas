@@ -5,6 +5,7 @@
   "author": "configurable-dashboard-canvas",
   "version": "0.0.0",
   "main": "index.js",
+  "type": "module",
   "module": "index.js",
   "scripts": {
     "analyze": "cem analyze --litelement",
