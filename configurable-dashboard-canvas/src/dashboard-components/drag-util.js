@@ -1,5 +1,3 @@
-// import { ChartForm } from "./ChartForm";
-
 const canvas = document.querySelector("canvas-component");
 let canvasRoot = "";
 
@@ -33,10 +31,6 @@ function drop(event) {
     border: 10px solid black;
     `;
 
-    const button = document.createElement("button");
-    button.onclick = formPopUp(event);
-    newDiv.appendChild(button);
-
     event.target.appendChild(newDiv);
     count++;
   } else {
@@ -49,9 +43,4 @@ function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
   const chartToDelete = canvasRoot.getElementById(nodeId);
   chartToDelete.remove();
-}
-
-function formPopUp(event) {
-  console.log(event);
-  // newDiv.appendChild(`<chart-form></chart-form>`);
 }
