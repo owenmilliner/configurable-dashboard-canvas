@@ -20,11 +20,11 @@ export class ImageUpload extends LitElement {
           type="file"
           accept="image/*"
           name="image"
-          id="imgFile"
+          id="imgInput"
           onchange="loadFile(event)"
         />
 
-        <p><img id="output" width="200" /></p>
+        <img id="output" />
       </div>
     `;
   }
