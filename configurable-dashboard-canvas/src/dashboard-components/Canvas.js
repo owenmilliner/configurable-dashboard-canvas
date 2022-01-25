@@ -14,6 +14,7 @@ import {
   PyramidChart,
   TreeMapChart,
 } from "../chart-components/ChartMiddleware.js";
+import { ChartForm } from "./ChartForm.js";
 
 export class Canvas extends LitElement {
   static properties = {
