@@ -29,6 +29,7 @@ function drop(event) {
     height: fit-content;
     width: fit-content;
     border: 10px solid black;
+    position: relative;;
     `;
     event.target.appendChild(newDiv);
     count++;
@@ -43,3 +44,12 @@ function remove(event) {
   const chartToDelete = canvasRoot.getElementById(nodeId);
   chartToDelete.remove();
 }
+
+// function loadFile(event) {
+//   const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
+//   var image = formRoot.getElementById("output");
+//   image.src = URL.createObjectURL(event.target.files[0]);
+//   console.log(formRoot);
+//   const imgInput = formRoot.getElementById("imgFile");
+//   imgInput.remove();
+// }

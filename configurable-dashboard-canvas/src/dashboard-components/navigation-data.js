@@ -5,6 +5,11 @@ export const imgData = [
     img: "../src/images/textbox.jpg",
   },
   {
+    name: "image-upload",
+    id: "<img-upload><img-upload>",
+    img: "../src/images/imageupload.png",
+  },
+  {
     name: "pie-chart",
     id: "<pie-chart></pie-chart>",
     img: "../src/images/pie.png",

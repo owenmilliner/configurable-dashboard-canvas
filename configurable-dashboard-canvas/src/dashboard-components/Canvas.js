@@ -15,6 +15,8 @@ import {
   TreeMapChart,
 } from "../chart-components/ChartMiddleware.js";
 
+import { ImageUpload } from "../additional-components/ImageUpload";
+
 export class Canvas extends LitElement {
   static properties = {
     _canvasWidth: { state: true },
