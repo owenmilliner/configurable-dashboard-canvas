@@ -48,15 +48,6 @@ function remove(event) {
   chartToDelete.remove();
 }
 
-<<<<<<< HEAD
-function loadFile(event) {
-  const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
-  var image = formRoot.getElementById("output");
-  image.src = URL.createObjectURL(event.target.files[0]);
-  console.log(formRoot);
-  const imgInput = formRoot.getElementById("imgFile");
-  imgInput.remove();
-=======
 function formPopUp(event, isActive) {
   const chartInputForm = document.createElement("div");
   chartInputForm.innerHTML = `<chart-form></chart-form>`;
@@ -75,5 +66,4 @@ function formPopUp(event, isActive) {
   const page = canvas.shadowRoot.getElementById("page");
   page.style.opacity = 0.2;
   canvasRoot.appendChild(chartInputForm);
->>>>>>> b3bddadc7a21162d6303f24a4e01ff2bfa287aaa
 }
