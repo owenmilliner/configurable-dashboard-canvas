@@ -31,6 +31,11 @@ function drop(event) {
     border: 10px solid black;
     `;
 
+<<<<<<< HEAD
+=======
+    formPopUp();
+
+>>>>>>> ae9918f7682d1ae4cfbece2f756c5605d1ed5a0a
     event.target.appendChild(newDiv);
     count++;
   } else {
@@ -44,3 +49,16 @@ function remove(event) {
   const chartToDelete = canvasRoot.getElementById(nodeId);
   chartToDelete.remove();
 }
+<<<<<<< HEAD
+=======
+
+function formPopUp() {
+  const chartInputForm = document.createElement("div");
+  chartInputForm.innerHTML = `<chart-form></chart-form>`;
+  chartInputForm.id = "chartInputForm";
+  canvasRoot = canvas.shadowRoot;
+  const page = canvasRoot.getElementById("page");
+  page.style.opacity = 0.2;
+  canvasRoot.appendChild(chartInputForm);
+}
+>>>>>>> ae9918f7682d1ae4cfbece2f756c5605d1ed5a0a

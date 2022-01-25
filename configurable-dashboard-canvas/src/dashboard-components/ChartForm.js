@@ -11,8 +11,14 @@ export class ChartForm extends LitElement {
     return css`
       #chartInputForm {
         position: absolute;
+        padding: 10px;
         top: 50%;
         left: 50%;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        text-align: centre;
+        opacity: 1;
       }
     `;
   }
