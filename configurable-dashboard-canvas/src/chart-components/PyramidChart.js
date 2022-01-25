@@ -25,11 +25,11 @@ export class PyramidChart extends LitElement {
         <vaadin-chart-series
           title="Unique users"
           values='[
-      ["Website visits", 15654],
-      ["Downloads", 4064],
-      ["Requested price list", 1987],
-      ["Invoice sent", 976],
-      ["Finalized", 846]
+      ["20012022", 121],
+      ["21012022", 118],
+      ["22012022", 110],
+      ["23012022", 91],
+      ["24012022", 41]
     ]'
         >
         </vaadin-chart-series>
