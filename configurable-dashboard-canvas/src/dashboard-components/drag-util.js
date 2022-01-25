@@ -29,7 +29,7 @@ function drop(event) {
     height: fit-content;
     width: fit-content;
     border: 10px solid black;
-    position: relative;;
+    position: relative;
     `;
     event.target.appendChild(newDiv);
     count++;
@@ -46,11 +46,17 @@ function remove(event) {
 }
 
 function loadFile(event) {
-  const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
+  const formRoot = canvas.shadowRoot.querySelector("img-upload").shadowRoot;
   var image = formRoot.getElementById("output");
   image.src = URL.createObjectURL(event.target.files[0]);
-  console.log(formRoot);
-  const imgInput = formRoot.getElementById("imgFile");
+  image.style.cssText = `
+  overflow: auto;
+    position: relative;
+    width: 15vw;
+    height:25vh;
+
+  `;
+  const imgInput = formRoot.getElementById("imgInput");
   imgInput.remove();
 }
 
