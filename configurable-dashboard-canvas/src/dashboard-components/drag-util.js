@@ -1,5 +1,5 @@
 const canvas = document.querySelector("canvas-component");
-var canvasRoot = "";
+let canvasRoot = "";
 
 function allowDrop(event) {
   event.preventDefault();
@@ -31,6 +31,9 @@ function drop(event) {
     border: 10px solid black;
     position: relative;;
     `;
+
+    formPopUp();
+
     event.target.appendChild(newDiv);
     count++;
   } else {
@@ -45,6 +48,7 @@ function remove(event) {
   chartToDelete.remove();
 }
 
+<<<<<<< HEAD
 function loadFile(event) {
   const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
   var image = formRoot.getElementById("output");
@@ -52,4 +56,24 @@ function loadFile(event) {
   console.log(formRoot);
   const imgInput = formRoot.getElementById("imgFile");
   imgInput.remove();
+=======
+function formPopUp(event, isActive) {
+  const chartInputForm = document.createElement("div");
+  chartInputForm.innerHTML = `<chart-form></chart-form>`;
+  chartInputForm.id = "chartInputForm";
+
+  if (isActive) {
+    const path = event.path;
+    for (let i = 0; i < path.length; i++) {
+      if (path[i].id && path[i].id.includes("web-component")) {
+        chartInputForm.setAttribute("chartId", path[i].id);
+      }
+    }
+  } else {
+  }
+
+  const page = canvas.shadowRoot.getElementById("page");
+  page.style.opacity = 0.2;
+  canvasRoot.appendChild(chartInputForm);
+>>>>>>> b3bddadc7a21162d6303f24a4e01ff2bfa287aaa
 }
