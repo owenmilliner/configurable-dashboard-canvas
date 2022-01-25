@@ -32,22 +32,33 @@ export class ChartForm extends LitElement {
 
   getData() {}
 
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+    console.log(event.path[0].title.value);
+    console.log("Form submitted.");
+  }
+
   render() {
     return html`<div id="chartInputForm">
       <h1>Choose Chart Data</h1>
 
       <p>Please complete the required data fields below:</p>
 
-      <form id="inputForm">
+      <form id="inputForm" @submit=${this.handleSubmit}>
         <label for="chartTitle">Chart Title:</label>
         <input type="text" id="chartTitle" name="title" />
 
-        <label for="dataSource">Choose Data:</label>
+        <label for="dataSource">Data:</label>
         <select id="dataSource" name="data">
           <option value="Number of tweets">Number of tweets</option>
           <option value="Severity 1">Severity 1</option>
           <option value="Severity 2">Severity 2</option>
           <option value="Severity 3">Severity 3</option>
+        </select>
+        <label for="dataSource">Data Headings:</label>
+        <select id="dataHeading" name="dataHeading">
+          <option value="Date">Date</option>
         </select>
         <input type="submit" />
       </form>
