@@ -6,6 +6,7 @@ export class BoxPlotChart extends LitElement {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="boxplot"
+        class="chart"
         title="Box Plot Example"
         categories='["1", "2", "3", "4", "5"]'
         no-legend

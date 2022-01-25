@@ -5,6 +5,7 @@ export class PolarChart extends LitElement {
   render() {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
+        class="chart"
         title="Polar Chart"
         polar
         additional-options='{

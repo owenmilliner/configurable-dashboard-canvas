@@ -4,7 +4,7 @@ import "@vaadin/charts";
 export class LineChart extends LitElement {
   render() {
     return html` <link rel="stylesheet" href="./chart.css" />
-      <vaadin-chart type="line">
+      <vaadin-chart type="line" class="chart">
         <vaadin-chart-series
           values='[
         ["Firefox", 45.0],

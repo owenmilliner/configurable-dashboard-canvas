@@ -6,6 +6,7 @@ export class AreaSplineChart extends LitElement {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="areaspline"
+        class="chart"
         title="Average fruit consumption during one week"
         categories='["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]'
         additional-options='{

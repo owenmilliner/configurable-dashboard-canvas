@@ -7,6 +7,7 @@ export class TreeMapChart extends LitElement {
       <vaadin-chart
         id="treemap"
         type="treemap"
+        class="chart"
         title="Fruit consumption"
         tooltip
       >

@@ -4,7 +4,7 @@ import "@vaadin/charts";
 export class PieChart extends LitElement {
   render() {
     return html` <link rel="stylesheet" href="./chart.css" />
-      <vaadin-chart type="pie">
+      <vaadin-chart type="pie" class="chart">
         <vaadin-chart-series
           values='[
         ["Firefox", 45.0],

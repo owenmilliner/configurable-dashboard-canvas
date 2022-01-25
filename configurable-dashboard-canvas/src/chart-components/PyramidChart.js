@@ -6,6 +6,7 @@ export class PyramidChart extends LitElement {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
         type="pyramid"
+        class="chart"
         title="Sales pyramid"
         no-legend
         additional-options='{
