@@ -1,6 +1,10 @@
 import { html, LitElement } from "lit";
 import "@vaadin/charts";
 
+export const updateData = (chartData) => {
+  globalThis.title = chartData.title;
+};
+
 export class PyramidChart extends LitElement {
   static properties = {
     title: { type: String },

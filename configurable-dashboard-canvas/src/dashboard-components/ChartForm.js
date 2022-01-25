@@ -1,4 +1,5 @@
 import { html, css, LitElement } from "lit";
+import { updateData } from "../chart-components/PyramidChart";
 
 export class ChartForm extends LitElement {
   static properties = {
@@ -30,10 +31,6 @@ export class ChartForm extends LitElement {
     this._chartValues = [];
   }
 
-  updateChartProperties(chartProperties) {
-    console.log(chartProperties);
-  }
-
   handleSubmit(event) {
     event.preventDefault();
     const canvas = document.querySelector("canvas-component").shadowRoot;
@@ -45,9 +42,9 @@ export class ChartForm extends LitElement {
     const headings = event.path[0].dataHeading.value;
     const chartId = chartForm.getAttribute("chartId");
 
-    this.updateChartProperties({ title, values, headings, chartId });
+    updateData({ title, values, headings, chartId });
+
     page.style.opacity = 1;
-    console.log(event.path[1]);
     chartForm.remove();
   }
 
