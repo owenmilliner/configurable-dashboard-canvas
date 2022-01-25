@@ -1,18 +1,18 @@
 const canvas = document.querySelector("canvas-component");
-var canvasRoot = "";
+let count = 1;
+let gridView = true;
 
 function allowDrop(event) {
   event.preventDefault();
 }
 
 function drag(event, isNav) {
-  canvasRoot = canvas.shadowRoot;
   event.dataTransfer.setData("targetNodeId", event.target.id);
   event.dataTransfer.setData("isNav", isNav);
 }
 
-let count = 1;
 function drop(event) {
+  const canvasRoot = canvas.shadowRoot;
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
   const nodeId = event.dataTransfer.getData("targetNodeId");
@@ -41,7 +41,7 @@ function drop(event) {
 
 function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
-  const chartToDelete = canvasRoot.getElementById(nodeId);
+  const chartToDelete = canvas.shadowRoot.getElementById(nodeId);
   chartToDelete.remove();
 }
 
@@ -52,4 +52,21 @@ function loadFile(event) {
   console.log(formRoot);
   const imgInput = formRoot.getElementById("imgFile");
   imgInput.remove();
+}
+
+function toggleGrid() {
+  gridView = !gridView;
+  const page = canvas.shadowRoot.querySelector("#canvas");
+  const gridSlots = canvas.shadowRoot.querySelectorAll(".canvas__gridSlot");
+  if (!gridView) {
+    gridSlots.forEach((slot) => {
+      slot.style.border = "1px solid white";
+    });
+    page.style.border = "2px solid white";
+  } else {
+    gridSlots.forEach((slot) => {
+      slot.style.border = "1px solid red";
+    });
+    page.style.border = "2px solid rgb(85, 179, 255)";
+  }
 }
