@@ -45,11 +45,11 @@ function remove(event) {
   chartToDelete.remove();
 }
 
-// function loadFile(event) {
-//   const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
-//   var image = formRoot.getElementById("output");
-//   image.src = URL.createObjectURL(event.target.files[0]);
-//   console.log(formRoot);
-//   const imgInput = formRoot.getElementById("imgFile");
-//   imgInput.remove();
-// }
+function loadFile(event) {
+  const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
+  var image = formRoot.getElementById("output");
+  image.src = URL.createObjectURL(event.target.files[0]);
+  console.log(formRoot);
+  const imgInput = formRoot.getElementById("imgFile");
+  imgInput.remove();
+}
