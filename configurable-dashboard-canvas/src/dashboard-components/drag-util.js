@@ -47,7 +47,11 @@ function remove(event) {
   chartToDelete.remove();
 }
 
-function formPopUp() {
+function formPopUp(event, isActive) {
+  if (isActive) {
+    console.log(event.path[8]);
+  }
+
   const chartInputForm = document.createElement("div");
   chartInputForm.innerHTML = `<chart-form></chart-form>`;
   chartInputForm.id = "chartInputForm";

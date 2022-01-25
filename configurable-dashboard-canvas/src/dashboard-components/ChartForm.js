@@ -30,7 +30,20 @@ export class ChartForm extends LitElement {
     this._chartValues = [];
   }
 
-  getData() {}
+  updateChartProperties(newTitle, newValues) {}
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const title = event.path[0].title.value;
+    const values = event.path[0].data.value;
+    this.updateChartProperties(title, values);
+    const page = document
+      .querySelector("canvas-component")
+      .shadowRoot.getElementById("page");
+
+    page.style.opacity = 1;
+    event.path[1].remove();
+  }
 
   handleSubmit(event) {
     event.preventDefault();
