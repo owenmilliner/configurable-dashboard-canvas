@@ -13,15 +13,6 @@ export class ImageUpload extends LitElement {
     `;
   }
 
-  loadFile = (event) => {
-    const formRoot = canvasRoot.querySelector("img-upload").shadowRoot;
-    var image = formRoot.getElementById("output");
-    image.src = URL.createObjectURL(event.target.files[0]);
-    console.log(formRoot);
-    const imgInput = formRoot.getElementById("imgFile");
-    imgInput.remove();
-  };
-
   render() {
     return html`
       <div id="upload">
@@ -30,7 +21,7 @@ export class ImageUpload extends LitElement {
           accept="image/*"
           name="image"
           id="imgFile"
-          @change=${this.loadFile}
+          onchange="loadFile(event)"
         />
 
         <p><img id="output" width="200" /></p>
