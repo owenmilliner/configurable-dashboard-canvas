@@ -8,8 +8,8 @@ export class Header extends LitElement {
         color: white;
         background-color: #06152c;
         display: grid;
-        grid-template-areas: "app file logo";
-        grid-template-columns: 12vw auto 12vw;
+        grid-template-areas: "app bin file logo";
+        grid-template-columns: 20vw 10vw auto 20vw;
         grid-template-rows: 100%;
       }
 
@@ -31,6 +31,12 @@ export class Header extends LitElement {
         color: #cccccc;
         opacity: 0.3;
         font-size: 3vh;
+      }
+
+      #header__bin {
+        grid-area: bin;
+        margin: auto;
+        height: 10vh;
       }
 
       #header__logo {
@@ -65,6 +71,13 @@ export class Header extends LitElement {
         <h1 id="header__file">
           <span id="file__client">${this._client} / </span>${this._file}
         </h1>
+        <img
+          id="header__bin"
+          src="../src/images/recyclebin.png"
+          alt="Recycle bin"
+          ondragover="allowDrop(event)"
+          ondrop="remove(event)"
+        />
         <img
           id="header__logo"
           src="../src/images/crisp_logo.png"
