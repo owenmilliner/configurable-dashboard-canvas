@@ -30,7 +30,20 @@ export class ChartForm extends LitElement {
     this._chartValues = [];
   }
 
-  getData() {}
+  updateChartProperties(newTitle, newValues) {}
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const title = event.path[0].title.value;
+    const values = event.path[0].data.value;
+    this.updateChartProperties(title, values);
+    const page = document
+      .querySelector("canvas-component")
+      .shadowRoot.getElementById("page");
+
+    page.style.opacity = 1;
+    event.path[1].remove();
+  }
 
   render() {
     return html`<div id="chartInputForm">
@@ -38,7 +51,7 @@ export class ChartForm extends LitElement {
 
       <p>Please complete the required data fields below:</p>
 
-      <form id="inputForm">
+      <form id="inputForm" @submit=${this.handleSubmit}>
         <label for="chartTitle">Chart Title:</label>
         <input type="text" id="chartTitle" name="title" />
 

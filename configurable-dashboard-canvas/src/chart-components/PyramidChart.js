@@ -3,24 +3,28 @@ import "@vaadin/charts";
 
 export class PyramidChart extends LitElement {
   static properties = {
-    count: { type: Number },
+    title: { type: String },
+    values: { type: Array },
   };
 
   constructor() {
     super();
-    this.count = 0;
-  }
-
-  _handleDBLClick(event) {
-    this.count++;
+    this.title = "TEST";
+    this.values = [
+      ["Website visits", 15654],
+      ["Downloads", 4064],
+      ["Requested price list", 1987],
+      ["Invoice sent", 976],
+      ["Finalized", 846],
+    ];
   }
 
   render() {
     return html` <link rel="stylesheet" href="./chart.css" />
       <vaadin-chart
-        @dblclick="${this._handleDBLClick}"
+        ondblclick="formPopUp(event,true)"
         type="pyramid"
-        title="Sales pyramid"
+        title="${this.title}"
         no-legend
         additional-options='{
         "plotOptions": {
@@ -36,8 +40,16 @@ export class PyramidChart extends LitElement {
         }
       }'
       >
-        <vaadin-chart-series title="" values="[]"
-          ><p>${this.count}</p>
+        <vaadin-chart-series
+          title="${this.title}"
+          values='[
+      ["Website visits", 15654],
+      ["Downloads", 4064],
+      ["Requested price list", 1987],
+      ["Invoice sent", 976],
+      ["Finalized", 846]
+    ]'
+        >
         </vaadin-chart-series>
       </vaadin-chart>`;
   }
