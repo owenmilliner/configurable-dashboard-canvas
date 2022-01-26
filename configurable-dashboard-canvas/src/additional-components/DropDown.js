@@ -36,9 +36,9 @@ export class DropDown extends LitElement {
       }
 
       p {
-        font-size: 1.5vw;
+        font-size: 1vw;
         width: 20vw;
-        padding: 1vw;
+        padding: 0.5vw;
         margin: 0;
       }
 

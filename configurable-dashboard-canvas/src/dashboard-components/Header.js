@@ -10,7 +10,7 @@ export class Header extends LitElement {
         background-color: #06152c;
         display: grid;
         grid-template-areas: "app toggle bin file logo";
-        grid-template-columns: 15vw 12vw 15vw auto 20vw;
+        grid-template-columns: 15vw 12vw 10vw auto 20vw;
         grid-template-rows: 100%;
       }
 
@@ -32,7 +32,7 @@ export class Header extends LitElement {
         display: inline-block;
         margin: auto;
         font-weight: 300;
-        font-size: 2vh;
+        font-size: 1.5vw;
       }
 
       #toggle__label {
