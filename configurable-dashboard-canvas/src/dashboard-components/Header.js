@@ -10,24 +10,52 @@ export class Header extends LitElement {
         background-color: #06152c;
         display: grid;
         grid-template-areas: "app toggle bin file logo";
-        grid-template-columns: 15vw 10vw 15vw auto 20vw;
+        grid-template-columns: 15vw 12vw 15vw auto 20vw;
         grid-template-rows: 100%;
       }
 
       #header__app {
         grid-area: app;
         margin: auto;
+        margin-left: 1vw;
         font-size: 3vh;
         font-weight: 300;
-        width: 10vw;
-        border-left: 0;
+      }
+
+      #app__title {
+        margin: auto;
+        float: left;
+      }
+
+      #header__toggle {
+        grid-area: toggle;
+        display: inline-block;
+        margin: auto;
+        font-weight: 300;
+        font-size: 2vh;
+      }
+
+      #toggle__label {
+      }
+
+      #toggle__checkbox {
+        margin: auto;
+        width: 2vh;
+        height: 2vh;
+      }
+
+      #header #header:first-child {
         padding-left: 0;
       }
 
-      .app__title {
-        padding: 0;
+      #header #header:last-child {
+        padding-right: 0;
+      }
+
+      #header__bin {
+        grid-area: bin;
         margin: auto;
-        float: left;
+        height: 10vh;
       }
 
       #header__file {
@@ -43,48 +71,11 @@ export class Header extends LitElement {
         font-size: 3vh;
       }
 
-      #header__bin {
-        grid-area: bin;
-        margin: auto;
-        height: 10vh;
-      }
-
       #header__logo {
         grid-area: logo;
         margin: auto;
+        margin-right: 1vw;
         width: 5vw;
-      }
-
-      #header__toggle {
-        grid-area: toggle;
-        display: inline-block;
-        margin: auto;
-        width: 15vw;
-        height: 3vh;
-        margin: auto;
-        font-weight: 300;
-        font-size: 3vh;
-      }
-
-      #toggle__label {
-        font-size: 3vh;
-        width: 10vw;
-        justify-content: center;
-      }
-
-      #toggle__checkbox {
-        margin: auto;
-        width: 2vh;
-        height: 2vh;
-        color: white;
-      }
-
-      #header #header:first-child {
-        padding-left: 0;
-      }
-
-      #header #header:last-child {
-        padding-right: 0;
       }
     `;
   }
@@ -110,7 +101,7 @@ export class Header extends LitElement {
     return html`
       <div id="header">
         <div id="header__app">
-          <drop-down id="app__dropdown" class="app__title"></drop-down>
+          <drop-down id="app__title"></drop-down>
         </div>
         <img
           id="header__bin"

@@ -8,6 +8,10 @@ export class DropDown extends LitElement {
         overflow: visible;
       }
 
+      #dropdown__arrow {
+        font-size: 1.5vw;
+      }
+
       .dropdown .dropdown__button {
         font-size: 2vw;
         border: none;
@@ -23,6 +27,7 @@ export class DropDown extends LitElement {
         display: none;
         position: absolute;
         width: fit-content;
+        left: 0%;
         z-index: 1;
         background-color: #06152c;
         height: fit-content;
@@ -31,9 +36,9 @@ export class DropDown extends LitElement {
       }
 
       p {
-        font-size: 1vw;
+        font-size: 1.5vw;
         width: 20vw;
-        padding: 0;
+        padding: 1vw;
         margin: 0;
       }
 
@@ -61,7 +66,7 @@ export class DropDown extends LitElement {
     return html`
       <div class="dropdown">
         <button class="dropdown__button">
-          CDC⌄
+          CDC <span id="dropdown__arrow">▼</span>
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown__content">
