@@ -76,3 +76,7 @@ function toggleGrid() {
     page.style.border = "2px solid rgb(85, 179, 255)";
   }
 }
+
+function menuSelection(event) {
+  console.log("hello");
+}

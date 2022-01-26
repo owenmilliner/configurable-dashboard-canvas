@@ -1,4 +1,5 @@
 import { html, css, LitElement } from "lit";
+import { DropDown } from "../additional-components/DropDown";
 
 export class Header extends LitElement {
   static get styles() {
@@ -18,6 +19,15 @@ export class Header extends LitElement {
         margin: auto;
         font-size: 3vh;
         font-weight: 300;
+        width: 10vw;
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      .app__title {
+        padding: 0;
+        margin: auto;
+        float: left;
       }
 
       #header__file {
@@ -68,6 +78,14 @@ export class Header extends LitElement {
         height: 2vh;
         color: white;
       }
+
+      #header #header:first-child {
+        padding-left: 0;
+      }
+
+      #header #header:last-child {
+        padding-right: 0;
+      }
     `;
   }
 
@@ -91,7 +109,9 @@ export class Header extends LitElement {
   render() {
     return html`
       <div id="header">
-        <p id="header__app">CDC</p>
+        <div id="header__app">
+          <drop-down id="app__dropdown" class="app__title"></drop-down>
+        </div>
         <img
           id="header__bin"
           src="../src/images/recyclebin.png"
