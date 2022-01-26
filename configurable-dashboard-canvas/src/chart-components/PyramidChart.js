@@ -46,13 +46,7 @@ export class PyramidChart extends LitElement {
       >
         <vaadin-chart-series
           title="${this.title}"
-          values='[
-      ["Website visits", 15654],
-      ["Downloads", 4064],
-      ["Requested price list", 1987],
-      ["Invoice sent", 976],
-      ["Finalized", 846]
-    ]'
+          values="${JSON.stringify(this.values)}"
         >
         </vaadin-chart-series>
       </vaadin-chart>`;
