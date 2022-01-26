@@ -66,9 +66,9 @@ function toggleGrid() {
   const gridSlots = canvas.shadowRoot.querySelectorAll(".canvas__gridSlot");
   if (!gridView) {
     gridSlots.forEach((slot) => {
-      slot.style.border = "1px solid white";
+      slot.style.border = "none";
     });
-    page.style.border = "2px solid white";
+    page.style.border = "none";
   } else {
     gridSlots.forEach((slot) => {
       slot.style.border = "1px solid red";
