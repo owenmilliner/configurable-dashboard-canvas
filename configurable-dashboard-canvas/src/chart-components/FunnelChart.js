@@ -50,6 +50,7 @@ export class FunnelChart extends ProviderMixin(LitElement) {
             type="funnel"
             class="chart"
             title="${this.title}"
+            @dblclick="${this.formPopUp}"
             no-legend
             tooltip
             additional-options='{
