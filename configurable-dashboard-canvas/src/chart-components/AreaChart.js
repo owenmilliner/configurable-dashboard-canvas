@@ -16,13 +16,17 @@ export class AreaChart extends ProviderMixin(LitElement) {
       this.subTitle = value;
     };
 
-    this.values = [];
-    this.setValues = (newValue) => {
-      this.values = newValue;
+    this.data = {};
+    this.setData = (property, value, nestedProperty) => {
+      if (nestedProperty) {
+        this.data[property][nestedProperty] = value;
+      } else {
+        this.data[property] = value;
+      }
     };
-    this.categories = [];
-    this.setCategories = (newValue) => {
-      this.categories = newValue;
+
+    this.resetData = () => {
+      this.data = {};
     };
 
     this.popUp = true;
@@ -37,10 +41,9 @@ export class AreaChart extends ProviderMixin(LitElement) {
       setTitle: Function,
       subTitle: String,
       setSubTitle: Function,
-      values: Array,
-      setValues: Function,
-      categories: Array,
-      setCategories: Function,
+      data: Object,
+      setData: Function,
+      resetData: Function,
       popUp: Boolean,
       setPopUp: Function,
     };
@@ -52,10 +55,9 @@ export class AreaChart extends ProviderMixin(LitElement) {
       "setTitle",
       "subTitle",
       "setSubTitle",
-      "values",
-      "setValues",
-      "categories",
-      "setCategories",
+      "data",
+      "setData",
+      "resetData",
       "popUp",
       "setPopUp",
     ];
@@ -71,24 +73,44 @@ export class AreaChart extends ProviderMixin(LitElement) {
       : html`
           <link rel="stylesheet" href="./chart.css" />
           <vaadin-chart
+            title="${this.title}"
             @dblclick="${this.formPopUp}"
             type="area"
             class="chart"
-            title="${this.title}"
             subtitle="${this.subTitle}"
-            categories="${JSON.stringify(this.categories)}"
+            categories="${JSON.stringify(this.data.categories)}"
             stacking="normal"
             no-legend
             tooltip
           >
-            // need to produce a series for length fo categories
             <vaadin-chart-series
-              title="${this.values[0].title}"
-              values="${this.values[0].values}"
-              unit="Millions"
-            >
-            </vaadin-chart-series>
-          </vaadin-chart>
+              title="${this.data.setOne.title}"
+              unit="${this.data.unit}"
+              values="${JSON.stringify(this.data.setOne.values)}"
+            ></vaadin-chart-series>
+            ${!!this.data.setTwo
+              ? html`<vaadin-chart-series
+                  title="${this.data.setTwo.title}"
+                  unit="${this.data.unit}"
+                  values="${JSON.stringify(this.data.setTwo.values)}"
+                ></vaadin-chart-series>`
+              : ""}
+            ${!!this.data.setThree
+              ? html`<vaadin-chart-series
+                  title="Sales &amp; ${this.data.setThree.title}"
+                  unit="${this.data.unit}"
+                  values="${JSON.stringify(this.data.setThree.values)}"
+                ></vaadin-chart-series>`
+              : null}
+            ${!!this.data.setFour
+              ? html`<vaadin-chart-series
+                  title="${this.data.setFour.title}"
+                  unit="${this.data.unit}"
+                  values="${JSON.stringify(this.data.setFour.values)}"
+                ></vaadin-chart-series>`
+              : null}
+            ></vaadin-chart
+          >
         `;
   }
 }
@@ -100,10 +122,9 @@ class AreaForm extends ConsumerMixin(LitElement) {
       setTitle: Function,
       subTitle: String,
       setSubTitle: Function,
-      values: Array,
-      setValues: Function,
-      categories: Array,
-      setCategories: Function,
+      data: Object,
+      setData: Function,
+      resetData: Function,
       popUp: Boolean,
       setPopUp: Function,
     };
@@ -131,10 +152,9 @@ class AreaForm extends ConsumerMixin(LitElement) {
       "setTitle",
       "subTitle",
       "setSubTitle",
-      "values",
-      "setValues",
-      "categories",
-      "setCategories",
+      "data",
+      "setData",
+      "resetData",
       "popUp",
       "setPopUp",
     ];
@@ -142,46 +162,45 @@ class AreaForm extends ConsumerMixin(LitElement) {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    this.resetData();
     // Getting the form data.
-    const dataSource = event.path[0].data.value;
     const dataHeading = event.path[0].dataHeading.value;
+    const numberTranslate = ["One", "Two", "Three", "Four"];
+    const formData = [];
+    formData.push(event.path[0].dataSourceOne.value);
+    formData.push(event.path[0].dataSourceTwo.value);
+    formData.push(event.path[0].dataSourceThree.value);
+    formData.push(event.path[0].dataSourceFour.value);
 
-    // Formatting of data to the *specific* chart.
-    const updatedValues = demoTwitter2022Data.tweetData
-      .sort((valueOne, valueTwo) => {
-        return valueTwo[dataSource] - valueOne[dataSource];
-      })
-      .map((tweet) => {
+    // Setting values for each dataSet
+    for (let i = 0; i < formData.length; i++) {
+      if (formData[i] !== "none") {
+        this.setData(`set${numberTranslate[i]}`, { title: "", values: [] });
+        this.setData(`set${numberTranslate[i]}`, formData[i], "title");
+        this.setData(
+          `set${numberTranslate[i]}`,
+          demoTwitter2022Data.tweetData.map((tweet) => {
+            return tweet[formData[i]];
+          }),
+          "values"
+        );
+      }
+    }
+
+    // Setting Axis Data
+    this.setData("unit", "Number of Tweets");
+    this.setData(
+      "categories",
+      demoTwitter2022Data.tweetData.map((tweet) => {
         let heading = String(tweet[dataHeading]);
-        return [
-          `${heading.substring(0, 2)}.${heading.substring(
-            2,
-            4
-          )}.${heading.substring(4)}`,
-          tweet[dataSource],
-        ];
-      });
-
-    const sortedByDate = demoTwitter2022Data.tweetData
-      .sort((valueOne, valueTwo) => {
-        return valueOne.date - valueTwo.date;
+        return `${heading.substring(0, 2)}.${heading.substring(
+          2,
+          4
+        )}.${heading.substring(4)}`;
       })
-      .map((tweet) => {
-        let heading = String(tweet[dataHeading]);
-        return [
-          `${heading.substring(0, 2)}.${heading.substring(
-            2,
-            4
-          )}.${heading.substring(4)}`,
-        ];
-      })
-      .flat();
-
-    // Setting Data
+    );
     this.setTitle(event.path[0].title.value);
-    this.setValues(updatedValues);
-    this.setCategories(sortedByDate);
+    this.setSubTitle(event.path[0].subTitle.value);
 
     // Close form.
     this.setPopUp(!this.popUp);
@@ -192,17 +211,49 @@ class AreaForm extends ConsumerMixin(LitElement) {
       <form id="chartInputForm" @submit=${this.handleSubmit}>
         <label>Title:</label>
         <input name="title" />
-        <label for="dataSource">Data:</label>
-        <select id="dataSource" name="data">
+        <label>Sub Title:</label>
+        <input name="subTitle" />
+
+        <label for="dataSourceOne">Data Source One:</label>
+        <select id="dataSourceOne" name="dataSourceOne">
           <option value="volumeOfTweets">Number of tweets</option>
           <option value="severityOne">Severity 1</option>
           <option value="severityTwo">Severity 2</option>
           <option value="severityThree">Severity 3</option>
         </select>
-        <label for="dataSource">Data Headings:</label>
+
+        <label for="dataSourceTwo">Data Source Two:</label>
+        <select id="dataSourceTwo" name="dataSourceTwo">
+          <option value="none">None</option>
+          <option value="volumeOfTweets">Number of tweets</option>
+          <option value="severityOne">Severity 1</option>
+          <option value="severityTwo">Severity 2</option>
+          <option value="severityThree">Severity 3</option>
+        </select>
+
+        <label for="dataSourceThree">Data Source Three:</label>
+        <select id="dataSourceThree" name="dataSourceThree">
+          <option value="none">None</option>
+          <option value="volumeOfTweets">Number of tweets</option>
+          <option value="severityOne">Severity 1</option>
+          <option value="severityTwo">Severity 2</option>
+          <option value="severityThree">Severity 3</option>
+        </select>
+
+        <label for="dataSourceFour">Data Source Four:</label>
+        <select id="dataSourceFour" name="dataSourceFour">
+          <option value="none">None</option>
+          <option value="volumeOfTweets">Number of tweets</option>
+          <option value="severityOne">Severity 1</option>
+          <option value="severityTwo">Severity 2</option>
+          <option value="severityThree">Severity 3</option>
+        </select>
+
+        <label for="dataHeading">Data Headings:</label>
         <select id="dataHeading" name="dataHeading">
           <option value="date">Date</option>
         </select>
+
         <button type="submit">Update Chart</button>
       </form>
     `;

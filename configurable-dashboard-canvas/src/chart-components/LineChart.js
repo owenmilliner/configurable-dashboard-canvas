@@ -89,7 +89,7 @@ export class LineChart extends ProviderMixin(LitElement) {
               : ""}
             ${!!this.data.setThree
               ? html`<vaadin-chart-series
-                  title="Sales &amp; ${this.data.setThree.title}"
+                  title="${this.data.setThree.title}"
                   unit="${this.data.unit}"
                   values="${JSON.stringify(this.data.setThree.values)}"
                 ></vaadin-chart-series>`
