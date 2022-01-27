@@ -45,16 +45,6 @@ export const imgData = [
     img: "../src/images/bar.png",
   },
   {
-    name: "boxplot-chart",
-    id: "<boxplot-chart></boxplot-chart>",
-    img: "../src/images/boxplot.png",
-  },
-  {
-    name: "bubble-chart",
-    id: "<bubble-chart></bubble-chart>",
-    img: "../src/images/bubble.png",
-  },
-  {
     name: "heatmap-chart",
     id: "<heatmap-chart></heatmap-chart>",
     img: "../src/images/heatmap.png",

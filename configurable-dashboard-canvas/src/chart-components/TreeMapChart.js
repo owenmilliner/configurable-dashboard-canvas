@@ -1,8 +1,8 @@
 import { html, css, LitElement } from "lit";
 import { ProviderMixin, ConsumerMixin } from "lit-element-context";
 import { demoTwitter2022Data } from "../demo-data/demo-bad-tweets-2022";
-import "@vaadin/charts";
 import { formatDate } from "../demo-data/data-utils";
+import "@vaadin/charts";
 
 export class TreeMapChart extends ProviderMixin(LitElement) {
   constructor() {
@@ -35,7 +35,6 @@ export class TreeMapChart extends ProviderMixin(LitElement) {
     return {
       title: String,
       setTitle: Function,
-
       popUp: Boolean,
       setPopUp: Function,
       data: Object,
@@ -74,7 +73,7 @@ export class TreeMapChart extends ProviderMixin(LitElement) {
             tooltip
           >
             <vaadin-chart-series
-              values=${JSON.stringify(this.data.chartData).replace(",", ", ")}
+              values="${JSON.stringify(this.data.parents + this.data.values)}"
               additional-options='{
         "levels": [{
           "level": 1,
@@ -137,51 +136,61 @@ class TreeMapForm extends ConsumerMixin(LitElement) {
 
     // Getting the form data.
 
-    const formData = [];
-    formData.push(event.path[0].dataSourceOne.value);
-    formData.push(event.path[0].dataSourceTwo.value);
-    formData.push(event.path[0].dataSourceThree.value);
-    formData.push(event.path[0].dataSourceFour.value);
+    const parents = [];
+    parents.push({
+      id: event.path[0].dataSourceOne.value,
+      name: event.path[0].dataSourceOne.value,
+      colorIndex: 0,
+    });
+    parents.push({
+      id: event.path[0].dataSourceTwo.value,
+      name: event.path[0].dataSourceTwo.value,
+      colorIndex: 1,
+    });
+    parents.push({
+      id: event.path[0].dataSourceThree.value,
+      name: event.path[0].dataSourceThree.value,
+      colorIndex: 2,
+    });
+    parents.push({
+      id: event.path[0].dataSourceFour.value,
+      name: event.path[0].dataSourceFour.value,
+      colorIndex: 3,
+    });
 
-    // Setting values for each dataSet
+    // Setting values for data
+    const updatedData = [];
+    const tweets = demoTwitter2022Data.tweetData.forEach((tweet) => [
+      updatedData.push({
+        name: tweet.date,
+        parent: Object.keys(tweet)[1],
+        value: tweet[parents[0].id],
+      }),
+      updatedData.push({
+        name: tweet.date,
+        parent: Object.keys(tweet)[2],
+        value: tweet[parents[1].id],
+      }),
+      updatedData.push({
+        name: tweet.date,
+        parent: Object.keys(tweet)[3],
+        value: tweet[parents[2].id],
+      }),
+      updatedData.push({
+        name: tweet.date,
+        parent: Object.keys(tweet)[4],
+        value: tweet[parents[3].id],
+      }),
+    ]);
 
-    let chartData = [];
-    for (let i = 0; i < formData.length; i++) {
-      if (formData[i] !== "none") {
-        chartData.push({
-          id: `${formData[i]}`,
-          name: `${formData[i]}`,
-          colorIndex: `${i}`,
-        });
+    for (let i = 0; i < tweets.length; i++) {
+      for (let j = 0; j < parents.length; j++) {
+        updatedData.push([i, j, tweets[i][j]]);
       }
     }
 
-    for (let i = 0; i < demoTwitter2022Data.tweetData.length; i++) {
-      chartData.push({
-        name: `${demoTwitter2022Data.tweetData[i].date}`,
-        parent: `${Object.keys(demoTwitter2022Data.tweetData[i])[1]}`,
-        value: `${demoTwitter2022Data.tweetData[i].volumeOfTweets}`,
-      });
-      chartData.push({
-        name: `${demoTwitter2022Data.tweetData[i].date}`,
-        parent: `${Object.keys(demoTwitter2022Data.tweetData[i])[2]}`,
-        value: `${demoTwitter2022Data.tweetData[i].severityOne}`,
-      });
-      chartData.push({
-        name: `${demoTwitter2022Data.tweetData[i].date}`,
-        parent: `${Object.keys(demoTwitter2022Data.tweetData[i])[3]}`,
-        value: `${demoTwitter2022Data.tweetData[i].severityTwo}`,
-      });
-      chartData.push({
-        name: `${demoTwitter2022Data.tweetData[i].date}`,
-        parent: `${Object.keys(demoTwitter2022Data.tweetData[i])[4]}`,
-        value: `${demoTwitter2022Data.tweetData[i].severityThree}`,
-      });
-    }
-
-    // Setting Axis Data
-
-    this.setData(chartData);
+    this.setData("values", updatedData);
+    this.setData("parents", parents);
     this.setTitle(event.path[0].title.value);
 
     // Close form.
