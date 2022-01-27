@@ -1,58 +1,26 @@
-import { html, LitElement } from "lit";
+import { html, css, LitElement } from "lit";
+import { ProviderMixin, ConsumerMixin } from "lit-element-context";
+
 import "@vaadin/charts";
-import "@vaadin/vaadin-text-field";
-import "@vaadin/vaadin-button";
-import "@vaadin/vaadin-checkbox";
-import "@vaadin/vaadin-radio-button/vaadin-radio-button";
-import "@vaadin/vaadin-radio-button/vaadin-radio-group";
 
 export const updateData = (chartData) => {
   globalThis.title = chartData.title;
 };
 
-const dataSources = {
-  NUMBER_OF_TWEETS: [
-    ["Website visits", 15654],
-    ["Downloads", 4064],
-    ["Requested price list", 1987],
-    ["Invoice sent", 976],
-    ["Finalized", 846],
-  ],
-  SEVERITY1: [
-    ["Website visits", 15654],
-    ["Downloads", 4064],
-    ["Requested price list", 1987],
-    ["Invoice sent", 976],
-    ["Finalized", 846],
-  ],
-  SEVERITY2: [
-    ["Website visits", 15654],
-    ["Downloads", 4064],
-    ["Requested price list", 1987],
-    ["Invoice sent", 976],
-    ["Finalized", 846],
-  ],
-  SEVERITY3: [
-    ["Website visits", 15654],
-    ["Downloads", 4064],
-    ["Requested price list", 1987],
-    ["Invoice sent", 976],
-    ["Finalized", 846],
-  ],
-};
-
-export class PyramidChart extends LitElement {
-  static get properties() {
-    return {
-      title: { type: String },
-      values: { type: Array },
-      popUp: { type: Boolean },
-    };
-  }
-
+export class PyramidChart extends ProviderMixin(LitElement) {
   constructor() {
     super();
+
     this.title = "TEST";
+    this.setTitle = (value) => {
+      this.title = value;
+    };
+
+    this.popUp = false;
+    this.setPopUp = (value) => {
+      this.popUp = value;
+    };
+
     this.values = [
       ["Website visits", 15654],
       ["Downloads", 4064],
@@ -60,7 +28,19 @@ export class PyramidChart extends LitElement {
       ["Invoice sent", 976],
       ["Finalized", 846],
     ];
-    this.popUp = false;
+  }
+  static get properties() {
+    return {
+      title: String,
+      setTitle: Function,
+      values: Array,
+      popUp: Boolean,
+      setPopUp: Function,
+    };
+  }
+
+  static get provide() {
+    return ["title", "setTitle", "popUp", "setPopUp"];
   }
 
   formPopUp() {
@@ -69,32 +49,7 @@ export class PyramidChart extends LitElement {
 
   render() {
     return this.popUp
-      ? html`
-          <div class="input-layout" @keyup="${this.shortcutListener}">
-            <vaadin-text-field
-              placeholder="Title"
-              value="${this.title}"
-              @change="${this.updateTitle}"
-            ></vaadin-text-field>
-            <p>test: ${this.title}</p>
-            <vaadin-radio-group
-              class="source-options"
-              value="${JSON.stringify(this.values)}"
-              @value-changed="${this.updateValues}"
-            >
-              ${Object.keys(dataSources).map(
-                (filter) =>
-                  html`<vaadin-radio-button value="${filter}"
-                    >${filter}</vaadin-radio-button
-                  >`
-              )}
-            </vaadin-radio-group>
-
-            <vaadin-button theme="primary" @click="${this.updateChart}"
-              >Update Chart</vaadin-button
-            >
-          </div>
-        `
+      ? html`<test-form></test-form>`
       : html` <link rel="stylesheet" href="./chart.css" />
           <vaadin-chart
             @dblclick="${this.formPopUp}"
@@ -122,20 +77,54 @@ export class PyramidChart extends LitElement {
             </vaadin-chart-series>
           </vaadin-chart>`;
   }
-  shortcutListener(e) {
-    if (e.key === "Enter") {
-      this.updateTitle();
-    }
+}
+
+class TestForm extends ConsumerMixin(LitElement) {
+  static get properties() {
+    return {
+      title: String,
+      setTitle: Function,
+      popUp: Boolean,
+      setPopUp: Function,
+    };
   }
 
-  updateTitle(e) {
-    this.title = e.target.value;
-    this.popUp = false;
+  static get styles() {
+    return css`
+      #chartInputForm {
+        position: absolute;
+        padding: 10px;
+        top: 50%;
+        left: 50%;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        text-align: centre;
+        opacity: 1;
+      }
+    `;
   }
 
-  createRenderRoot() {
-    return this;
+  static get inject() {
+    return ["title", "setTitle", "popUp", "setPopUp"];
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+    this.setTitle(event.path[0].title.value);
+    this.setPopUp(!this.popUp);
+  }
+
+  render() {
+    return html`
+      <form id="chartInputForm" @submit=${this.handleSubmit}>
+        <label>Title:</label>
+        <input name="title" />
+      </form>
+    `;
   }
 }
 
 window.customElements.define("pyramid-chart", PyramidChart);
+window.customElements.define("test-form", TestForm);
