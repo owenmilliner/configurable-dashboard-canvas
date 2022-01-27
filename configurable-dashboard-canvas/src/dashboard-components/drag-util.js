@@ -32,7 +32,7 @@ function drop(event) {
     position: relative;;
     `;
 
-    formPopUp();
+    // formPopUp();
 
     event.target.appendChild(newDiv);
     count++;

@@ -1,11 +1,7 @@
 import { html, css, LitElement } from "lit";
 import { ProviderMixin, ConsumerMixin } from "lit-element-context";
-
+import { demoTwitter2022Data } from "../demo-data/demo-bad-tweets-2022";
 import "@vaadin/charts";
-
-export const updateData = (chartData) => {
-  globalThis.title = chartData.title;
-};
 
 export class PyramidChart extends ProviderMixin(LitElement) {
   constructor() {
@@ -28,19 +24,32 @@ export class PyramidChart extends ProviderMixin(LitElement) {
       ["Invoice sent", 976],
       ["Finalized", 846],
     ];
+    this.setValues = (newValue) => {
+      this.values = newValue;
+    };
+
+    this.oldValues = [
+      ["Website visits", 15654],
+      ["Downloads", 4064],
+      ["Requested price list", 1987],
+      ["Invoice sent", 976],
+      ["Finalized", 846],
+    ];
   }
   static get properties() {
     return {
       title: String,
       setTitle: Function,
-      values: Array,
+      oldValues: Array,
       popUp: Boolean,
       setPopUp: Function,
+      values: Array,
+      setValues: Function,
     };
   }
 
   static get provide() {
-    return ["title", "setTitle", "popUp", "setPopUp"];
+    return ["title", "setTitle", "popUp", "setPopUp", "values", "setValues"];
   }
 
   formPopUp() {
@@ -86,6 +95,8 @@ class TestForm extends ConsumerMixin(LitElement) {
       setTitle: Function,
       popUp: Boolean,
       setPopUp: Function,
+      values: Array,
+      setValues: Function,
     };
   }
 
@@ -106,13 +117,37 @@ class TestForm extends ConsumerMixin(LitElement) {
   }
 
   static get inject() {
-    return ["title", "setTitle", "popUp", "setPopUp"];
+    return ["title", "setTitle", "popUp", "setPopUp", "values", "setValues"];
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
+
+    const dataSource = event.path[0].data.value;
+    const dataHeading = event.path[0].dataHeading.value;
+    console.log(dataSource);
+    console.log(dataHeading);
+
+    const updatedValues = demoTwitter2022Data.tweetData
+      .sort((valueOne, valueTwo) => {
+        return valueTwo[dataSource] - valueOne[dataSource];
+      })
+      .map((tweet) => {
+        let heading = String(tweet[dataHeading]);
+        return [
+          `${heading.substring(0, 2)}.${heading.substring(
+            2,
+            4
+          )}.${heading.substring(4)}`,
+          tweet[dataSource],
+        ];
+      });
+
+    // Setting Data
     this.setTitle(event.path[0].title.value);
+    this.setValues(updatedValues);
+
+    // Close form.
     this.setPopUp(!this.popUp);
   }
 
@@ -121,6 +156,17 @@ class TestForm extends ConsumerMixin(LitElement) {
       <form id="chartInputForm" @submit=${this.handleSubmit}>
         <label>Title:</label>
         <input name="title" />
+        <label for="dataSource">Data:</label>
+        <select id="dataSource" name="data">
+          <option value="volumeOfTweets">Number of tweets</option>
+          <option value="severityOne">Severity 1</option>
+          <option value="severityTwo">Severity 2</option>
+          <option value="severityThree">Severity 3</option>
+        </select>
+        <label for="dataSource">Data Headings:</label>
+        <select id="dataHeading" name="dataHeading">
+          <option value="date">Date</option>
+        </select>
       </form>
     `;
   }

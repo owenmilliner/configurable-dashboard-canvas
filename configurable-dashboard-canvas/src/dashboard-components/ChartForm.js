@@ -1,5 +1,4 @@
 import { html, css, LitElement } from "lit";
-import { updateData } from "../chart-components/PyramidChart";
 
 export class ChartForm extends LitElement {
   static properties = {
@@ -41,8 +40,6 @@ export class ChartForm extends LitElement {
     const values = event.path[0].data.value;
     const headings = event.path[0].dataHeading.value;
     const chartId = chartForm.getAttribute("chartId");
-
-    updateData({ title, values, headings, chartId });
 
     page.style.opacity = 1;
     chartForm.remove();

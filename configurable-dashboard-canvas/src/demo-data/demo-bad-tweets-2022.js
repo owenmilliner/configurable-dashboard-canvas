@@ -1,8 +1,8 @@
 // GET tweetsByDates
 // /crisp/tweets?start_date="20012022"&end_date="29012022"
 
-const result = {
-  tweetDate: [
+export const demoTwitter2022Data = {
+  tweetData: [
     {
       date: 20012022,
       volumeOfTweets: 127,
