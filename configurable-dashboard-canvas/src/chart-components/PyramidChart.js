@@ -49,6 +49,7 @@ export class PyramidChart extends ProviderMixin(LitElement) {
           <vaadin-chart
             @dblclick="${this.formPopUp}"
             type="pyramid"
+            class="chart"
             title="${this.title}"
             no-legend
             additional-options='{
