@@ -112,7 +112,6 @@ class PyramidForm extends ConsumerMixin(LitElement) {
 
     // Getting the form data.
     const dataSource = event.path[0].data.value;
-
     const dataHeading = event.path[0].dataHeading.value;
 
     // Formatting of data to the *specific* chart.
@@ -145,6 +144,7 @@ class PyramidForm extends ConsumerMixin(LitElement) {
       <form id="chartInputForm" @submit=${this.handleSubmit}>
         <label>Title:</label>
         <input name="title" />
+
         <label for="dataSource">Data:</label>
         <select id="dataSource" name="data">
           <option value="volumeOfTweets">Number of tweets</option>
@@ -152,6 +152,7 @@ class PyramidForm extends ConsumerMixin(LitElement) {
           <option value="severityTwo">Severity 2</option>
           <option value="severityThree">Severity 3</option>
         </select>
+
         <label for="dataHeading">Data Headings:</label>
         <select id="dataHeading" name="dataHeading">
           <option value="date">Date</option>

@@ -1,8 +1,8 @@
 import { html, css, LitElement } from "lit";
 import { ProviderMixin, ConsumerMixin } from "lit-element-context";
 import { demoTwitter2022Data } from "../demo-data/demo-bad-tweets-2022";
-import "@vaadin/charts";
 import { formatDate } from "../demo-data/data-utils";
+import "@vaadin/charts";
 
 export class BarChart extends ProviderMixin(LitElement) {
   constructor() {
