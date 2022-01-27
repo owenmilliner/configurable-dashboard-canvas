@@ -12,11 +12,6 @@ export class LineChart extends ProviderMixin(LitElement) {
       this.title = value;
     };
 
-    this.values = [];
-    this.setValues = (newValue) => {
-      this.values = newValue;
-    };
-
     this.popUp = true;
     this.setPopUp = (value) => {
       this.popUp = value;
@@ -39,8 +34,6 @@ export class LineChart extends ProviderMixin(LitElement) {
     return {
       title: String,
       setTitle: Function,
-      values: Array,
-      setValues: Function,
       popUp: Boolean,
       setPopUp: Function,
       data: Object,
@@ -53,8 +46,6 @@ export class LineChart extends ProviderMixin(LitElement) {
     return [
       "title",
       "setTitle",
-      "values",
-      "setValues",
       "popUp",
       "setPopUp",
       "data",
@@ -120,8 +111,6 @@ class LineForm extends ConsumerMixin(LitElement) {
     return {
       title: String,
       setTitle: Function,
-      values: Array,
-      setValues: Function,
       popUp: Boolean,
       setPopUp: Function,
       data: Object,
@@ -150,8 +139,6 @@ class LineForm extends ConsumerMixin(LitElement) {
     return [
       "title",
       "setTitle",
-      "values",
-      "setValues",
       "popUp",
       "setPopUp",
       "data",
@@ -202,7 +189,6 @@ class LineForm extends ConsumerMixin(LitElement) {
     );
     this.setTitle(event.path[0].title.value);
 
-    console.log(this.data);
     // Close form.
     this.setPopUp(!this.popUp);
   }
