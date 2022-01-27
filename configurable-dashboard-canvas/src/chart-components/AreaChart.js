@@ -85,27 +85,23 @@ export class AreaChart extends ProviderMixin(LitElement) {
           >
             <vaadin-chart-series
               title="${this.data.setOne.title}"
-              unit="${this.data.unit}"
               values="${JSON.stringify(this.data.setOne.values)}"
             ></vaadin-chart-series>
             ${!!this.data.setTwo
               ? html`<vaadin-chart-series
                   title="${this.data.setTwo.title}"
-                  unit="${this.data.unit}"
                   values="${JSON.stringify(this.data.setTwo.values)}"
                 ></vaadin-chart-series>`
               : ""}
             ${!!this.data.setThree
               ? html`<vaadin-chart-series
                   title="Sales &amp; ${this.data.setThree.title}"
-                  unit="${this.data.unit}"
                   values="${JSON.stringify(this.data.setThree.values)}"
                 ></vaadin-chart-series>`
               : null}
             ${!!this.data.setFour
               ? html`<vaadin-chart-series
                   title="${this.data.setFour.title}"
-                  unit="${this.data.unit}"
                   values="${JSON.stringify(this.data.setFour.values)}"
                 ></vaadin-chart-series>`
               : null}
