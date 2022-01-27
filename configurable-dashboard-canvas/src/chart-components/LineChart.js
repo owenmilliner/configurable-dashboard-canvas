@@ -2,6 +2,7 @@ import { html, css, LitElement } from "lit";
 import { ProviderMixin, ConsumerMixin } from "lit-element-context";
 import { demoTwitter2022Data } from "../demo-data/demo-bad-tweets-2022";
 import "@vaadin/charts";
+import { formatDate } from "../demo-data/data-utils";
 
 export class LineChart extends ProviderMixin(LitElement) {
   constructor() {
@@ -86,10 +87,10 @@ export class LineChart extends ProviderMixin(LitElement) {
                   unit="${this.data.unit}"
                   values="${JSON.stringify(this.data.setTwo.values)}"
                 ></vaadin-chart-series>`
-              : ""}
+              : null}
             ${!!this.data.setThree
               ? html`<vaadin-chart-series
-                  title="Sales &amp; ${this.data.setThree.title}"
+                  title="${this.data.setThree.title}"
                   unit="${this.data.unit}"
                   values="${JSON.stringify(this.data.setThree.values)}"
                 ></vaadin-chart-series>`
@@ -167,9 +168,7 @@ class LineForm extends ConsumerMixin(LitElement) {
         this.setData(`set${numberTranslate[i]}`, formData[i], "title");
         this.setData(
           `set${numberTranslate[i]}`,
-          demoTwitter2022Data.tweetData.map((tweet) => {
-            return tweet[formData[i]];
-          }),
+          demoTwitter2022Data.tweetData.map((tweet) => tweet[formData[i]]),
           "values"
         );
       }
@@ -179,13 +178,9 @@ class LineForm extends ConsumerMixin(LitElement) {
     this.setData("unit", "Number of Tweets");
     this.setData(
       "categories",
-      demoTwitter2022Data.tweetData.map((tweet) => {
-        let heading = String(tweet[dataHeading]);
-        return `${heading.substring(0, 2)}.${heading.substring(
-          2,
-          4
-        )}.${heading.substring(4)}`;
-      })
+      demoTwitter2022Data.tweetData.map((tweet) =>
+        formatDate(tweet[dataHeading])
+      )
     );
     this.setTitle(event.path[0].title.value);
 
