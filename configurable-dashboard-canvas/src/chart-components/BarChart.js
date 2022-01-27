@@ -2,6 +2,7 @@ import { html, css, LitElement } from "lit";
 import { ProviderMixin, ConsumerMixin } from "lit-element-context";
 import { demoTwitter2022Data } from "../demo-data/demo-bad-tweets-2022";
 import "@vaadin/charts";
+import { formatDate } from "../demo-data/data-utils";
 
 export class BarChart extends ProviderMixin(LitElement) {
   constructor() {
@@ -193,9 +194,7 @@ class BarForm extends ConsumerMixin(LitElement) {
         this.setData(`set${numberTranslate[i]}`, formData[i], "title");
         this.setData(
           `set${numberTranslate[i]}`,
-          demoTwitter2022Data.tweetData.map((tweet) => {
-            return tweet[formData[i]];
-          }),
+          demoTwitter2022Data.tweetData.map((tweet) => tweet[formData[i]]),
           "values"
         );
       }
@@ -205,13 +204,9 @@ class BarForm extends ConsumerMixin(LitElement) {
     this.setData("unit", "Number of Tweets");
     this.setData(
       "categories",
-      demoTwitter2022Data.tweetData.map((tweet) => {
-        let heading = String(tweet[dataHeading]);
-        return `${heading.substring(0, 2)}.${heading.substring(
-          2,
-          4
-        )}.${heading.substring(4)}`;
-      })
+      demoTwitter2022Data.tweetData.map((tweet) =>
+        formatDate(tweet[dataHeading])
+      )
     );
     this.setTitle(event.path[0].title.value);
     this.setSubtitle(event.path[0].subtitle.value);
