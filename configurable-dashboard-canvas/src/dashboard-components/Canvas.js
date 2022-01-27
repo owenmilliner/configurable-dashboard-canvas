@@ -14,7 +14,6 @@ import {
   PyramidChart,
   TreeMapChart,
 } from "../chart-components/ChartMiddleware.js";
-import { ChartForm } from "./ChartForm.js";
 
 import { ImageUpload } from "../additional-components/ImageUpload";
 

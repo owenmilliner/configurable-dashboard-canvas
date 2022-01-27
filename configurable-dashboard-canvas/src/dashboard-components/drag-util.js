@@ -32,8 +32,6 @@ function drop(event) {
     position: relative;;
     `;
 
-    // formPopUp();
-
     event.target.appendChild(newDiv);
     count++;
   } else {
@@ -46,24 +44,4 @@ function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
   const chartToDelete = canvasRoot.getElementById(nodeId);
   chartToDelete.remove();
-}
-
-function formPopUp(event, isActive) {
-  const chartInputForm = document.createElement("div");
-  chartInputForm.innerHTML = `<chart-form></chart-form>`;
-  chartInputForm.id = "chartInputForm";
-
-  if (isActive) {
-    const path = event.path;
-    for (let i = 0; i < path.length; i++) {
-      if (path[i].id && path[i].id.includes("web-component")) {
-        chartInputForm.setAttribute("chartId", path[i].id);
-      }
-    }
-  } else {
-  }
-
-  const page = canvas.shadowRoot.getElementById("page");
-  page.style.opacity = 0.2;
-  canvasRoot.appendChild(chartInputForm);
 }

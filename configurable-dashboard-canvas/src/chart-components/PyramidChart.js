@@ -7,58 +7,44 @@ export class PyramidChart extends ProviderMixin(LitElement) {
   constructor() {
     super();
 
-    this.title = "TEST";
+    this.title = "";
     this.setTitle = (value) => {
       this.title = value;
     };
 
-    this.popUp = false;
-    this.setPopUp = (value) => {
-      this.popUp = value;
-    };
-
-    this.values = [
-      ["Website visits", 15654],
-      ["Downloads", 4064],
-      ["Requested price list", 1987],
-      ["Invoice sent", 976],
-      ["Finalized", 846],
-    ];
+    this.values = [];
     this.setValues = (newValue) => {
       this.values = newValue;
     };
 
-    this.oldValues = [
-      ["Website visits", 15654],
-      ["Downloads", 4064],
-      ["Requested price list", 1987],
-      ["Invoice sent", 976],
-      ["Finalized", 846],
-    ];
+    this.popUp = true;
+    this.setPopUp = (value) => {
+      this.popUp = value;
+    };
   }
+
   static get properties() {
     return {
       title: String,
       setTitle: Function,
-      oldValues: Array,
-      popUp: Boolean,
-      setPopUp: Function,
       values: Array,
       setValues: Function,
+      popUp: Boolean,
+      setPopUp: Function,
     };
   }
 
   static get provide() {
-    return ["title", "setTitle", "popUp", "setPopUp", "values", "setValues"];
+    return ["title", "setTitle", "values", "setValues", "popUp", "setPopUp"];
   }
 
   formPopUp() {
-    this.popUp = true;
+    this.popUp = !this.popUp;
   }
 
   render() {
     return this.popUp
-      ? html`<test-form></test-form>`
+      ? html`<pyramid-form></pyramid-form>`
       : html` <link rel="stylesheet" href="./chart.css" />
           <vaadin-chart
             @dblclick="${this.formPopUp}"
@@ -88,15 +74,15 @@ export class PyramidChart extends ProviderMixin(LitElement) {
   }
 }
 
-class TestForm extends ConsumerMixin(LitElement) {
+class PyramidForm extends ConsumerMixin(LitElement) {
   static get properties() {
     return {
       title: String,
       setTitle: Function,
-      popUp: Boolean,
-      setPopUp: Function,
       values: Array,
       setValues: Function,
+      popUp: Boolean,
+      setPopUp: Function,
     };
   }
 
@@ -117,17 +103,17 @@ class TestForm extends ConsumerMixin(LitElement) {
   }
 
   static get inject() {
-    return ["title", "setTitle", "popUp", "setPopUp", "values", "setValues"];
+    return ["title", "setTitle", "values", "setValues", "popUp", "setPopUp"];
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
+    // Getting the form data.
     const dataSource = event.path[0].data.value;
     const dataHeading = event.path[0].dataHeading.value;
-    console.log(dataSource);
-    console.log(dataHeading);
 
+    // Formatting of data to the *specific* chart.
     const updatedValues = demoTwitter2022Data.tweetData
       .sort((valueOne, valueTwo) => {
         return valueTwo[dataSource] - valueOne[dataSource];
@@ -167,10 +153,11 @@ class TestForm extends ConsumerMixin(LitElement) {
         <select id="dataHeading" name="dataHeading">
           <option value="date">Date</option>
         </select>
+        <button type="submit">Update Chart</button>
       </form>
     `;
   }
 }
 
 window.customElements.define("pyramid-chart", PyramidChart);
-window.customElements.define("test-form", TestForm);
+window.customElements.define("pyramid-form", PyramidForm);
