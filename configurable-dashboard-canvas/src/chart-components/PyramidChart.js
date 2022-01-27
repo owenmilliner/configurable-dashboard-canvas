@@ -112,6 +112,7 @@ class PyramidForm extends ConsumerMixin(LitElement) {
 
     // Getting the form data.
     const dataSource = event.path[0].data.value;
+
     const dataHeading = event.path[0].dataHeading.value;
 
     // Formatting of data to the *specific* chart.
@@ -133,6 +134,7 @@ class PyramidForm extends ConsumerMixin(LitElement) {
     // Setting Data
     this.setTitle(event.path[0].title.value);
     this.setValues(updatedValues);
+    console.log(dataSource);
 
     // Close form.
     this.setPopUp(!this.popUp);
