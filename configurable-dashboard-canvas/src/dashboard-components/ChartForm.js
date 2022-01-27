@@ -3,9 +3,21 @@ import { updateData } from "../chart-components/PyramidChart";
 
 export class ChartForm extends LitElement {
   static properties = {
-    _chartType: { state: true },
-    _chartTitle: { state: true },
-    _chartValues: { state: true },
+    title: {
+      hasChanged: (value, oldValue) => {
+        return value;
+      },
+    },
+    values: {
+      hasChanged: (value, oldValue) => {
+        return value;
+      },
+    },
+    popUp: {
+      hasChanged: (value, oldValue) => {
+        return value;
+      },
+    },
   };
 
   static get styles() {
@@ -15,6 +27,7 @@ export class ChartForm extends LitElement {
         padding: 10px;
         top: 50%;
         left: 50%;
+        width: 600px;
         background-color: white;
         border: 1px solid black;
         border-radius: 10px;
@@ -24,25 +37,14 @@ export class ChartForm extends LitElement {
     `;
   }
 
-  constructor() {
-    super();
-    this._chartType = "";
-    this._chartTitle = "";
-    this._chartValues = [];
-  }
-
   handleSubmit(event) {
     event.preventDefault();
     const canvas = document.querySelector("canvas-component").shadowRoot;
     const page = canvas.getElementById("page");
     const chartForm = canvas.getElementById("chartInputForm");
 
-    const title = event.path[0].title.value;
-    const values = event.path[0].data.value;
-    const headings = event.path[0].dataHeading.value;
-    const chartId = chartForm.getAttribute("chartId");
-
-    updateData({ title, values, headings, chartId });
+    this.title = event.path[0].title.value;
+    this.values = event.path[0].data.value;
 
     page.style.opacity = 1;
     chartForm.remove();

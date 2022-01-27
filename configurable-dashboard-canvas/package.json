@@ -13,7 +13,15 @@
   },
   "dependencies": {
     "@vaadin/charts": "^22.0.3",
-    "lit": "^2.0.2"
+    "@vaadin/vaadin-button": "^22.0.3",
+    "@vaadin/vaadin-checkbox": "^22.0.3",
+    "@vaadin/vaadin-radio-button": "^22.0.3",
+    "@vaadin/vaadin-text-field": "^22.0.3",
+    "lit": "^2.0.2",
+    "nanoid": "^3.2.0",
+    "pwa-helpers": "^0.9.1",
+    "redux": "^4.1.2",
+    "reselect": "^4.1.5"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",
