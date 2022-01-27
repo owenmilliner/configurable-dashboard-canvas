@@ -3,8 +3,6 @@ import {
   AreaChart,
   AreaSplineChart,
   BarChart,
-  BoxPlotChart,
-  BubbleChart,
   ColumnChart,
   FunnelChart,
   HeatMapChart,
