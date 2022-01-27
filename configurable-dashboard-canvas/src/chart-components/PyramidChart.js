@@ -150,7 +150,7 @@ class PyramidForm extends ConsumerMixin(LitElement) {
           <option value="severityTwo">Severity 2</option>
           <option value="severityThree">Severity 3</option>
         </select>
-        <label for="dataSource">Data Headings:</label>
+        <label for="dataHeading">Data Headings:</label>
         <select id="dataHeading" name="dataHeading">
           <option value="date">Date</option>
         </select>
