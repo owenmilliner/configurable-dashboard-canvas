@@ -59,9 +59,9 @@ export const imgData = [
     id: "<pyramid-chart></pyramid-chart>",
     img: "../src/images/pyramid.png",
   },
-  {
-    name: "treemap-chart",
-    id: "<treemap-chart></treemap-chart>",
-    img: "../src/images/tree.png",
-  },
+  // {
+  //   name: "treemap-chart",
+  //   id: "<treemap-chart></treemap-chart>",
+  //   img: "../src/images/tree.png",
+  // },
 ];
