@@ -81,27 +81,44 @@ export class Canvas extends LitElement {
 
   firstUpdated() {
     const canvas = document.querySelector("canvas-component");
-    const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
 
     const previouslyPopulatedGrids = localStorage
       .getItem("previouslyPopulatedGrids")
       .split(",");
 
-    previouslyPopulatedGrids.forEach((previousGridSlot) => {
-      const componentGridId =
-        this.handleStringToHTML(previousGridSlot).querySelector("div").id;
-      console.log("componentGridId:", componentGridId);
+    console.log(previouslyPopulatedGrids);
 
-      const componentToPlace =
-        this.handleStringToHTML(previousGridSlot).querySelector("div")
-          .children[0];
-      console.log("componentToPlace:", componentToPlace);
+    if (!previouslyPopulatedGrids.includes("")) {
+      previouslyPopulatedGrids.forEach((previousGridSlot) => {
+        console.log(
+          "---------------------------------------------------------"
+        );
 
-      const targetGridSlot = canvas.shadowRoot.getElementById(componentGridId);
-      console.log("componentGridId:", targetGridSlot);
+        // Getting id of component grid
+        const componentGridId =
+          this.handleStringToHTML(previousGridSlot).querySelector("div").id;
+        console.log("componentGridId:", componentGridId);
 
-      console.log("---------------------------------------------------------");
-    });
+        // Getting contents of the component
+        const componentToPlace =
+          this.handleStringToHTML(previousGridSlot).querySelector("div")
+            .children[0];
+        console.log("componentToPlace:", componentToPlace);
+
+        // Getting target grid id
+        const targetGridSlot =
+          canvas.shadowRoot.getElementById(componentGridId);
+        console.log("target grid id:", targetGridSlot);
+
+        // Appending the component to the Grid
+        targetGridSlot.appendChild(componentToPlace);
+        console.log("Target after placement:", targetGridSlot);
+
+        console.log(
+          "---------------------------------------------------------"
+        );
+      });
+    }
   }
 
   render() {

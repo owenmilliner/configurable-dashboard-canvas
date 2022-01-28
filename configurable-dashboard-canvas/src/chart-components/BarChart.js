@@ -8,7 +8,7 @@ export class BarChart extends ProviderMixin(LitElement) {
   constructor() {
     super();
 
-    this.title = "";
+    this.title = "Double click to change chart data!";
     this.setTitle = (value) => {
       this.title = value;
     };
@@ -18,7 +18,7 @@ export class BarChart extends ProviderMixin(LitElement) {
       this.subtitle = value;
     };
 
-    this.popUp = true;
+    this.popUp = false;
     this.setPopUp = (value) => {
       this.popUp = value;
     };
@@ -147,10 +147,7 @@ class BarForm extends ConsumerMixin(LitElement) {
   static get styles() {
     return css`
       #chartInputForm {
-        position: absolute;
         padding: 10px;
-        top: 50%;
-        left: 50%;
         background-color: white;
         border: 1px solid black;
         border-radius: 10px;
