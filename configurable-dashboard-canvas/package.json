@@ -17,6 +17,7 @@
     "@vaadin/vaadin-checkbox": "^22.0.3",
     "@vaadin/vaadin-radio-button": "^22.0.3",
     "@vaadin/vaadin-text-field": "^22.0.3",
+    "dom-to-image": "^2.6.0",
     "jspdf": "^2.5.0",
     "lit": "^2.0.2",
     "lit-element-context": "^0.1.1",

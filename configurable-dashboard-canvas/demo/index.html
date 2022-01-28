@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./index.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
     <script src="../src/dashboard-components/drag-util.js" defer></script>
     <script src="../src/dashboard-components/Canvas.js" type="module"></script>
 
@@ -13,8 +14,30 @@
     ></script>
     <script src="../src/dashboard-components/Header.js" type="module"></script>
   </head>
+  <style>
+    #div {
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+  </style>
   <body>
-    <button onclick="javascript:demoFromHTML();">PDF</button>
+    <h1>HTML Canvas to Image</h1>
+    <button type="button" id="btnDisplay">Display</button>
+    <button type="button" id="btnDownload">Download</button>
+    <hr />
+    <canvas
+      id="myCanvas"
+      width="400"
+      height="250"
+      style="border: 2px solid black; float: left"
+    ></canvas>
+    <img
+      src=""
+      id="imgConverted"
+      style="float: left; border: 2px solid blue; margin-left: 10px"
+    />
+    <button onclick="javascript:demoFromHTML()">PDF</button>
     <div id="dashboard">
       <header-component id="header"></header-component>
       <navigation-component id="navigation"></navigation-component>
@@ -29,9 +52,6 @@
         // to an actual DOM element from which the text will be scraped.
         source = document.getElementById("canvas").shadowRoot;
         console.log(document.getElementById("page"));
-
-        // this gets the header images:
-        //  source = document.getElementById("header").shadowRoot;
 
         // we support special element handlers. Register them with jQuery-style
         // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
@@ -70,6 +90,23 @@
           margins
         );
       }
+    </script>
+    <script>
+      const btnDisplay = document.querySelector("#btnDisplay");
+      const btnDownload = document.querySelector("#btnDownload");
+      const imgConverted = document.querySelector("#imgConverted");
+      const myCanvas = document.querySelector("#myCanvas");
+      const ctx = myCanvas.getContext("2d");
+
+      ctx.font = "50px Roboto";
+      ctx.fillStyle = "red";
+      ctx.fillText("dcode", 100, 100);
+      ctx.fillRect(200, 150, 150, 75);
+
+      btnDisplay.addEventListener("click", function () {
+        const dataURI = myCanvas.toDataURL();
+        console.log(dataURI);
+      });
     </script>
   </body>
 </html>
