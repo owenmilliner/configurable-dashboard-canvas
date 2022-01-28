@@ -83,7 +83,9 @@ export class Canvas extends LitElement {
               id=${item}
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
-            ></div>`;
+            >
+              1
+            </div>`;
           })}
         </div>
       </div>`;
