@@ -22,7 +22,6 @@
     }
   </style>
   <body>
-    <h1>HTML Canvas to Image</h1>
     <button type="button" id="btnDisplay">Display</button>
     <button type="button" id="btnDownload">Download</button>
     <hr />
@@ -45,13 +44,40 @@
         <canvas-component id="canvas"></canvas-component>
       </div>
     </div>
+
     <script>
+      const btnDisplay = document.querySelector("#btnDisplay");
+      const btnDownload = document.querySelector("#btnDownload");
+      const imgConverted = document.querySelector("#imgConverted");
+      const myCanvas = document.querySelector("#myCanvas");
+      console.log(myCanvas);
+      const ctx = myCanvas.getContext("2d");
+
+      ctx.font = "50px Roboto";
+      ctx.fillStyle = "red";
+      ctx.fillText("This is the canvas", 10, 50);
+      ctx.fillRect(200, 150, 150, 75);
+
+      btnDisplay.addEventListener("click", function () {
+        const dataURI = myCanvas.toDataURL("img/jpeg", 0.92);
+        imgConverted.src = dataURI;
+
+        btnDownload.addEventListener("click", function () {
+          const a = document.createElement("a");
+          document.body.appendChild(a);
+          a.href = myCanvas.toDataURL();
+          a.download = "canvas-image.jpg";
+          a.click();
+          document.body.removeChild(a);
+        });
+      });
+
       function demoFromHTML() {
         var pdf = new jsPDF("p", "pt", "letter");
         // source can be HTML-formatted string, or a reference
         // to an actual DOM element from which the text will be scraped.
-        source = document.getElementById("canvas").shadowRoot;
-        console.log(document.getElementById("page"));
+        source = document.querySelector("body");
+        console.log(document.querySelector("body"));
 
         // we support special element handlers. Register them with jQuery-style
         // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
@@ -90,23 +116,6 @@
           margins
         );
       }
-    </script>
-    <script>
-      const btnDisplay = document.querySelector("#btnDisplay");
-      const btnDownload = document.querySelector("#btnDownload");
-      const imgConverted = document.querySelector("#imgConverted");
-      const myCanvas = document.querySelector("#myCanvas");
-      const ctx = myCanvas.getContext("2d");
-
-      ctx.font = "50px Roboto";
-      ctx.fillStyle = "red";
-      ctx.fillText("dcode", 100, 100);
-      ctx.fillRect(200, 150, 150, 75);
-
-      btnDisplay.addEventListener("click", function () {
-        const dataURI = myCanvas.toDataURL();
-        console.log(dataURI);
-      });
     </script>
   </body>
 </html>
