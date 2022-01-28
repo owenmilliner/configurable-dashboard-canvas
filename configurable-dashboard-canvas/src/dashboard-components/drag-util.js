@@ -2,6 +2,7 @@ const canvas = document.querySelector("canvas-component");
 let count = 1;
 let gridView = true;
 let canvasRoot = "";
+const localStorage = window.localStorage;
 
 function allowDrop(event) {
   event.preventDefault();
@@ -39,12 +40,20 @@ function drop(event) {
     const chartToMove = canvasRoot.getElementById(nodeId);
     event.target.appendChild(chartToMove);
   }
+  // localStorage.setItem(
+  //   "previousSave",
+  //   canvasRoot.getElementById("canvas").outerHTML
+  // );
 }
 
 function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
   const chartToDelete = canvas.shadowRoot.getElementById(nodeId);
   chartToDelete.remove();
+  // localStorage.setItem(
+  //   "previousSave",
+  //   canvasRoot.getElementById("canvas").outerHTML
+  // );
 }
 
 function toggleGrid() {

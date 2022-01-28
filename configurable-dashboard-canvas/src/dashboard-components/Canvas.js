@@ -1,4 +1,5 @@
 import { html, LitElement } from "lit";
+import { unsafeHTML } from "https://unpkg.com/lit-html@latest/directives/unsafe-html.js?module";
 import {
   AreaChart,
   AreaSplineChart,
@@ -13,6 +14,7 @@ import {
   TreeMapChart,
 } from "../chart-components/ChartMiddleware.js";
 import { ImageUpload } from "../additional-components/ImageUpload";
+const localStorage = window.localStorage;
 
 export class Canvas extends LitElement {
   static properties = {
@@ -46,7 +48,13 @@ export class Canvas extends LitElement {
     return arr;
   }
 
+  returnString(save) {
+    return document.createRange().createContextualFragment(`${save}`);
+  }
+
   render() {
+    localStorage.clear();
+    const previousSave = localStorage.getItem("previousSave");
     return html` <style>
         #page {
           width: ${this._canvasWidth}mm;
@@ -76,16 +84,18 @@ export class Canvas extends LitElement {
       </style>
 
       <div id="page">
-        <div id="canvas">
-          ${this.makeArray().map((item) => {
-            return html`<div
-              class="canvas__gridSlot"
-              id=${item}
-              ondrop="drop(event)"
-              ondragover="allowDrop(event)"
-            ></div>`;
-          })}
-        </div>
+        ${previousSave
+          ? this.returnString(previousSave)
+          : html`<div id="canvas">
+              ${this.makeArray().map((item) => {
+                return html`<div
+                  class="canvas__gridSlot"
+                  id=${item}
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></div>`;
+              })}
+            </div>`}
       </div>`;
   }
 }
