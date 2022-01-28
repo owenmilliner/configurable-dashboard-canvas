@@ -39,9 +39,6 @@ function drop(event) {
     count++;
   } else {
     const chartToMove = canvasRoot.getElementById(nodeId);
-    console.log(chartToMove);
-    console.log(canvasRoot);
-    console.log(nodeId);
     event.target.appendChild(chartToMove);
   }
   // localStorage.setItem(

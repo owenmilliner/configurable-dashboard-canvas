@@ -57,34 +57,51 @@ export class Canvas extends LitElement {
   }
 
   connectedCallback() {
+    // localStorage.clear();
     super.connectedCallback();
     this._previousSave = localStorage.getItem("previousSave");
-    const previouslyPopulatedGrids = localStorage.getItem(
-      "previouslyPopulatedGrids"
-    );
 
-    console.log(previouslyPopulatedGrids);
+    window.addEventListener("beforeunload", (event) => {
+      event.preventDefault();
+
+      const canvas = document.querySelector("canvas-component");
+      const canvasGridSlots =
+        canvas.shadowRoot.children[1].children[0].children;
+      const gridSlotKeys = Object.keys(canvasGridSlots);
+
+      gridSlotKeys.forEach((gridSlot) => {
+        if (canvasGridSlots[gridSlot].children.length !== 0) {
+          this._populatedGrids.push(canvasGridSlots[gridSlot].outerHTML);
+        }
+      });
+
+      localStorage.setItem("previouslyPopulatedGrids", this._populatedGrids);
+    });
   }
 
   firstUpdated() {
     const canvas = document.querySelector("canvas-component");
     const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
 
-    const gridSlotKeys = Object.keys(canvasGridSlots);
-    console.log(gridSlotKeys);
+    const previouslyPopulatedGrids = localStorage
+      .getItem("previouslyPopulatedGrids")
+      .split(",");
 
-    gridSlotKeys.forEach((gridSlot) => {
-      if (canvasGridSlots[gridSlot].children.length !== 0) {
-        this._populatedGrids.push(canvasGridSlots[gridSlot]);
-      }
+    previouslyPopulatedGrids.forEach((previousGridSlot) => {
+      const componentGridId =
+        this.handleStringToHTML(previousGridSlot).querySelector("div").id;
+      console.log("componentGridId:", componentGridId);
+
+      const componentToPlace =
+        this.handleStringToHTML(previousGridSlot).querySelector("div")
+          .children[0];
+      console.log("componentToPlace:", componentToPlace);
+
+      const targetGridSlot = canvas.shadowRoot.getElementById(componentGridId);
+      console.log("componentGridId:", targetGridSlot);
+
+      console.log("---------------------------------------------------------");
     });
-
-    console.log(this._populatedGrids);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    localStorage.setItem("previouslyPopulatedGrids", this._populatedGrids);
   }
 
   render() {
