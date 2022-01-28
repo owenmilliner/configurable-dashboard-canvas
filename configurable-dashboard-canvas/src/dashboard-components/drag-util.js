@@ -2,7 +2,7 @@ const canvas = document.querySelector("canvas-component");
 let count = 1;
 let gridView = true;
 let canvasRoot = "";
-const localStorage = window.localStorage;
+// const localStorage = window.localStorage;
 
 function allowDrop(event) {
   event.preventDefault();
@@ -10,6 +10,7 @@ function allowDrop(event) {
 
 function drag(event, isNav) {
   event.dataTransfer.setData("targetNodeId", event.target.id);
+  console.log(event.target);
   event.dataTransfer.setData("isNav", isNav);
 }
 
@@ -38,6 +39,9 @@ function drop(event) {
     count++;
   } else {
     const chartToMove = canvasRoot.getElementById(nodeId);
+    console.log(chartToMove);
+    console.log(canvasRoot);
+    console.log(nodeId);
     event.target.appendChild(chartToMove);
   }
   // localStorage.setItem(

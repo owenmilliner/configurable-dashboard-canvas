@@ -25,6 +25,8 @@ export class Canvas extends LitElement {
     _margin: { state: true },
     _rows: { state: true },
     _columns: { state: true },
+    _previousSave: { type: String },
+    _populatedGrids: { type: Array, state: true },
   };
 
   constructor() {
@@ -36,6 +38,8 @@ export class Canvas extends LitElement {
       (this._margin = 19.05),
       (this._rows = Math.floor(this._canvasHeight / this._gridSlotHeight)),
       (this._columns = Math.floor(this._canvasWidth / this._gridSlotWidth));
+    this._previousSave = "";
+    this._populatedGrids = [];
   }
 
   makeArray() {
@@ -48,13 +52,42 @@ export class Canvas extends LitElement {
     return arr;
   }
 
-  returnString(save) {
+  handleStringToHTML(save) {
     return document.createRange().createContextualFragment(`${save}`);
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this._previousSave = localStorage.getItem("previousSave");
+    const previouslyPopulatedGrids = localStorage.getItem(
+      "previouslyPopulatedGrids"
+    );
+
+    console.log(previouslyPopulatedGrids);
+  }
+
+  firstUpdated() {
+    const canvas = document.querySelector("canvas-component");
+    const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
+
+    const gridSlotKeys = Object.keys(canvasGridSlots);
+    console.log(gridSlotKeys);
+
+    gridSlotKeys.forEach((gridSlot) => {
+      if (canvasGridSlots[gridSlot].children.length !== 0) {
+        this._populatedGrids.push(canvasGridSlots[gridSlot]);
+      }
+    });
+
+    console.log(this._populatedGrids);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    localStorage.setItem("previouslyPopulatedGrids", this._populatedGrids);
+  }
+
   render() {
-    localStorage.clear();
-    const previousSave = localStorage.getItem("previousSave");
     return html` <style>
         #page {
           width: ${this._canvasWidth}mm;
@@ -84,8 +117,8 @@ export class Canvas extends LitElement {
       </style>
 
       <div id="page">
-        ${previousSave
-          ? this.returnString(previousSave)
+        ${this._previousSave
+          ? this.handleStringToHTML(this._previousSave)
           : html`<div id="canvas">
               ${this.makeArray().map((item) => {
                 return html`<div
