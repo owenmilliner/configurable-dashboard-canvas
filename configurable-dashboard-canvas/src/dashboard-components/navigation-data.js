@@ -6,7 +6,7 @@ export const genericImgData = [
   },
   {
     name: "image-upload",
-    id: "<img-upload><img-upload>",
+    id: "<image-upload><image-upload>",
     img: "../src/images/imageupload.png",
   },
 ];
