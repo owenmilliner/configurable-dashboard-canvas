@@ -18,7 +18,7 @@ body {
   grid-template-areas:
     "header header"
     "navigation display";
-  grid-template-columns: 25vw 75vw;
+  grid-template-columns: 15vw 85vw;
   grid-template-rows: 10vh 90vh;
 }
 
@@ -30,7 +30,7 @@ body {
 #navigation {
   grid-area: navigation;
   overflow-y: scroll;
-  background-color: #464646;
+  background-color: #06152c;
   width: inherit;
   height: inherit;
 }
