@@ -12,7 +12,6 @@ import {
   PyramidChart,
   TreeMapChart,
 } from "../chart-components/ChartMiddleware.js";
-
 import { ImageUpload } from "../additional-components/ImageUpload";
 
 export class Canvas extends LitElement {
