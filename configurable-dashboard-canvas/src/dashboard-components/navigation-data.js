@@ -45,16 +45,6 @@ export const imgData = [
     img: "../src/images/bar.png",
   },
   {
-    name: "boxplot-chart",
-    id: "<boxplot-chart></boxplot-chart>",
-    img: "../src/images/boxplot.png",
-  },
-  {
-    name: "bubble-chart",
-    id: "<bubble-chart></bubble-chart>",
-    img: "../src/images/bubble.png",
-  },
-  {
     name: "heatmap-chart",
     id: "<heatmap-chart></heatmap-chart>",
     img: "../src/images/heatmap.png",
@@ -69,9 +59,9 @@ export const imgData = [
     id: "<pyramid-chart></pyramid-chart>",
     img: "../src/images/pyramid.png",
   },
-  {
-    name: "treemap-chart",
-    id: "<treemap-chart></treemap-chart>",
-    img: "../src/images/tree.png",
-  },
+  // {
+  //   name: "treemap-chart",
+  //   id: "<treemap-chart></treemap-chart>",
+  //   img: "../src/images/tree.png",
+  // },
 ];

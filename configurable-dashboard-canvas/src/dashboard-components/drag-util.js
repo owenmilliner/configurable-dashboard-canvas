@@ -1,6 +1,7 @@
 const canvas = document.querySelector("canvas-component");
 let count = 1;
 let gridView = true;
+let canvasRoot = "";
 
 function allowDrop(event) {
   event.preventDefault();
@@ -31,6 +32,7 @@ function drop(event) {
     border: 10px solid black;
     position: relative;
     `;
+
     event.target.appendChild(newDiv);
     count++;
   } else {
@@ -43,21 +45,6 @@ function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
   const chartToDelete = canvas.shadowRoot.getElementById(nodeId);
   chartToDelete.remove();
-}
-
-function loadFile(event) {
-  const formRoot = canvas.shadowRoot.querySelector("img-upload").shadowRoot;
-  var image = formRoot.getElementById("output");
-  image.src = URL.createObjectURL(event.target.files[0]);
-  image.style.cssText = `
-  overflow: auto;
-    position: relative;
-    width: 15vw;
-    height:25vh;
-
-  `;
-  const imgInput = formRoot.getElementById("imgInput");
-  imgInput.remove();
 }
 
 function toggleGrid() {
@@ -75,8 +62,4 @@ function toggleGrid() {
     });
     page.style.border = "2px solid rgb(85, 179, 255)";
   }
-}
-
-function menuSelection(event) {
-  console.log("hello");
 }
