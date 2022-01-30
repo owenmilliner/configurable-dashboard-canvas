@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, css, html } from "lit-element";
 import { router } from "lit-element-router";
 
 //Components
@@ -12,7 +12,15 @@ import "./pages/contact/contact.page";
 import "./pages/about/about.page";
 
 class App extends router(LitElement) {
-
+static get styles() {
+    return css`
+    .nav-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+    
+    `;
+  }
   
   static get properties() {
     return {
@@ -63,9 +71,11 @@ class App extends router(LitElement) {
 
   render() {
     return html`<app-header></app-header>
-      <nav-link href="/">Home</nav-link>
-      <nav-link href="/contact">Contact</nav-link>
-      <nav-link href="/about">About</nav-link>
+    <div class="nav-container">
+    <nav-link href="/">Home</nav-link>
+    <nav-link href="/contact">Contact</nav-link>
+    <nav-link href="/about">About</nav-link>
+    </div>
 
       <router-outlet active-route=${this.route}>
         <home-page route="home"></home-page>
