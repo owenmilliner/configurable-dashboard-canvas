@@ -102,10 +102,8 @@ class ImageForm extends ConsumerMixin(LitElement) {
     event.preventDefault();
 
     const imageFile = URL.createObjectURL(event.target.files[0]);
-    console.log(event.target.files[0]);
     // Setting Data
     this.setImageData(imageFile);
-    console.log(this.imageData);
     // Close form.
     this.setPopUp(!this.popUp);
   }
@@ -121,8 +119,6 @@ class ImageForm extends ConsumerMixin(LitElement) {
       />
     `;
   }
-
-  
 }
 
 window.customElements.define("image-upload", ImageUpload);

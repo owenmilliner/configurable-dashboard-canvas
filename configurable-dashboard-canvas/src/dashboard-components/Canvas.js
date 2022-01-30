@@ -88,7 +88,6 @@ export class Canvas extends LitElement {
         </div>
       </div>`;
   }
-
 }
 
 window.customElements.define("canvas-component", Canvas);

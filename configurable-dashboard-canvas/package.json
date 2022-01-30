@@ -17,18 +17,8 @@
     "@vaadin/vaadin-checkbox": "^22.0.3",
     "@vaadin/vaadin-radio-button": "^22.0.3",
     "@vaadin/vaadin-text-field": "^22.0.3",
-    "dom-to-pdf": "^0.2.9",
-    "html-pdf": "^3.0.1",
-    "html-to-pdf-js": "^0.9.3",
-    "html2canvas": "^1.4.1",
-    "html2pdf.js": "^0.10.1",
-    "jspdf": "^2.5.1",
     "lit": "^2.0.2",
-    "lit-element-context": "^0.1.1",
-    "nanoid": "^3.2.0",
-    "pwa-helpers": "^0.9.1",
-    "redux": "^4.1.2",
-    "reselect": "^4.1.5"
+    "lit-element-context": "^0.1.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",
