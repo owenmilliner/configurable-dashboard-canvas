@@ -59,7 +59,7 @@ export class Canvas extends LitElement {
         }
         #canvas {
           background-color: white;
-          border: 2px solid rgb(85, 179, 255);
+          border: 2px solid #06152c;
           width: 100%;
           height: 100%;
           display: grid;
@@ -68,7 +68,7 @@ export class Canvas extends LitElement {
           overflow: visible;
         }
         .canvas__gridSlot {
-          border: 1px solid red;
+          border: 0.5px solid #06152c;
           width: ${this._gridSlotWidth}mm;
           height: ${this._gridSlotHeight}mm;
           overflow: visible;

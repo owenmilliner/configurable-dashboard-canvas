@@ -54,11 +54,13 @@ export class Navigation extends LitElement {
       }
 
       img {
-        width: 100%;
+        width: 80%;
         margin-right:10px;
-        margin-left:10px;
-        height: 18vh;
+        margin-left:20px;
+        height: 10vh;
         padding-bottom: 1vh;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius:5px;
       }
     `;
   }
