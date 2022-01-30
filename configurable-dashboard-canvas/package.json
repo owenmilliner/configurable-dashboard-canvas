@@ -18,7 +18,10 @@
     "@vaadin/vaadin-radio-button": "^22.0.3",
     "@vaadin/vaadin-text-field": "^22.0.3",
     "lit": "^2.0.2",
-    "lit-element-context": "^0.1.1"
+    "lit-element": "^3.1.2",
+    "lit-element-context": "^0.1.1",
+    "lit-element-router": "^2.0.3",
+    "web-components-loader": "^0.1.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",
