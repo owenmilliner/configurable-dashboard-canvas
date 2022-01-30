@@ -73,6 +73,7 @@ export class DropDown extends LitElement {
           <p onclick="menuSelection()">New Canvas</p>
           <p onclick="menuSelection()">New Project</p>
           <p onclick="savePDF()">Save</p>
+          <p onclick="pdf()">Download PDF</p>
           <p onclick="menuSelection()">Share</p>
           <p onclick="menuSelection()">Export</p>
           <p onclick="menuSelection()">Settings</p>

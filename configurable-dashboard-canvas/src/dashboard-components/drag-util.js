@@ -1,5 +1,3 @@
-
-const canvas = document.querySelector("canvas-component")
 let count = 1;
 let gridView = true;
 
@@ -13,7 +11,6 @@ function drag(event, isNav) {
 }
 
 function drop(event) {
-  // const canvasRoot = canvas.shadowRoot;
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
   const nodeId = event.dataTransfer.getData("targetNodeId");
@@ -36,22 +33,28 @@ function drop(event) {
     event.target.appendChild(newDiv);
     count++;
   } else {
-    // const chartToMove = canvasRoot.getElementById(nodeId);
-    // event.target.appendChild(nodeId);
-    console.log(document.querySelector(`${nodeId}`))
+    const canvasRoot = document.querySelector("canvas-component").shadowRoot;
+    const chartToMove = canvasRoot.getElementById(nodeId);
+    event.target.appendChild(chartToMove);
   }
 }
 
 function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
-  const chartToDelete = canvas.shadowRoot.getElementById(nodeId);
+  const chartToDelete = document
+    .querySelector("canvas-component")
+    .shadowRoot.getElementById(nodeId);
   chartToDelete.remove();
 }
 
 function toggleGrid() {
   gridView = !gridView;
-  const page = canvas.shadowRoot.querySelector("#canvas");
-  const gridSlots = canvas.shadowRoot.querySelectorAll(".canvas__gridSlot");
+  const page = document
+    .querySelector("canvas-component")
+    .shadowRoot.querySelector("#canvas");
+  const gridSlots = document
+    .querySelector("canvas-component")
+    .shadowRoot.querySelectorAll(".canvas__gridSlot");
   if (!gridView) {
     gridSlots.forEach((slot) => {
       slot.style.border = "none";
@@ -65,16 +68,18 @@ function toggleGrid() {
   }
 }
 
-function generatePDF() {
-  console.log("hello")
-  
+function pdf() {
+  html2canvas(
+    document.querySelector("canvas-component").shadowRoot.getElementById("page")
+  ).then((image) => {
+    var opt = {
+      margin: 0,
+      filename: "myfile.pdf",
+      image: { type: "png", quality: 0.98 },
+      html2canvas: { scale: 1, allowTaint: true },
+      jsPDF: { unit: "mm", format: [231, 319], orientation: "portrait" },
+    };
 
-var element = document.getElementById('test');
-var options = {
-  filename: 'test.pdf'
-};
-domToPdf(element, options, function(pdf) {
-  console.log('done');
-});
+    html2pdf().set(opt).from(image).save();
+  });
 }
-
