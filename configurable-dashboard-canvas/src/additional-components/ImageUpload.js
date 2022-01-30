@@ -121,6 +121,8 @@ class ImageForm extends ConsumerMixin(LitElement) {
       />
     `;
   }
+
+  
 }
 
 window.customElements.define("image-upload", ImageUpload);

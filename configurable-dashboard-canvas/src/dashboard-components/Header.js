@@ -134,6 +134,10 @@ export class Header extends LitElement {
       </div>
     `;
   }
+
+  // createRenderRoot(){
+  //   return this
+  // }
 }
 
 window.customElements.define("header-component", Header);

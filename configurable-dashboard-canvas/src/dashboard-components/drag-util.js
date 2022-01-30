@@ -1,7 +1,7 @@
-const canvas = document.querySelector("canvas-component");
+
+const canvas = document.querySelector("canvas-component")
 let count = 1;
 let gridView = true;
-let canvasRoot = "";
 
 function allowDrop(event) {
   event.preventDefault();
@@ -13,7 +13,7 @@ function drag(event, isNav) {
 }
 
 function drop(event) {
-  const canvasRoot = canvas.shadowRoot;
+  // const canvasRoot = canvas.shadowRoot;
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
   const nodeId = event.dataTransfer.getData("targetNodeId");
@@ -36,8 +36,9 @@ function drop(event) {
     event.target.appendChild(newDiv);
     count++;
   } else {
-    const chartToMove = canvasRoot.getElementById(nodeId);
-    event.target.appendChild(chartToMove);
+    // const chartToMove = canvasRoot.getElementById(nodeId);
+    // event.target.appendChild(nodeId);
+    console.log(document.querySelector(`${nodeId}`))
   }
 }
 
@@ -63,3 +64,17 @@ function toggleGrid() {
     page.style.border = "2px solid rgb(85, 179, 255)";
   }
 }
+
+function generatePDF() {
+  console.log("hello")
+  
+
+var element = document.getElementById('test');
+var options = {
+  filename: 'test.pdf'
+};
+domToPdf(element, options, function(pdf) {
+  console.log('done');
+});
+}
+
