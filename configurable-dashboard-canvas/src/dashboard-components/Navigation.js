@@ -38,17 +38,26 @@ export class Navigation extends LitElement {
 
       .tags {
         width: 100%;
+        color:#06162c;
+        font-family: whitney,sans-serif;
+        font-weight:300;
         font-size: 1.5vw;
         padding: 0;
         margin: 0;
         height: 4vh;
         text-align: center;
-        background-color: #0388fc;
+        background-color: #4bd8d4;
+        border-top-left-radius: 5px;
+        border-top-right-radius:5px;
+        margin-left:20px;
+        margin-right:20px
       }
 
       img {
         width: 100%;
-        height: 20vh;
+        margin-right:10px;
+        margin-left:10px;
+        height: 18vh;
         padding-bottom: 1vh;
       }
     `;
