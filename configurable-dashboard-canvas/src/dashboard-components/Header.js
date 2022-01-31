@@ -34,14 +34,13 @@ export class Header extends LitElement {
         font-weight: 300;
         font-size: 1.5vw;
       }
-       #header__borderToggle {
+      #header__borderToggle {
         grid-area: toggleBorder;
         display: inline-block;
         margin: auto;
         font-weight: 300;
         font-size: 1.5vw;
       }
-
       #toggle__label {
       }
 
@@ -77,7 +76,6 @@ export class Header extends LitElement {
         opacity: 0.3;
         font-size: 3vh;
       }
-
       #header__logo {
         grid-area: logo;
         margin: auto;

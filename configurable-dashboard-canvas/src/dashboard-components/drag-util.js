@@ -62,9 +62,9 @@ function toggleGrid() {
     page.style.border = "none";
   } else {
     gridSlots.forEach((slot) => {
-      slot.style.border = "0.5px solid #06152c";
+      slot.style.border = "0.5px solid RGB(6, 21, 44,0.05)";
     });
-    page.style.border = "2px solid #06152c";
+    page.style.border = "2px solid RGB(6, 21, 44,0.05)";
   }
 }
 
