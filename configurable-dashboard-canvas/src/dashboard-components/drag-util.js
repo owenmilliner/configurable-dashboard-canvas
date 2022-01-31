@@ -70,3 +70,17 @@ function toggleGrid() {
     page.style.border = "2px solid #06152c";
   }
 }
+function pdf() {
+  html2canvas(
+    document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component").shadowRoot.getElementById("page")
+  ).then((image) => {
+    const opt = {
+      margin: 0,
+      filename: "myfile.pdf",
+      image: { type: "png", quality: 0.98 },
+      html2canvas: { scale: 1, allowTaint: true },
+      jsPDF: { unit: "mm", format: [231, 319], orientation: "portrait" },
+    };
+    html2pdf().set(opt).from(image).save();
+  });
+}
