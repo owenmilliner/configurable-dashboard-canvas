@@ -17,10 +17,21 @@ export class PieChart extends ProviderMixin(LitElement) {
       this.values = newValue;
     };
 
-    this.popUp = true;
+    this.popUp = false;
     this.setPopUp = (value) => {
       this.popUp = value;
     };
+  }
+
+  static get styles() {
+    return css`
+      .chart {
+        height: 60mm;
+        width: 50mm;
+        resize: both;
+        overflow: auto;
+      }
+    `;
   }
 
   static get properties() {
@@ -45,20 +56,19 @@ export class PieChart extends ProviderMixin(LitElement) {
   render() {
     return this.popUp
       ? html`<pie-form></pie-form>`
-      : html` <link rel="stylesheet" href="./chart.css" />
-          <vaadin-chart
-            @dblclick="${this.formPopUp}"
-            type="pie"
-            class="chart"
+      : html` <vaadin-chart
+          @dblclick="${this.formPopUp}"
+          type="pie"
+          class="chart"
+          title="${this.title}"
+          no-legend
+        >
+          <vaadin-chart-series
             title="${this.title}"
-            no-legend
+            values="${JSON.stringify(this.values)}"
           >
-            <vaadin-chart-series
-              title="${this.title}"
-              values="${JSON.stringify(this.values)}"
-            >
-            </vaadin-chart-series>
-          </vaadin-chart>`;
+          </vaadin-chart-series>
+        </vaadin-chart>`;
   }
 }
 

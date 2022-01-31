@@ -74,20 +74,10 @@ export class Canvas extends LitElement {
         if (canvasGridSlots[gridSlot].children.length !== 0) {
           this._populatedGrids.push(canvasGridSlots[gridSlot].outerHTML);
 
-          const componentChildren =
+          this._TESTshadow.push(
             canvasGridSlots[gridSlot].querySelector("div").children[0]
-              .shadowRoot.children;
-
-          // componentChildren = <form></form> OR <link.... /> <chart>......</chart>
-
-          const childrenObject = {};
-
-          for (let i = 0; i < componentChildren.length; i++) {
-            childrenObject[i] = componentChildren[i].outerHTML;
-          }
-
-          this._TESTshadow.push(JSON.stringify(childrenObject));
-          //Test for object separation. Comma was not sufficient, due to their presence within the data.
+              .shadowRoot.children[0].outerHTML
+          );
           this._TESTshadow.push("|");
         }
       });
@@ -103,13 +93,14 @@ export class Canvas extends LitElement {
 
     const previouslyPopulatedGrids = localStorage
       .getItem("previouslyPopulatedGrids")
-      .split("");
-
-    const testShadow = localStorage.getItem("TESTshadow").split("|");
-    console.log("test:", testShadow);
-    console.log("test:", testShadow[0]);
+      .split(",");
+    console.log("Components:", previouslyPopulatedGrids);
 
     if (!previouslyPopulatedGrids.includes("")) {
+      const testShadow = localStorage.getItem("TESTshadow").split("|");
+      testShadow.pop();
+      console.log("test:", testShadow);
+
       previouslyPopulatedGrids.forEach((previousGridSlot, index) => {
         console.log(
           "---------------------------------------------------------"
@@ -128,7 +119,19 @@ export class Canvas extends LitElement {
         console.log("componentToPlace:", componentToPlace);
 
         //Add data to component.
+        //FIXME: Chart data does not change. We would want to invoke the handleSubmit on the chart to do this properly but unsure how.
+        setTimeout(() => {
+          const testChart = this.handleStringToHTML(
+            testShadow[0].substring(0, testShadow[0].length - 1)
+          );
 
+          const testData = testChart.children[0].innerHTML;
+          const chartRoot = componentToPlace.children[0].shadowRoot;
+
+          console.log(chartRoot.children[0].innerHTML);
+          chartRoot.children[0].innerHTML = testData;
+          console.log(chartRoot.children[0].innerHTML);
+        }, 1000);
         // Getting target grid id
         const targetGridSlot =
           canvas.shadowRoot.getElementById(componentGridId);
