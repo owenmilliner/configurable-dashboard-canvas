@@ -71,6 +71,7 @@ function toggleGrid() {
   }
 }
 function pdf() {
+    if(gridView){toggleGrid()}
   html2canvas(
     document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component").shadowRoot.getElementById("page")
   ).then((image) => {
@@ -83,4 +84,5 @@ function pdf() {
     };
     html2pdf().set(opt).from(image).save();
   });
+  if(gridView){toggleGrid()}
 }
