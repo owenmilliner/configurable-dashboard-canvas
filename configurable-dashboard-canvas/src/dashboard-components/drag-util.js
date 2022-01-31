@@ -71,9 +71,7 @@ function toggleGrid() {
 function toggleBorders() {
     borderView = !borderView;
     const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
-    console.log(canvas)
   const componentsWithBorders = canvas.querySelector("#canvas").shadowRoot.querySelectorAll("[id*='web-component']");
-  console.log(componentsWithBorders)
   if (!borderView) {
     componentsWithBorders.forEach((component) => {
       component.style.border = "none";

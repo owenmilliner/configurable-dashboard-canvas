@@ -9,7 +9,7 @@ export class Header extends LitElement {
         color: white;
         background-color: #06152c;
         display: grid;
-        grid-template-areas: "app toggleGrid toggleBorder bin file logo";
+        grid-template-areas: "app toggleGrid toggleBorder bin file file logo";
         grid-template-columns: 15vw 12vw 10vw auto 20vw;
         grid-template-rows: 100%;
       }
