@@ -57,6 +57,7 @@ export class Canvas extends LitElement {
   connectedCallback() {
     // localStorage.clear();
     super.connectedCallback();
+    localStorage.setItem("count", 1);
 
     //On Disconnect
     window.addEventListener("beforeunload", (event) => {
@@ -80,6 +81,7 @@ export class Canvas extends LitElement {
     });
   }
 
+  // Add previous components to canvas '(straight after render)
   firstUpdated() {
     const canvas = document.querySelector("canvas-component");
 
@@ -90,7 +92,7 @@ export class Canvas extends LitElement {
     console.log(previouslyPopulatedGrids);
 
     if (!previouslyPopulatedGrids.includes("")) {
-      previouslyPopulatedGrids.forEach((previousGridSlot) => {
+      previouslyPopulatedGrids.forEach((previousGridSlot, index) => {
         console.log(
           "---------------------------------------------------------"
         );
@@ -104,12 +106,13 @@ export class Canvas extends LitElement {
         const componentToPlace =
           this.handleStringToHTML(previousGridSlot).querySelector("div")
             .children[0];
+        componentToPlace.id = `web-component-${index + 1}`;
         console.log("componentToPlace:", componentToPlace);
 
         // Getting target grid id
         const targetGridSlot =
           canvas.shadowRoot.getElementById(componentGridId);
-        console.log("target grid id:", targetGridSlot);
+        console.log("Target grid Id:", componentGridId);
 
         // Appending the component to the Grid
         targetGridSlot.appendChild(componentToPlace);
@@ -118,6 +121,7 @@ export class Canvas extends LitElement {
         console.log(
           "---------------------------------------------------------"
         );
+        localStorage.setItem("count", index + 1);
       });
     }
   }

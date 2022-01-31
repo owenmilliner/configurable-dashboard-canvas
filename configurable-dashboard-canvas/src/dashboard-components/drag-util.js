@@ -1,8 +1,11 @@
 const canvas = document.querySelector("canvas-component");
-let count = 1;
+// let count = 1;
 let gridView = true;
 let canvasRoot = "";
-// const localStorage = window.localStorage;
+const localStorage = window.localStorage;
+let count =
+  localStorage.getItem("count") !== null ? localStorage.getItem("count") : 1;
+console.log(count);
 
 function allowDrop(event) {
   event.preventDefault();
@@ -36,7 +39,7 @@ function drop(event) {
     `;
 
     event.target.appendChild(newDiv);
-    count++;
+    localStorage.setItem("count", Number(count) + 1);
   } else {
     const chartToMove = canvasRoot.getElementById(nodeId);
     event.target.appendChild(chartToMove);
@@ -75,7 +78,6 @@ function toggleGrid() {
 }
 
 function clearCanvas() {
-  const localStorage = window.localStorage;
   localStorage.clear();
 
   const canvas = document.querySelector("canvas-component");
