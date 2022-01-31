@@ -50,14 +50,10 @@ function remove(event) {
 }
 
 function toggleGrid() {
-    
+    gridView = !gridView;
     const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
-    console.log(canvas)
-  gridView = !gridView;
   const page = canvas.querySelector("#canvas").shadowRoot.getElementById("canvas");
-  console.log(page)
   const gridSlots = canvas.querySelector("#canvas").shadowRoot.querySelectorAll(".canvas__gridSlot");
-  console.log(gridSlots)
   if (!gridView) {
     gridSlots.forEach((slot) => {
       slot.style.border = "none";
@@ -71,7 +67,8 @@ function toggleGrid() {
   }
 }
 function pdf() {
-    if(gridView){toggleGrid()}
+    let changed = false
+    if(gridView){toggleGrid();changed = true }
   html2canvas(
     document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component").shadowRoot.getElementById("page")
   ).then((image) => {
@@ -84,5 +81,5 @@ function pdf() {
     };
     html2pdf().set(opt).from(image).save();
   });
-  if(gridView){toggleGrid()}
+  if(changed){toggleGrid()}
 }
