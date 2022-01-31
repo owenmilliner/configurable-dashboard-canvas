@@ -25,7 +25,6 @@ export class Canvas extends LitElement {
     _margin: { state: true },
     _rows: { state: true },
     _columns: { state: true },
-    _previousSave: { type: String },
     _populatedGrids: { type: Array, state: true },
   };
 
@@ -38,7 +37,6 @@ export class Canvas extends LitElement {
       (this._margin = 19.05),
       (this._rows = Math.floor(this._canvasHeight / this._gridSlotHeight)),
       (this._columns = Math.floor(this._canvasWidth / this._gridSlotWidth));
-    this._previousSave = "";
     this._populatedGrids = [];
   }
 
@@ -59,8 +57,8 @@ export class Canvas extends LitElement {
   connectedCallback() {
     // localStorage.clear();
     super.connectedCallback();
-    this._previousSave = localStorage.getItem("previousSave");
 
+    //On Disconnect
     window.addEventListener("beforeunload", (event) => {
       event.preventDefault();
 
@@ -72,6 +70,9 @@ export class Canvas extends LitElement {
       gridSlotKeys.forEach((gridSlot) => {
         if (canvasGridSlots[gridSlot].children.length !== 0) {
           this._populatedGrids.push(canvasGridSlots[gridSlot].outerHTML);
+
+          // [[chart, shadowdom], [chart, shadowdom]...]
+          // [chart, chart]
         }
       });
 
@@ -151,18 +152,16 @@ export class Canvas extends LitElement {
       </style>
 
       <div id="page">
-        ${this._previousSave
-          ? this.handleStringToHTML(this._previousSave)
-          : html`<div id="canvas">
-              ${this.makeArray().map((item) => {
-                return html`<div
-                  class="canvas__gridSlot"
-                  id=${item}
-                  ondrop="drop(event)"
-                  ondragover="allowDrop(event)"
-                ></div>`;
-              })}
-            </div>`}
+        <div id="canvas">
+          ${this.makeArray().map((item) => {
+            return html`<div
+              class="canvas__gridSlot"
+              id=${item}
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+            ></div>`;
+          })}
+        </div>
       </div>`;
   }
 }

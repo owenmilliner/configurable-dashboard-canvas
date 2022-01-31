@@ -70,6 +70,7 @@ export class DropDown extends LitElement {
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown__content">
+          <p onclick="clearCanvas()">Clear Canvas</p>
           <p onclick="menuSelection()">New Canvas</p>
           <p onclick="menuSelection()">New Project</p>
           <p onclick="menuSelection()">Save</p>

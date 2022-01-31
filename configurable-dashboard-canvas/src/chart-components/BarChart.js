@@ -23,7 +23,7 @@ export class BarChart extends ProviderMixin(LitElement) {
       this.popUp = value;
     };
 
-    this.data = {};
+    this.data = { setOne: { title: "test", values: [] } };
     this.setData = (property, value, nestedProperty) => {
       if (nestedProperty) {
         this.data[property][nestedProperty] = value;

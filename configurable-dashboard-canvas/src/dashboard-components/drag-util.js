@@ -73,3 +73,19 @@ function toggleGrid() {
     page.style.border = "2px solid rgb(85, 179, 255)";
   }
 }
+
+function clearCanvas() {
+  const localStorage = window.localStorage;
+  localStorage.clear();
+
+  const canvas = document.querySelector("canvas-component");
+  const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
+  const gridSlotKeys = Object.keys(canvasGridSlots);
+
+  gridSlotKeys.forEach((gridSlot) => {
+    if (canvasGridSlots[gridSlot].children.length !== 0) {
+      console.log(canvasGridSlots[gridSlot].children[0]);
+      canvasGridSlots[gridSlot].children[0].remove();
+    }
+  });
+}
