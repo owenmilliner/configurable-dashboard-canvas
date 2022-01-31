@@ -1,6 +1,7 @@
 
 let count = 1;
 let gridView = true;
+let borderView = true;
 let canvasRoot = "";
 
 function allowDrop(event) {
@@ -30,7 +31,7 @@ function drop(event) {
     newDiv.style.cssText = `
     height: fit-content;
     width: fit-content;
-    border: 10px solid black;
+    border: 10px solid #4bd8d4;
     position: relative;
     `;
 
@@ -66,9 +67,29 @@ function toggleGrid() {
     page.style.border = "2px solid #06152c";
   }
 }
+
+function toggleBorders() {
+    borderView = !borderView;
+    const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
+    console.log(canvas)
+  const componentsWithBorders = canvas.querySelector("#canvas").shadowRoot.querySelectorAll("[id*='web-component']");
+  console.log(componentsWithBorders)
+  if (!borderView) {
+    componentsWithBorders.forEach((component) => {
+      component.style.border = "none";
+    })
+  } else {
+    componentsWithBorders.forEach((component) => {
+      component.style.border = "10px solid #4bd8d4";
+    });
+  }
+}
+
 function pdf() {
-    let changed = false
-    if(gridView){toggleGrid();changed = true }
+    let gridChanged = false
+    let borderChanged = false
+    if(gridView){toggleGrid();gridChanged = true }
+    if(borderView){toggleBorders();borderChanged = true }
   html2canvas(
     document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component").shadowRoot.getElementById("page")
   ).then((image) => {
@@ -81,5 +102,6 @@ function pdf() {
     };
     html2pdf().set(opt).from(image).save();
   });
-  if(changed){toggleGrid()}
+  if(gridChanged){toggleGrid()}
+  if(borderChanged){toggleBorders()}
 }

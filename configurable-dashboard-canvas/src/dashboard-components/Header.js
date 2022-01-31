@@ -9,7 +9,7 @@ export class Header extends LitElement {
         color: white;
         background-color: #06152c;
         display: grid;
-        grid-template-areas: "app toggle bin file logo";
+        grid-template-areas: "app toggleGrid toggleBorder bin file logo";
         grid-template-columns: 15vw 12vw 10vw auto 20vw;
         grid-template-rows: 100%;
       }
@@ -27,8 +27,15 @@ export class Header extends LitElement {
         float: left;
       }
 
-      #header__toggle {
-        grid-area: toggle;
+      #header__gridToggle {
+        grid-area: toggleGrid;
+        display: inline-block;
+        margin: auto;
+        font-weight: 300;
+        font-size: 1.5vw;
+      }
+       #header__borderToggle {
+        grid-area: toggleBorder;
         display: inline-block;
         margin: auto;
         font-weight: 300;
@@ -110,8 +117,8 @@ export class Header extends LitElement {
           ondragover="allowDrop(event)"
           ondrop="remove(event)"
         />
-        <div id="header__toggle">
-          <label id="toggle__label" for="switch">Page Grid</label>
+        <div id="header__gridToggle">
+          <label id="toggle__gridLabel" for="switch">Grid</label>
           <input
             type="checkbox"
             id="toggle__checkbox"
@@ -121,6 +128,19 @@ export class Header extends LitElement {
             value="1"
             checked
             onchange="toggleGrid()"
+          />
+        </div>
+        <div id="header__borderToggle">
+          <label id="toggle__borderLabel" for="switch">Borders</label>
+          <input
+            type="checkbox"
+            id="toggle__checkbox"
+            name="switch"
+            min="0"
+            max="1"
+            value="1"
+            checked
+            onchange="toggleBorders()"
           />
         </div>
         <h1 id="header__file">
