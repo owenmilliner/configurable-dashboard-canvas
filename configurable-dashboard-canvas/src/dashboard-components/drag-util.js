@@ -1,11 +1,7 @@
 const canvas = document.querySelector("canvas-component");
-// let count = 1;
 let gridView = true;
 let canvasRoot = "";
 const localStorage = window.localStorage;
-let count =
-  localStorage.getItem("count") !== null ? localStorage.getItem("count") : 1;
-console.log(count);
 
 function allowDrop(event) {
   event.preventDefault();
@@ -18,6 +14,13 @@ function drag(event, isNav) {
 }
 
 function drop(event) {
+  let count =
+    localStorage.getItem("count") !== null
+      ? Number(localStorage.getItem("count")) + 1
+      : 1;
+
+  console.log(count);
+
   const canvasRoot = canvas.shadowRoot;
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
@@ -39,25 +42,17 @@ function drop(event) {
     `;
 
     event.target.appendChild(newDiv);
-    localStorage.setItem("count", Number(count) + 1);
+    localStorage.setItem("count", count++);
   } else {
     const chartToMove = canvasRoot.getElementById(nodeId);
     event.target.appendChild(chartToMove);
   }
-  // localStorage.setItem(
-  //   "previousSave",
-  //   canvasRoot.getElementById("canvas").outerHTML
-  // );
 }
 
 function remove(event) {
   const nodeId = event.dataTransfer.getData("targetNodeId");
   const chartToDelete = canvas.shadowRoot.getElementById(nodeId);
   chartToDelete.remove();
-  // localStorage.setItem(
-  //   "previousSave",
-  //   canvasRoot.getElementById("canvas").outerHTML
-  // );
 }
 
 function toggleGrid() {

@@ -26,6 +26,7 @@ export class Canvas extends LitElement {
     _rows: { state: true },
     _columns: { state: true },
     _populatedGrids: { type: Array, state: true },
+    _TESTshadow: { type: Array, state: true },
   };
 
   constructor() {
@@ -38,6 +39,7 @@ export class Canvas extends LitElement {
       (this._rows = Math.floor(this._canvasHeight / this._gridSlotHeight)),
       (this._columns = Math.floor(this._canvasWidth / this._gridSlotWidth));
     this._populatedGrids = [];
+    this._TESTshadow = [];
   }
 
   makeArray() {
@@ -72,12 +74,18 @@ export class Canvas extends LitElement {
         if (canvasGridSlots[gridSlot].children.length !== 0) {
           this._populatedGrids.push(canvasGridSlots[gridSlot].outerHTML);
 
+          // this._TESTshadow.push(
+          //   canvasGridSlots[gridSlot].querySelector("div").children[0]
+          //     .shadowRoot.children[1].outerHTML
+          // );z
+
           // [[chart, shadowdom], [chart, shadowdom]...]
           // [chart, chart]
         }
       });
 
       localStorage.setItem("previouslyPopulatedGrids", this._populatedGrids);
+      localStorage.setItem("TESTshadow", this._TESTshadow);
     });
   }
 
@@ -90,6 +98,9 @@ export class Canvas extends LitElement {
       .split(",");
 
     console.log(previouslyPopulatedGrids);
+
+    const testShadow = localStorage.getItem("TESTshadow").split(",");
+    console.log("test:", testShadow);
 
     if (!previouslyPopulatedGrids.includes("")) {
       previouslyPopulatedGrids.forEach((previousGridSlot, index) => {
@@ -109,6 +120,8 @@ export class Canvas extends LitElement {
         componentToPlace.id = `web-component-${index + 1}`;
         console.log("componentToPlace:", componentToPlace);
 
+        //Add data to component.
+
         // Getting target grid id
         const targetGridSlot =
           canvas.shadowRoot.getElementById(componentGridId);
@@ -122,6 +135,7 @@ export class Canvas extends LitElement {
           "---------------------------------------------------------"
         );
         localStorage.setItem("count", index + 1);
+        console.log(localStorage.getItem("count"));
       });
     }
   }
