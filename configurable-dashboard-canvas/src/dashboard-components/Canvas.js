@@ -70,17 +70,25 @@ export class Canvas extends LitElement {
         canvas.shadowRoot.children[1].children[0].children;
       const gridSlotKeys = Object.keys(canvasGridSlots);
 
-      gridSlotKeys.forEach((gridSlot) => {
+      gridSlotKeys.forEach((gridSlot, index) => {
         if (canvasGridSlots[gridSlot].children.length !== 0) {
           this._populatedGrids.push(canvasGridSlots[gridSlot].outerHTML);
 
-          // this._TESTshadow.push(
-          //   canvasGridSlots[gridSlot].querySelector("div").children[0]
-          //     .shadowRoot.children[1].outerHTML
-          // );z
+          const componentChildren =
+            canvasGridSlots[gridSlot].querySelector("div").children[0]
+              .shadowRoot.children;
 
-          // [[chart, shadowdom], [chart, shadowdom]...]
-          // [chart, chart]
+          // componentChildren = <form></form> OR <link.... /> <chart>......</chart>
+
+          const childrenObject = {};
+
+          for (let i = 0; i < componentChildren.length; i++) {
+            childrenObject[i] = componentChildren[i].outerHTML;
+          }
+
+          this._TESTshadow.push(JSON.stringify(childrenObject));
+          //Test for object separation. Comma was not sufficient, due to their presence within the data.
+          this._TESTshadow.push("|");
         }
       });
 
@@ -95,12 +103,11 @@ export class Canvas extends LitElement {
 
     const previouslyPopulatedGrids = localStorage
       .getItem("previouslyPopulatedGrids")
-      .split(",");
+      .split("");
 
-    console.log(previouslyPopulatedGrids);
-
-    const testShadow = localStorage.getItem("TESTshadow").split(",");
+    const testShadow = localStorage.getItem("TESTshadow").split("|");
     console.log("test:", testShadow);
+    console.log("test:", testShadow[0]);
 
     if (!previouslyPopulatedGrids.includes("")) {
       previouslyPopulatedGrids.forEach((previousGridSlot, index) => {
@@ -135,7 +142,6 @@ export class Canvas extends LitElement {
           "---------------------------------------------------------"
         );
         localStorage.setItem("count", index + 1);
-        console.log(localStorage.getItem("count"));
       });
     }
   }

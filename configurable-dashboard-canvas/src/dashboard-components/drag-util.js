@@ -19,8 +19,6 @@ function drop(event) {
       ? Number(localStorage.getItem("count")) + 1
       : 1;
 
-  console.log(count);
-
   const canvasRoot = canvas.shadowRoot;
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
