@@ -1,3 +1,4 @@
+const localStorage = window.localStorage;
 
 let count = 1;
 let gridView = true;
@@ -102,4 +103,16 @@ function pdf() {
   });
   if(gridChanged){toggleGrid()}
   if(borderChanged){toggleBorders()}
+}
+function clearCanvas() {
+  localStorage.clear();
+  const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component")
+  const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
+  const gridSlotKeys = Object.keys(canvasGridSlots);
+  gridSlotKeys.forEach((gridSlot) => {
+    if (canvasGridSlots[gridSlot].children.length !== 0) {
+      console.log(canvasGridSlots[gridSlot].children[0]);
+      canvasGridSlots[gridSlot].children[0].remove();
+    }
+  });
 }
