@@ -110,7 +110,7 @@ export class Header extends LitElement {
         </div>
         <img
           id="header__bin"
-          src="../src/images/bin.png"
+          src="../src/images/blue-bin.png"
           alt="Recycle bin"
           ondragover="allowDrop(event)"
           ondrop="remove(event)"
