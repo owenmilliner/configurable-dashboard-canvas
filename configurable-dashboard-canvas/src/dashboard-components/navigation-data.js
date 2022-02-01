@@ -1,11 +1,11 @@
 export const genericImgData = [
   {
-    name: "text-box",
+    name: "Text Box",
     id: "<textarea><textarea>",
     img: "../src/images/textbox.jpg",
   },
   {
-    name: "image-upload",
+    name: "Image Upload",
     id: "<image-upload><image-upload>",
     img: "../src/images/imageupload.png",
   },
@@ -13,58 +13,53 @@ export const genericImgData = [
 
 export const chartImgData = [
   {
-    name: "pie-chart",
+    name: "Pie Chart",
     id: "<pie-chart></pie-chart>",
     img: "../src/images/pie.png",
   },
   {
-    name: "area-chart",
+    name: "Area Chart",
     id: "<area-chart></area-chart>",
     img: "../src/images/area.png",
   },
   {
-    name: "line-chart",
+    name: "Line Chart",
     id: "<line-chart></line-chart>",
     img: "../src/images/line.png",
   },
   {
-    name: "column-chart",
+    name: "Column Chart",
     id: "<column-chart></column-chart>",
     img: "../src/images/column.png",
   },
   {
-    name: "funnel-chart",
+    name: "Funnel-Chart",
     id: "<funnel-chart></funnel-chart>",
     img: "../src/images/funnel.png",
   },
   {
-    name: "areaspline-chart",
+    name: "Areaspline Chart",
     id: "<areaspline-chart></areaspline-chart>",
     img: "../src/images/areaspline.png",
   },
   {
-    name: "bar-chart",
+    name: "Bar Chart",
     id: "<bar-chart></bar-chart>",
     img: "../src/images/bar.png",
   },
   {
-    name: "heatmap-chart",
+    name: "Heatmap Chart",
     id: "<heatmap-chart></heatmap-chart>",
     img: "../src/images/heatmap.png",
   },
   {
-    name: "polar-chart",
+    name: "Polar Chart",
     id: "<polar-chart></polar-chart>",
     img: "../src/images/polar.png",
   },
   {
-    name: "pyramid-chart",
+    name: "Pyramid Chart",
     id: "<pyramid-chart></pyramid-chart>",
     img: "../src/images/pyramid.png",
   },
-  // {
-  //   name: "treemap-chart",
-  //   id: "<treemap-chart></treemap-chart>",
-  //   img: "../src/images/tree.png",
-  // },
 ];
