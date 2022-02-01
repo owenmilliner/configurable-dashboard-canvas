@@ -56,7 +56,6 @@ function remove(event) {
     .shadowRoot.querySelector("router-outlet")
     .querySelector("cdc-page").shadowRoot;
   const nodeId = event.dataTransfer.getData("targetNodeId");
-  console.log(nodeId);
   const chartToDelete = canvas
     .getElementById("canvas")
     .shadowRoot.getElementById(nodeId);
@@ -152,11 +151,11 @@ function clearCanvas() {
     .querySelector("cdc-page")
     .shadowRoot.querySelector("canvas-component");
 
-  const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
+  const canvasGridSlots = canvas.shadowRoot.getElementById("canvas").children;
+
   const gridSlotKeys = Object.keys(canvasGridSlots);
 
-  const canvasRoot = canvas.shadowRoot;
-  console.log(canvasRoot);
+  console.log(gridSlotKeys);
 
   gridSlotKeys.forEach((gridSlot) => {
     if (canvasGridSlots[gridSlot].children.length !== 0) {
