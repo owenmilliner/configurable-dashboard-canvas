@@ -43,12 +43,6 @@ class Landing extends LitElement {
   constructor() {
     super();
   }
-
-  connectedCallback() {
-    window.onbeforeunload = () => {
-      window.location.replace("https://localhost:8000");
-    };
-  }
 }
 
 customElements.define("landing-page", Landing);

@@ -142,24 +142,34 @@ class FunnelForm extends ConsumerMixin(LitElement) {
   }
 
   render() {
-    return html`
-      <form id="chartInputForm" @submit=${this.handleSubmit}>
-        <label>Title:</label>
-        <input name="title" />
-        <label for="dataSource">Data:</label>
-        <select id="dataSource" name="data">
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
-        <label for="dataSource">Data Headings:</label>
-        <select id="dataHeading" name="dataHeading">
-          <option value="date">Date</option>
-        </select>
-        <button type="submit">Update Chart</button>
-      </form>
-    `;
+    return html`<link rel="stylesheet" href="./chart.css" />
+      <form class="chartInputForm" @submit=${this.handleSubmit}>
+        <div class="formInputItem">
+          <label>Title:</label>
+          <input name="title" />
+        </div>
+
+        <div class="formInputItem">
+          <label for="dataSource">Data:</label>
+          <select id="dataSource" name="data">
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
+
+        <div class="formInputItem">
+          <label for="dataSource">Data Headings:</label>
+          <select id="dataHeading" name="dataHeading">
+            <option value="date">Date</option>
+          </select>
+        </div>
+
+        <div class="formInputItem">
+          <button type="submit">Update Chart</button>
+        </div>
+      </form> `;
   }
 }
 

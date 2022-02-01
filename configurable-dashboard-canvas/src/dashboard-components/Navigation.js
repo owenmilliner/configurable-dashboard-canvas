@@ -1,5 +1,5 @@
 import { html, css, LitElement } from "lit";
-import { genericImgData, chartImgData } from "./navigation-data";
+import { genericData, chartData } from "./navigation-data";
 
 export class Navigation extends LitElement {
   static properties = {
@@ -37,8 +37,8 @@ export class Navigation extends LitElement {
         color: rgb(6, 21, 44);
         font-family: "Whitney", sans-serif;
         font-weight: bold;
-        font-size: 2vh;
-        padding: 1vh 2vh;
+        font-size: 1.25vw;
+        padding: 1vh 1vw;
       }
 
       #generic__button:hover,
@@ -94,16 +94,15 @@ export class Navigation extends LitElement {
         </button>
         <div id="generic__list">
           ${this.genericActive
-            ? genericImgData.map((item) => {
+            ? genericData.map((item) => {
                 return html`
-                  <div class="list__item">
+                  <div
+                    class="list__item"
+                    draggable="true"
+                    ondragstart="drag(event, true)"
+                  >
                     <p class="list__tag">${item.name}</p>
-                    <img
-                      id="${item.id}"
-                      src="${item.img}"
-                      draggable="true"
-                      ondragstart="drag(event, true)"
-                    />
+                    <img id="${item.id}" src="${item.img}" />
                   </div>
                 `;
               })
@@ -116,16 +115,15 @@ export class Navigation extends LitElement {
         </button>
         <div id="chart__list">
           ${this.chartsActive
-            ? chartImgData.map((item) => {
+            ? chartData.map((item) => {
                 return html`
-                  <div class="list__item">
+                  <div
+                    class="list__item"
+                    draggable="true"
+                    ondragstart="drag(event, true)"
+                  >
                     <p class="list__tag">${item.name}</p>
-                    <img
-                      id="${item.id}"
-                      src="${item.img}"
-                      draggable="true"
-                      ondragstart="drag(event, true)"
-                    />
+                    <img id="${item.id}" src="${item.img}" />
                   </div>
                 `;
               })
