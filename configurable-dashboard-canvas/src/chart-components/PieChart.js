@@ -1,4 +1,4 @@
-import { html, css, LitElement } from "lit";
+import { html, LitElement } from "lit";
 import { ProviderMixin, ConsumerMixin } from "lit-element-context";
 import { demoTwitter2022Data } from "../demo-data/demo-bad-tweets-2022";
 import "@vaadin/charts";
@@ -74,44 +74,6 @@ class PieForm extends ConsumerMixin(LitElement) {
     };
   }
 
-  static get styles() {
-    return css`
-      @import url("http://fonts.cdnfonts.com/css/whitney-2");
-
-      #chartInputForm {
-        position: absolute;
-        padding: 10px;
-        top: 50%;
-        left: 50%;
-        width: auto;
-        padding: 1vh;
-        background-color: #06152c;
-        color: white;
-        border: 0.25vw solid rgb(75, 216, 212);
-        border-radius: 1px;
-        text-align: centre;
-        font-family: "Whitney", sans-serif;
-      }
-      .formInputItem {
-        display: block;
-        padding: 0.5vh;
-      }
-      button {
-        width: 100%;
-        background-color: rgb(75, 216, 212);
-        border: 0.25vw solid rgb(75, 216, 212);
-        padding: 0.25vh;
-        color: white;
-      }
-      button:hover {
-        background-color: #06152c;
-        border: 0.25vw solid rgb(75, 216, 212);
-        color: white;
-        cursor: pointer;
-      }
-    `;
-  }
-
   static get inject() {
     return ["title", "setTitle", "values", "setValues", "popUp", "setPopUp"];
   }
@@ -148,8 +110,8 @@ class PieForm extends ConsumerMixin(LitElement) {
   }
 
   render() {
-    return html`<link rel="stylesheet" href="./chartForm.css" />
-      <form id="chartInputForm" @submit=${this.handleSubmit}>
+    return html`<link rel="stylesheet" href="./chart.css" />
+      <form class="chartInputForm" @submit=${this.handleSubmit}>
         <div class="formInputItem">
           <label>Title:</label>
           <input name="title" />

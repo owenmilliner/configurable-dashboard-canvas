@@ -140,26 +140,34 @@ class PyramidForm extends ConsumerMixin(LitElement) {
   }
 
   render() {
-    return html`
-      <form id="chartInputForm" @submit=${this.handleSubmit}>
-        <label>Title:</label>
-        <input name="title" />
+    return html`<link rel="stylesheet" href="./chart.css" />
+      <form class="chartInputForm" @submit=${this.handleSubmit}>
+        <div class="formInputItem">
+          <label>Title:</label>
+          <input name="title" />
+        </div>
 
-        <label for="dataSource">Data:</label>
-        <select id="dataSource" name="data">
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
+        <div class="formInputItem">
+          <label for="dataSource">Data:</label>
+          <select id="dataSource" name="data">
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
 
-        <label for="dataHeading">Data Headings:</label>
-        <select id="dataHeading" name="dataHeading">
-          <option value="date">Date</option>
-        </select>
-        <button type="submit">Update Chart</button>
-      </form>
-    `;
+        <div class="formInputItem">
+          <label for="dataHeading">Data Headings:</label>
+          <select id="dataHeading" name="dataHeading">
+            <option value="date">Date</option>
+          </select>
+        </div>
+
+        <div class="formInputItem">
+          <button type="submit">Update Chart</button>
+        </div>
+      </form> `;
   }
 }
 

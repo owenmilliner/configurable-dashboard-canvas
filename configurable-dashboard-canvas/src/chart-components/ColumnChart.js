@@ -214,56 +214,72 @@ class ColumnForm extends ConsumerMixin(LitElement) {
   }
 
   render() {
-    return html`
-      <form id="chartInputForm" @submit=${this.handleSubmit}>
-        <label>Title:</label>
-        <input name="title" />
-        <label>Sub Title:</label>
-        <input name="subTitle" />
+    return html`<link rel="stylesheet" href="./chart.css" />
+      <form class="chartInputForm" @submit=${this.handleSubmit}>
+        <div class="formInputItem">
+          <label>Title:</label>
+          <input name="title" />
+        </div>
 
-        <label for="dataSourceOne">Data Source One:</label>
-        <select id="dataSourceOne" name="dataSourceOne">
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
+        <div class="formInputItem">
+          <label>Sub Title:</label>
+          <input name="subTitle" />
+        </div>
 
-        <label for="dataSourceTwo">Data Source Two:</label>
-        <select id="dataSourceTwo" name="dataSourceTwo">
-          <option value="none">None</option>
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
+        <div class="formInputItem">
+          <label for="dataSourceOne">Data Source One:</label>
+          <select id="dataSourceOne" name="dataSourceOne">
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
 
-        <label for="dataSourceThree">Data Source Three:</label>
-        <select id="dataSourceThree" name="dataSourceThree">
-          <option value="none">None</option>
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
+        <div class="formInputItem">
+          <label for="dataSourceTwo">Data Source Two:</label>
+          <select id="dataSourceTwo" name="dataSourceTwo">
+            <option value="none">None</option>
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
 
-        <label for="dataSourceFour">Data Source Four:</label>
-        <select id="dataSourceFour" name="dataSourceFour">
-          <option value="none">None</option>
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
+        <div class="formInputItem">
+          <label for="dataSourceThree">Data Source Three:</label>
+          <select id="dataSourceThree" name="dataSourceThree">
+            <option value="none">None</option>
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
 
-        <label for="dataHeading">Data Headings:</label>
-        <select id="dataHeading" name="dataHeading">
-          <option value="date">Date</option>
-        </select>
+        <div class="formInputItem">
+          <label for="dataSourceFour">Data Source Four:</label>
+          <select id="dataSourceFour" name="dataSourceFour">
+            <option value="none">None</option>
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
 
-        <button type="submit">Update Chart</button>
-      </form>
-    `;
+        <div class="formInputItem">
+          <label for="dataHeading">Data Headings:</label>
+          <select id="dataHeading" name="dataHeading">
+            <option value="date">Date</option>
+          </select>
+        </div>
+
+        <div class="formInputItem">
+          <button type="submit">Update Chart</button>
+        </div>
+      </form> `;
   }
 }
 

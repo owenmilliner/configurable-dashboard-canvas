@@ -4,3 +4,40 @@
   resize: both;
   overflow: auto;
 }
+
+@import url("http://fonts.cdnfonts.com/css/whitney-2");
+
+.chartInputForm {
+  position: absolute;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  padding: 1vh;
+  background-color: #06152c;
+  color: white;
+  border: 0.25vw solid rgb(75, 216, 212);
+  border-radius: 1px;
+  text-align: centre;
+  font-family: "Whitney", sans-serif;
+}
+
+.formInputItem {
+  display: block;
+  padding: 0.5vh;
+}
+
+button {
+  width: 100%;
+  background-color: rgb(75, 216, 212);
+  border: 0.25vw solid rgb(75, 216, 212);
+  padding: 0.25vh;
+  color: white;
+}
+
+button:hover {
+  background-color: #06152c;
+  border: 0.25vw solid rgb(75, 216, 212);
+  color: white;
+  cursor: pointer;
+}
