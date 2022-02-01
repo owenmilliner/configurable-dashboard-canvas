@@ -22,12 +22,10 @@ export class Navigation extends LitElement {
         gap: 1vh;
         overflow-x: hidden;
       }
-
       #generic-section {
         display: grid;
         grid-template-rows: 5vh;
       }
-
       #generic-button,
       #chart-button {
         width: 100%;
@@ -36,17 +34,15 @@ export class Navigation extends LitElement {
         background-color: rgb(75, 216, 212);
         color: rgb(6, 21, 44);
         font-family: "Whitney", sans-serif;
-        font-weight: lighter;
+        font-weight: bold;
         font-size: 2vh;
         padding: 1vh 2vh;
       }
-
       #generic-button:hover,
       #chart-button:hover {
         color: white;
         background-color: #06152c;
       }
-
       .list-item {
         display: block;
         width: 90%;
@@ -91,7 +87,7 @@ export class Navigation extends LitElement {
     return html` <div id="nav">
       <div id="generic-section">
         <button id="generic-button" @click="${this.displayGeneric}">
-          Generic Items ⌄
+          Other ⌄
         </button>
         <div id="generic-list">
           ${this.genericActive
@@ -113,7 +109,7 @@ export class Navigation extends LitElement {
       </div>
       <div id="chart-section">
         <button id="chart-button" @click="${this.displayCharts}">
-          Chart Items ⌄
+          Charts ⌄
         </button>
         <div id="chart-list">
           ${this.chartsActive
