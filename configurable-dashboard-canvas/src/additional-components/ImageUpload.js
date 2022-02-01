@@ -36,16 +36,15 @@ export class ImageUpload extends ProviderMixin(LitElement) {
   static get styles() {
     return css`
       #image {
-        max-height: 100%;
-        max-width: 100%;
+        height: 100%;
+        width: 100%;
       }
 
       #image-wrapper {
-        border: 10px solid green;
         height: 60mm;
         width: 50mm;
         resize: both;
-        overflow: visible;
+        overflow: hidden;
         padding: 0;
         margin: 0;
       }
