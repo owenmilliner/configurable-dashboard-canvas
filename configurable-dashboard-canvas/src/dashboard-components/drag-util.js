@@ -53,7 +53,6 @@ function remove(event) {
     .shadowRoot.querySelector("router-outlet")
     .querySelector("cdc-page").shadowRoot;
   const nodeId = event.dataTransfer.getData("targetNodeId");
-  console.log(nodeId);
   const chartToDelete = canvas
     .getElementById("canvas")
     .shadowRoot.getElementById(nodeId);

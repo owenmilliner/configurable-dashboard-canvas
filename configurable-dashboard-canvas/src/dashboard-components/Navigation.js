@@ -84,7 +84,6 @@ export class Navigation extends LitElement {
 
   displayCharts() {
     this.chartsActive = !this.chartsActive;
-    console.log(this.chartsActive);
   }
 
   render() {
