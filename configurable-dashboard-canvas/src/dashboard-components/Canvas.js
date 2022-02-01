@@ -73,8 +73,20 @@ export class Canvas extends LitElement {
           height: ${this._gridSlotHeight}mm;
           overflow: visible;
         }
+        #display__bin {
+          height: 7vh;
+          position: absolute;
+          right: 0.5%;
+          bottom: 1%;
+        }
       </style>
-
+      <img
+        id="display__bin"
+        src="../src/images/blue-bin.png"
+        alt="Recycle bin"
+        ondragover="allowDrop(event)"
+        ondrop="remove(event)"
+      />
       <div id="page">
         <div id="canvas">
           ${this.makeArray().map((item) => {

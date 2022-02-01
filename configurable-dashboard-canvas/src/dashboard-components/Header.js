@@ -4,14 +4,17 @@ import { DropDown } from "../additional-components/DropDown";
 export class Header extends LitElement {
   static get styles() {
     return css`
+      @import url("http://fonts.cdnfonts.com/css/whitney-2");
       #header {
         height: 100%;
         color: white;
         background-color: #06152c;
         display: grid;
-        grid-template-areas: "app toggleGrid bin file file logo";
-        grid-template-columns: 15vw 12vw 10vw auto 20vw;
-        grid-template-rows: "app toggleBorder bin file file logo";
+        grid-template-areas: "app toggleGrid file file logo" "app toggleBorder file file logo";
+        grid-template-columns: 15vw 15vw auto auto 15vw;
+        grid-template-rows: auto auto;
+        font-family: "Whitney", sans-serif;
+        font-weight: bold;
       }
 
       #header__app {
@@ -32,22 +35,21 @@ export class Header extends LitElement {
         display: inline-block;
         margin: auto;
         font-weight: 300;
-        font-size: 1.5vw;
+        font-size: 1.5vh;
       }
       #header__borderToggle {
         grid-area: toggleBorder;
         display: inline-block;
         margin: auto;
         font-weight: 300;
-        font-size: 1.5vw;
+        font-size: 1.5vh;
       }
       #toggle__label {
       }
 
       #toggle__checkbox {
         margin: auto;
-        width: 2vh;
-        height: 2vh;
+        width: 1vh;
       }
 
       #header #header:first-child {
@@ -108,13 +110,6 @@ export class Header extends LitElement {
         <div id="header__app">
           <drop-down id="app__title"></drop-down>
         </div>
-        <img
-          id="header__bin"
-          src="../src/images/bin.png"
-          alt="Recycle bin"
-          ondragover="allowDrop(event)"
-          ondrop="remove(event)"
-        />
         <div id="header__gridToggle">
           <label id="toggle__gridLabel" for="switch">Grid</label>
           <input
