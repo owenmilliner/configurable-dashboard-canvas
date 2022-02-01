@@ -105,7 +105,7 @@ export class TextBox extends ProviderMixin(LitElement) {
             font-weight: ${this.bold};
             font-style: ${this.italic};
             text-decoration: ${this.underline};
-            background-color: ${this.backgroundColor}
+            background-color: ${this.backgroundColor};
             "
           >
 ${this.textContent}</textarea
@@ -139,15 +139,37 @@ class TextForm extends ConsumerMixin(LitElement) {
     return css`
       #chartInputForm {
         position: absolute;
-        display: grid;
         padding: 10px;
         top: 50%;
         left: 50%;
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 10px;
+        width: auto;
+        padding: 1vh;
+        background-color: #06152c;
+        color: white;
+        border: 0.25vw solid rgb(75, 216, 212);
+        border-radius: 1px;
         text-align: centre;
-        opacity: 1;
+        font-family: "Whitney", sans-serif;
+      }
+
+      .formInputItem {
+        display: block;
+        padding: 0.5vh;
+      }
+
+      button {
+        width: 100%;
+        background-color: rgb(75, 216, 212);
+        border: 0.25vw solid rgb(75, 216, 212);
+        padding: 0.25vh;
+        color: white;
+      }
+
+      button:hover {
+        background-color: #06152c;
+        border: 0.25vw solid rgb(75, 216, 212);
+        color: white;
+        cursor: pointer;
       }
     `;
   }
@@ -204,34 +226,48 @@ class TextForm extends ConsumerMixin(LitElement) {
   render() {
     return html`
       <form id="chartInputForm" @submit=${this.handleSubmit}>
-        <label for="fontSize">Font Size:</label>
-        <select id="fontSize" name="fontSize">
-          <option value="10px">Small</option>
-          <option value="20px">Medium</option>
-          <option value="30px">Large</option>
-          <option value="40px">Extra-Large</option>
-        </select>
-        <label for="fontColor">Font Color</label>
-        <input
-          value=${this.textColor}
-          id="fontColor"
-          name="fontColor"
-          type="color"
-        />
-        <label for="bold">Bold</label>
-        <input id="bold" name="bold" type="checkbox" />
-        <label for="italic">Italic</label>
-        <input id="italic" name="italic" type="checkbox" />
-        <label for="underline">Underline</label>
-        <input id="underline" name="underline" type="checkbox" />
-        <label for="backColor">Background Color</label>
-        <input
-          value=${this.backgroundColor}
-          id="backColor"
-          name="backColor"
-          type="color"
-        />
-        <button type="submit">Update Text Box</button>
+        <div class="formInputItem">
+          <label for="fontSize">Font Size:</label>
+          <select id="fontSize" name="fontSize">
+            <option value="10px">Small</option>
+            <option value="20px">Medium</option>
+            <option value="30px">Large</option>
+            <option value="40px">Extra-Large</option>
+          </select>
+        </div>
+        <div class="formInputItem">
+          <label for="fontColor">Font Color</label>
+          <input
+            value=${this.textColor}
+            id="fontColor"
+            name="fontColor"
+            type="color"
+          />
+        </div>
+        <div class="formInputItem">
+          <label for="bold">Bold</label>
+          <input id="bold" name="bold" type="checkbox" />
+        </div>
+        <div class="formInputItem">
+          <label for="italic">Italic</label>
+          <input id="italic" name="italic" type="checkbox" />
+        </div>
+        <div class="formInputItem">
+          <label for="underline">Underline</label>
+          <input id="underline" name="underline" type="checkbox" />
+        </div>
+        <div class="formInputItem">
+          <label for="backColor">Background Color</label>
+          <input
+            value=${this.backgroundColor}
+            id="backColor"
+            name="backColor"
+            type="color"
+          />
+        </div>
+        <div class="formInputItem">
+          <button type="submit">Update Text Box</button>
+        </div>
       </form>
     `;
   }
