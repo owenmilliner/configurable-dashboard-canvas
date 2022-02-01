@@ -13,29 +13,9 @@ export const genericData = [
 
 export const chartData = [
   {
-    name: "Pie Chart",
-    id: "<pie-chart></pie-chart>",
-    img: "../src/images/pie.png",
-  },
-  {
     name: "Area Chart",
     id: "<area-chart></area-chart>",
     img: "../src/images/area.png",
-  },
-  {
-    name: "Line Chart",
-    id: "<line-chart></line-chart>",
-    img: "../src/images/line.png",
-  },
-  {
-    name: "Column Chart",
-    id: "<column-chart></column-chart>",
-    img: "../src/images/column.png",
-  },
-  {
-    name: "Funnel Chart",
-    id: "<funnel-chart></funnel-chart>",
-    img: "../src/images/funnel.png",
   },
   {
     name: "Areaspline Chart",
@@ -48,9 +28,29 @@ export const chartData = [
     img: "../src/images/bar.png",
   },
   {
+    name: "Column Chart",
+    id: "<column-chart></column-chart>",
+    img: "../src/images/column.png",
+  },
+  {
+    name: "Funnel Chart",
+    id: "<funnel-chart></funnel-chart>",
+    img: "../src/images/funnel.png",
+  },
+  {
     name: "Heatmap Chart",
     id: "<heatmap-chart></heatmap-chart>",
     img: "../src/images/heatmap.png",
+  },
+  {
+    name: "Line Chart",
+    id: "<line-chart></line-chart>",
+    img: "../src/images/line.png",
+  },
+  {
+    name: "Pie Chart",
+    id: "<pie-chart></pie-chart>",
+    img: "../src/images/pie.png",
   },
   {
     name: "Polar Chart",
