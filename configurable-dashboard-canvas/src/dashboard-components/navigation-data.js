@@ -33,7 +33,7 @@ export const chartImgData = [
     img: "../src/images/column.png",
   },
   {
-    name: "Funnel-Chart",
+    name: "Funnel Chart",
     id: "<funnel-chart></funnel-chart>",
     img: "../src/images/funnel.png",
   },

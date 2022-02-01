@@ -15,11 +15,13 @@ function drag(event, isNav) {
 }
 
 function drop(event) {
-    const canvasRoot = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
+  const canvasRoot = document
+    .querySelector("app-container")
+    .shadowRoot.querySelector("router-outlet")
+    .querySelector("cdc-page").shadowRoot;
   event.preventDefault();
   const fromNav = event.dataTransfer.getData("isNav");
   const nodeId = event.dataTransfer.getData("targetNodeId");
-  console.log(nodeId)
 
   if (fromNav === "true") {
     const newDiv = document.createElement("div");
@@ -35,27 +37,41 @@ function drop(event) {
     border: 10px solid #4bd8d4;
     position: relative;
     `;
-
     event.target.appendChild(newDiv);
     count++;
   } else {
-    const chartToMove = canvasRoot.getElementById("canvas").shadowRoot.getElementById(nodeId)
+    const chartToMove = canvasRoot
+      .getElementById("canvas")
+      .shadowRoot.getElementById(nodeId);
     event.target.appendChild(chartToMove);
   }
 }
 
 function remove(event) {
-    const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
+  const canvas = document
+    .querySelector("app-container")
+    .shadowRoot.querySelector("router-outlet")
+    .querySelector("cdc-page").shadowRoot;
   const nodeId = event.dataTransfer.getData("targetNodeId");
-  const chartToDelete = canvas.getElementById("canvas").shadowRoot.getElementById(nodeId)
+  console.log(nodeId);
+  const chartToDelete = canvas
+    .getElementById("canvas")
+    .shadowRoot.getElementById(nodeId);
   chartToDelete.remove();
 }
 
 function toggleGrid() {
-    gridView = !gridView;
-    const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
-  const page = canvas.querySelector("#canvas").shadowRoot.getElementById("canvas");
-  const gridSlots = canvas.querySelector("#canvas").shadowRoot.querySelectorAll(".canvas__gridSlot");
+  gridView = !gridView;
+  const canvas = document
+    .querySelector("app-container")
+    .shadowRoot.querySelector("router-outlet")
+    .querySelector("cdc-page").shadowRoot;
+  const page = canvas
+    .querySelector("#canvas")
+    .shadowRoot.getElementById("canvas");
+  const gridSlots = canvas
+    .querySelector("#canvas")
+    .shadowRoot.querySelectorAll(".canvas__gridSlot");
   if (!gridView) {
     gridSlots.forEach((slot) => {
       slot.style.border = "none";
@@ -70,13 +86,18 @@ function toggleGrid() {
 }
 
 function toggleBorders() {
-    borderView = !borderView;
-    const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot
-  const componentsWithBorders = canvas.querySelector("#canvas").shadowRoot.querySelectorAll("[id*='web-component']");
+  borderView = !borderView;
+  const canvas = document
+    .querySelector("app-container")
+    .shadowRoot.querySelector("router-outlet")
+    .querySelector("cdc-page").shadowRoot;
+  const componentsWithBorders = canvas
+    .querySelector("#canvas")
+    .shadowRoot.querySelectorAll("[id*='web-component']");
   if (!borderView) {
     componentsWithBorders.forEach((component) => {
       component.style.border = "none";
-    })
+    });
   } else {
     componentsWithBorders.forEach((component) => {
       component.style.border = "10px solid #4bd8d4";
@@ -85,12 +106,23 @@ function toggleBorders() {
 }
 
 function pdf() {
-    let gridChanged = false
-    let borderChanged = false
-    if(gridView){toggleGrid();gridChanged = true }
-    if(borderView){toggleBorders();borderChanged = true }
+  let gridChanged = false;
+  let borderChanged = false;
+  if (gridView) {
+    toggleGrid();
+    gridChanged = true;
+  }
+  if (borderView) {
+    toggleBorders();
+    borderChanged = true;
+  }
   html2canvas(
-    document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component").shadowRoot.getElementById("page")
+    document
+      .querySelector("app-container")
+      .shadowRoot.querySelector("router-outlet")
+      .querySelector("cdc-page")
+      .shadowRoot.querySelector("canvas-component")
+      .shadowRoot.getElementById("page")
   ).then((image) => {
     const opt = {
       margin: 0,
@@ -101,12 +133,20 @@ function pdf() {
     };
     html2pdf().set(opt).from(image).save();
   });
-  if(gridChanged){toggleGrid()}
-  if(borderChanged){toggleBorders()}
+  if (gridChanged) {
+    toggleGrid();
+  }
+  if (borderChanged) {
+    toggleBorders();
+  }
 }
 function clearCanvas() {
   localStorage.clear();
-  const canvas = document.querySelector("app-container").shadowRoot.querySelector("router-outlet").querySelector("cdc-page").shadowRoot.querySelector("canvas-component")
+  const canvas = document
+    .querySelector("app-container")
+    .shadowRoot.querySelector("router-outlet")
+    .querySelector("cdc-page")
+    .shadowRoot.querySelector("canvas-component");
   const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
   const gridSlotKeys = Object.keys(canvasGridSlots);
   gridSlotKeys.forEach((gridSlot) => {
