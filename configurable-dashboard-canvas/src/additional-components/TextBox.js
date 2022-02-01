@@ -153,7 +153,7 @@ class TextForm extends ConsumerMixin(LitElement) {
       }
 
       .formInputItem {
-        display: block;
+        display: inline-block;
         padding: 0.5vh;
       }
 
@@ -170,6 +170,10 @@ class TextForm extends ConsumerMixin(LitElement) {
         border: 0.25vw solid rgb(75, 216, 212);
         color: white;
         cursor: pointer;
+      }
+
+      label {
+        white-space: nowrap;
       }
     `;
   }
@@ -229,10 +233,18 @@ class TextForm extends ConsumerMixin(LitElement) {
         <div class="formInputItem">
           <label for="fontSize">Font Size:</label>
           <select id="fontSize" name="fontSize">
-            <option value="10px">Small</option>
-            <option value="20px">Medium</option>
-            <option value="30px">Large</option>
-            <option value="40px">Extra-Large</option>
+            <option value="10px" ?selected=${this.size === "10px"}>
+              Small
+            </option>
+            <option value="20px" ?selected=${this.size === "20px"}>
+              Medium
+            </option>
+            <option value="30px" ?selected=${this.size === "30px"}>
+              Large
+            </option>
+            <option value="40px" ?selected=${this.size === "40px"}>
+              Extra-Large
+            </option>
           </select>
         </div>
         <div class="formInputItem">
@@ -246,15 +258,30 @@ class TextForm extends ConsumerMixin(LitElement) {
         </div>
         <div class="formInputItem">
           <label for="bold">Bold</label>
-          <input id="bold" name="bold" type="checkbox" />
+          <input
+            id="bold"
+            name="bold"
+            type="checkbox"
+            ?checked=${this.bold === "bold"}
+          />
         </div>
         <div class="formInputItem">
           <label for="italic">Italic</label>
-          <input id="italic" name="italic" type="checkbox" />
+          <input
+            id="italic"
+            name="italic"
+            type="checkbox"
+            ?checked=${this.italic === "italic"}
+          />
         </div>
         <div class="formInputItem">
           <label for="underline">Underline</label>
-          <input id="underline" name="underline" type="checkbox" />
+          <input
+            id="underline"
+            name="underline"
+            type="checkbox"
+            ?checked=${this.underline === "underline"}
+          />
         </div>
         <div class="formInputItem">
           <label for="backColor">Background Color</label>
