@@ -2,15 +2,21 @@ import { LitElement, css, html } from "lit-element";
 
 class Landing extends LitElement {
   static get styles() {
-    return [css`.Landing {
-      text-align: center;
-      margin-left:1vw; 
-      margin-right:1vw; 
-      color:white;
-      background-color: #06152c;
-      font-family: "Josefin Sans", sans-serif;
-      }
-      ul {list-style-type:none}`];
+    return [
+      css`
+        .Landing {
+          text-align: center;
+          margin-left: 1vw;
+          margin-right: 1vw;
+          color: white;
+          background-color: #06152c;
+          font-family: "Josefin Sans", sans-serif;
+        }
+        ul {
+          list-style-type: none;
+        }
+      `,
+    ];
   }
 
   render() {
@@ -36,6 +42,12 @@ class Landing extends LitElement {
   }
   constructor() {
     super();
+  }
+
+  connectedCallback() {
+    window.onbeforeunload = () => {
+      window.location.replace("https://localhost:8000");
+    };
   }
 }
 

@@ -20,6 +20,7 @@ export class Navigation extends LitElement {
         grid-template-rows: auto;
         /* repeat(4, 1fr); */
         gap: 1vh;
+        overflow-x: hidden;
       }
 
       #chart-section,
@@ -38,9 +39,9 @@ export class Navigation extends LitElement {
 
       .tags {
         width: 100%;
-        color:#06162c;
-        font-family: whitney,sans-serif;
-        font-weight:300;
+        color: #06162c;
+        font-family: whitney, sans-serif;
+        font-weight: 300;
         font-size: 1.5vw;
         padding: 0;
         margin: 0;
@@ -48,19 +49,19 @@ export class Navigation extends LitElement {
         text-align: center;
         background-color: #4bd8d4;
         border-top-left-radius: 5px;
-        border-top-right-radius:5px;
-        margin-left:20px;
-        margin-right:20px
+        border-top-right-radius: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
       }
 
       img {
         width: 80%;
-        margin-right:10px;
-        margin-left:20px;
+        margin-right: 10px;
+        margin-left: 20px;
         height: 10vh;
         padding-bottom: 1vh;
         border-bottom-left-radius: 5px;
-        border-bottom-right-radius:5px;
+        border-bottom-right-radius: 5px;
       }
     `;
   }
