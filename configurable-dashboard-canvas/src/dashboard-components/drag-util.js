@@ -28,6 +28,7 @@ function drop(event) {
 
   if (fromNav === "true") {
     const newDiv = document.createElement("div");
+
     newDiv.innerHTML = nodeId;
     newDiv.id = `web-component-${count}`;
     newDiv.draggable = true;
@@ -40,6 +41,15 @@ function drop(event) {
     border: 10px solid #4bd8d4;
     position: relative;
     `;
+    newDiv.addEventListener("click", (event) => {
+      event.path.forEach((item) => {
+        if (/web-component/.test(item.id)) {
+          localStorage.setItem("selectedComponentId", item.id);
+          console.log("Target selected: ", item.id);
+        }
+      });
+    });
+
     event.target.appendChild(newDiv);
     count++;
   } else {
@@ -155,11 +165,8 @@ function clearCanvas() {
 
   const gridSlotKeys = Object.keys(canvasGridSlots);
 
-  console.log(gridSlotKeys);
-
   gridSlotKeys.forEach((gridSlot) => {
     if (canvasGridSlots[gridSlot].children.length !== 0) {
-      console.log(canvasGridSlots[gridSlot].children[0]);
       canvasGridSlots[gridSlot].children[0].remove();
     }
   });

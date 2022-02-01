@@ -46,6 +46,24 @@ export class Canvas extends LitElement {
     return arr;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    const localStorage = window.localStorage;
+
+    window.addEventListener("keydown", (event) => {
+      const selectedComponentId = localStorage.getItem("selectedComponentId");
+      if (event.key === "Backspace" && selectedComponentId) {
+        const target = document
+          .querySelector("app-container")
+          .shadowRoot.querySelector("cdc-page")
+          .shadowRoot.getElementById("canvas")
+          .shadowRoot.getElementById(selectedComponentId);
+
+        target.remove();
+      }
+    });
+  }
+
   render() {
     return html` <style>
         #page {
