@@ -37,8 +37,8 @@ export class Navigation extends LitElement {
         color: rgb(6, 21, 44);
         font-family: "Whitney", sans-serif;
         font-weight: bold;
-        font-size: 2vh;
-        padding: 1vh 2vh;
+        font-size: 1.25vw;
+        padding: 1vh 1vw;
       }
 
       #generic__button:hover,
