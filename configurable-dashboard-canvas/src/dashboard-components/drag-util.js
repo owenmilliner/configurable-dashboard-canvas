@@ -10,7 +10,10 @@ function allowDrop(event) {
 }
 
 function drag(event, isNav) {
-  event.dataTransfer.setData("targetNodeId", event.target.children[1].id);
+  event.dataTransfer.setData(
+    "targetNodeId",
+    event.target.id || event.target.children[1].id
+  );
   event.dataTransfer.setData("isNav", isNav);
 }
 
@@ -140,6 +143,7 @@ function pdf() {
     toggleBorders();
   }
 }
+
 function clearCanvas() {
   localStorage.clear();
   const canvas = document
@@ -147,8 +151,13 @@ function clearCanvas() {
     .shadowRoot.querySelector("router-outlet")
     .querySelector("cdc-page")
     .shadowRoot.querySelector("canvas-component");
+
   const canvasGridSlots = canvas.shadowRoot.children[1].children[0].children;
   const gridSlotKeys = Object.keys(canvasGridSlots);
+
+  const canvasRoot = canvas.shadowRoot;
+  console.log(canvasRoot);
+
   gridSlotKeys.forEach((gridSlot) => {
     if (canvasGridSlots[gridSlot].children.length !== 0) {
       console.log(canvasGridSlots[gridSlot].children[0]);
