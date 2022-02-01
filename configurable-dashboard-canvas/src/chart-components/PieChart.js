@@ -21,6 +21,8 @@ export class PieChart extends ProviderMixin(LitElement) {
     this.setPopUp = (value) => {
       this.popUp = value;
     };
+
+    this.testValues = "";
   }
 
   static get styles() {
@@ -42,6 +44,14 @@ export class PieChart extends ProviderMixin(LitElement) {
       setValues: Function,
       popUp: Boolean,
       setPopUp: Function,
+      testValues: {
+        type: String,
+        attribute: "test-values",
+        reflect: true,
+        hasChanged(newVal, oldVal) {
+          console.log("new: ", newVal, ". Old: ", oldVal);
+        },
+      },
     };
   }
 
@@ -51,6 +61,11 @@ export class PieChart extends ProviderMixin(LitElement) {
 
   formPopUp() {
     this.popUp = !this.popUp;
+  }
+
+  attributeChangedCallback() {
+    this.requestUpdate();
+    console.log(this.testValues);
   }
 
   render() {

@@ -94,56 +94,66 @@ export class Canvas extends LitElement {
     const previouslyPopulatedGrids = localStorage
       .getItem("previouslyPopulatedGrids")
       .split(",");
-    console.log("Components:", previouslyPopulatedGrids);
 
     if (!previouslyPopulatedGrids.includes("")) {
       const testShadow = localStorage.getItem("TESTshadow").split("|");
       testShadow.pop();
-      console.log("test:", testShadow);
 
       previouslyPopulatedGrids.forEach((previousGridSlot, index) => {
-        console.log(
-          "---------------------------------------------------------"
-        );
-
         // Getting id of component grid
         const componentGridId =
           this.handleStringToHTML(previousGridSlot).querySelector("div").id;
-        console.log("componentGridId:", componentGridId);
 
         // Getting contents of the component
         const componentToPlace =
           this.handleStringToHTML(previousGridSlot).querySelector("div")
             .children[0];
         componentToPlace.id = `web-component-${index + 1}`;
-        console.log("componentToPlace:", componentToPlace);
+
+        //TODO:
+        // Changing of observed attribute to inout data.
+        const testChart = this.handleStringToHTML(
+          testShadow[0].substring(0, testShadow[0].length - 1)
+        );
+
+        const testData = testChart.querySelector("vaadin-chart-series").__data
+          .values;
+
+        console.log(testData);
+        const testChart1 = componentToPlace.children[0];
+
+        console.log(testChart1);
+
+        setTimeout(() => {
+          testChart1.setAttribute("test-values", String(testData));
+
+          console.log(testChart1);
+        }, 2000);
 
         //Add data to component.
         //FIXME: Chart data does not change. We would want to invoke the handleSubmit on the chart to do this properly but unsure how.
-        setTimeout(() => {
-          const testChart = this.handleStringToHTML(
-            testShadow[0].substring(0, testShadow[0].length - 1)
-          );
+        // setTimeout(() => {
+        // const testChart = this.handleStringToHTML(
+        //   testShadow[0].substring(0, testShadow[0].length - 1)
+        // );
 
-          const testData = testChart.children[0].innerHTML;
-          const chartRoot = componentToPlace.children[0].shadowRoot;
+        // const testData = testChart.children[0].innerHTML;
+        //   const chartRoot = componentToPlace.children[0].shadowRoot;
 
-          console.log(chartRoot.children[0].innerHTML);
-          chartRoot.children[0].innerHTML = testData;
-          console.log(chartRoot.children[0].innerHTML);
-        }, 1000);
+        //   console.log(chartRoot.children[0].innerHTML);
+        //   chartRoot.children[0].innerHTML = testData;
+        //   console.log(chartRoot.children[0].innerHTML);
+        // }, 1000);
+        //FIXME: Not working data input.
+
         // Getting target grid id
         const targetGridSlot =
           canvas.shadowRoot.getElementById(componentGridId);
-        console.log("Target grid Id:", componentGridId);
 
         // Appending the component to the Grid
         targetGridSlot.appendChild(componentToPlace);
-        console.log("Target after placement:", targetGridSlot);
 
-        console.log(
-          "---------------------------------------------------------"
-        );
+        // Incrementing count for unique id's
         localStorage.setItem("count", index + 1);
       });
     }
