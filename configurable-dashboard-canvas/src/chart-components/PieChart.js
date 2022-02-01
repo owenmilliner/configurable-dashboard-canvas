@@ -76,16 +76,38 @@ class PieForm extends ConsumerMixin(LitElement) {
 
   static get styles() {
     return css`
+      @import url("http://fonts.cdnfonts.com/css/whitney-2");
+
       #chartInputForm {
         position: absolute;
         padding: 10px;
         top: 50%;
         left: 50%;
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 10px;
+        width: auto;
+        padding: 1vh;
+        background-color: #06152c;
+        color: white;
+        border: 0.25vw solid rgb(75, 216, 212);
+        border-radius: 1px;
         text-align: centre;
-        opacity: 1;
+        font-family: "Whitney", sans-serif;
+      }
+      .formInputItem {
+        display: block;
+        padding: 0.5vh;
+      }
+      button {
+        width: 100%;
+        background-color: rgb(75, 216, 212);
+        border: 0.25vw solid rgb(75, 216, 212);
+        padding: 0.25vh;
+        color: white;
+      }
+      button:hover {
+        background-color: #06152c;
+        border: 0.25vw solid rgb(75, 216, 212);
+        color: white;
+        cursor: pointer;
       }
     `;
   }
@@ -126,24 +148,31 @@ class PieForm extends ConsumerMixin(LitElement) {
   }
 
   render() {
-    return html`
+    return html`<link rel="stylesheet" href="./chartForm.css" />
       <form id="chartInputForm" @submit=${this.handleSubmit}>
-        <label>Title:</label>
-        <input name="title" />
-        <label for="dataSource">Data:</label>
-        <select id="dataSource" name="data">
-          <option value="volumeOfTweets">Number of tweets</option>
-          <option value="severityOne">Severity 1</option>
-          <option value="severityTwo">Severity 2</option>
-          <option value="severityThree">Severity 3</option>
-        </select>
-        <label for="dataSource">Data Headings:</label>
-        <select id="dataHeading" name="dataHeading">
-          <option value="date">Date</option>
-        </select>
-        <button type="submit">Update Chart</button>
-      </form>
-    `;
+        <div class="formInputItem">
+          <label>Title:</label>
+          <input name="title" />
+        </div>
+        <div class="formInputItem">
+          <label for="dataSource">Data:</label>
+          <select id="dataSource" name="data">
+            <option value="volumeOfTweets">Number of tweets</option>
+            <option value="severityOne">Severity 1</option>
+            <option value="severityTwo">Severity 2</option>
+            <option value="severityThree">Severity 3</option>
+          </select>
+        </div>
+        <div class="formInputItem">
+          <label for="dataSource">Data Headings:</label>
+          <select id="dataHeading" name="dataHeading">
+            <option value="date">Date</option>
+          </select>
+        </div>
+        <div class="formInputItem">
+          <button type="submit">Update Chart</button>
+        </div>
+      </form> `;
   }
 }
 
