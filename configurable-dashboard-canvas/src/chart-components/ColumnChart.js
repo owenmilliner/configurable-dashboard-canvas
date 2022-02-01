@@ -116,7 +116,6 @@ export class ColumnChart extends ProviderMixin(LitElement) {
                   values="${JSON.stringify(this.data.setFour.values)}"
                 ></vaadin-chart-series>`
               : null}
-            >
           </vaadin-chart>
         `;
   }
