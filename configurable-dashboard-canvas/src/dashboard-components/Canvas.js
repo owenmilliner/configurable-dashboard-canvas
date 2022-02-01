@@ -56,7 +56,6 @@ export class Canvas extends LitElement {
           border: 1px #d3d3d3 solid;
           background-color: white;
           border-radius: 5px;
-          overflow: hidden;
         }
         #canvas {
           background-color: white;
@@ -66,6 +65,7 @@ export class Canvas extends LitElement {
           display: grid;
           grid-template-columns: repeat(${this._columns}, 3mm);
           grid-template-rows: repeat(${this._rows}, 3mm);
+          overflow: hidden;
         }
         .canvas__gridSlot {
           border: 0.5px solid RGB(6, 21, 44, 0.05);
