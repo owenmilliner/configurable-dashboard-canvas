@@ -1,4 +1,4 @@
-export const genericImgData = [
+export const genericData = [
   {
     name: "Text Box",
     id: "<textarea><textarea>",
@@ -11,7 +11,7 @@ export const genericImgData = [
   },
 ];
 
-export const chartImgData = [
+export const chartData = [
   {
     name: "Pie Chart",
     id: "<pie-chart></pie-chart>",

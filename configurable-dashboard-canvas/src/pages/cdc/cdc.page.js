@@ -39,6 +39,18 @@ class CDC extends LitElement {
       `,
     ];
   }
+  static get properties() {
+    return {
+      eg: {
+        type: String,
+      },
+    };
+  }
+
+  constructor() {
+    super();
+  }
+
   render() {
     return html` <div id="dashboard">
       <header-component id="header"></header-component>
@@ -47,16 +59,6 @@ class CDC extends LitElement {
         <canvas-component id="canvas"></canvas-component>
       </div>
     </div>`;
-  }
-  static get properties() {
-    return {
-      eg: {
-        type: String,
-      },
-    };
-  }
-  constructor() {
-    super();
   }
 }
 customElements.define("cdc-page", CDC);

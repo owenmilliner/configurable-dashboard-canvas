@@ -10,7 +10,7 @@ function allowDrop(event) {
 }
 
 function drag(event, isNav) {
-  event.dataTransfer.setData("targetNodeId", event.target.id);
+  event.dataTransfer.setData("targetNodeId", event.target.children[1].id);
   event.dataTransfer.setData("isNav", isNav);
 }
 
