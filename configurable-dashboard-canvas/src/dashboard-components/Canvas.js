@@ -13,6 +13,7 @@ import {
   TreeMapChart,
 } from "../chart-components/ChartMiddleware.js";
 import { ImageUpload } from "../additional-components/ImageUpload";
+import { TextBox } from "../additional-components/TextBox";
 
 export class Canvas extends LitElement {
   static properties = {
