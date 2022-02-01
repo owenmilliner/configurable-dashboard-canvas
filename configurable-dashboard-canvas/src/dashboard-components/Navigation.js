@@ -23,12 +23,12 @@ export class Navigation extends LitElement {
         overflow-x: hidden;
       }
 
-      #generic-section {
+      #nav__generic {
         display: grid;
         grid-template-rows: 5vh;
       }
 
-      #generic-button,
+      #generic__button,
       #chart-button {
         width: 100%;
         text-decoration: none;
@@ -41,20 +41,20 @@ export class Navigation extends LitElement {
         padding: 1vh 2vh;
       }
 
-      #generic-button:hover,
+      #generic__button:hover,
       #chart-button:hover {
         color: white;
         background-color: #06152c;
       }
 
-      .list-item {
+      .list__item {
         display: block;
         width: 90%;
         margin: auto;
         padding-top: 1vh;
       }
 
-      .tags {
+      .list__tag {
         /* width: 100%; */
         color: #06162c;
         font-family: "Whitney", sans-serif;
@@ -89,16 +89,16 @@ export class Navigation extends LitElement {
 
   render() {
     return html` <div id="nav">
-      <div id="generic-section">
-        <button id="generic-button" @click="${this.displayGeneric}">
+      <div id="nav__generic">
+        <button id="generic__button" @click="${this.displayGeneric}">
           Generic Items ⌄
         </button>
-        <div id="generic-list">
+        <div id="generic__list">
           ${this.genericActive
             ? genericImgData.map((item) => {
                 return html`
-                  <div class="list-item">
-                    <p class="tags">${item.name}</p>
+                  <div class="list__item">
+                    <p class="list__tag">${item.name}</p>
                     <img
                       id="${item.id}"
                       src="${item.img}"
@@ -115,12 +115,12 @@ export class Navigation extends LitElement {
         <button id="chart-button" @click="${this.displayCharts}">
           Chart Items ⌄
         </button>
-        <div id="chart-list">
+        <div id="chart__list">
           ${this.chartsActive
             ? chartImgData.map((item) => {
                 return html`
-                  <div class="list-item">
-                    <p class="tags">${item.name}</p>
+                  <div class="list__item">
+                    <p class="list__tag">${item.name}</p>
                     <img
                       id="${item.id}"
                       src="${item.img}"
