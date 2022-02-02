@@ -181,6 +181,10 @@ function pdf() {
   }
 }
 
+// pageLayout { orientation: "portrait", width: 224, height: 280 }
+// const pageLayout = localStorage.getItem("pageLayout")
+// const width = pageLayout.width
+
 function clearCanvas() {
   localStorage.clear();
   const canvas = document

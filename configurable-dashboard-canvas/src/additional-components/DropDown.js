@@ -101,7 +101,6 @@ export class DropDown extends ProviderMixin(LitElement) {
 
   handleSettingsOpening() {
     this.setSettingsOpen(true);
-    console.log(this.settingsOpen);
   }
 
   render() {
