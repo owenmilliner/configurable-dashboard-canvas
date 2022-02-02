@@ -18,11 +18,13 @@ export class NavLink extends navigator(LitElement) {
         font-family: "Whitney", sans-serif;
         font-weight: lighter;
         font-size: 3vw;
-        padding: 2vh 4vh;
+        padding: 2vw 4vw;
       }
+
       slot {
         font-weight: bold;
       }
+
       .nav-link:hover {
         color: white;
         background-color: #06152c;

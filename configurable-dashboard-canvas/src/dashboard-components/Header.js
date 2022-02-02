@@ -44,7 +44,9 @@ export class Header extends LitElement {
         font-weight: 300;
         font-size: 1.5vh;
       }
-      #toggle__label {
+      input {
+        height: 1vh;
+        width: 1vh;
       }
 
       #toggle__checkbox {
