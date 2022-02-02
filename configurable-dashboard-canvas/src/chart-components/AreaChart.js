@@ -67,6 +67,21 @@ export class AreaChart extends ProviderMixin(LitElement) {
     this.popUp = !this.popUp;
   }
 
+  reflowFunc(event) {
+    console.log(event);
+    const nodeId = event.path[10].id;
+    const canvas = document
+      .querySelector("app-container")
+      .shadowRoot.querySelector("router-outlet")
+      .querySelector("cdc-page").shadowRoot;
+    const chartToUpdate = canvas
+      .getElementById("canvas")
+      .shadowRoot.getElementById(nodeId);
+    console.log(chartToUpdate);
+
+    chartToUpdate.reflow();
+  }
+
   render() {
     return this.popUp
       ? html`<area-form></area-form>`
@@ -75,6 +90,7 @@ export class AreaChart extends ProviderMixin(LitElement) {
           <vaadin-chart
             title="${this.title}"
             @dblclick="${this.formPopUp}"
+            @click="${this.reflowFunc}"
             type="area"
             class="chart"
             subtitle="${this.subTitle}"
