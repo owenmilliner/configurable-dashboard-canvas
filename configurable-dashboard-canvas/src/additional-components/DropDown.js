@@ -1,6 +1,36 @@
 import { html, LitElement, css } from "lit";
+import { ProviderMixin } from "lit-element-context";
+import { HelpMenu } from "./HelpMenu";
+import { SettingsMenu } from "./SettingsMenu";
 
-export class DropDown extends LitElement {
+export class DropDown extends ProviderMixin(LitElement) {
+  constructor() {
+    super();
+
+    this.SettingsOpen = false;
+    this.setHelpOpen = (value) => {
+      this.helpOpen = value;
+    };
+
+    this.settingsOpen = false;
+    this.setSettingsOpen = (value) => {
+      this.settingsOpen = value;
+    };
+  }
+
+  static get properties() {
+    return {
+      helpOpen: Boolean,
+      setHelpOpen: Function,
+      settingsOpen: Boolean,
+      setSettingsOpen: Function,
+    };
+  }
+
+  static get provide() {
+    return ["helpOpen", "setHelpOpen", "settingsOpen", "setSettingsOpen"];
+  }
+
   static get styles() {
     return css`
       .dropdown {
@@ -65,6 +95,15 @@ export class DropDown extends LitElement {
     `;
   }
 
+  handleHelpOpening() {
+    this.setHelpOpen(true);
+  }
+
+  handleSettingsOpening() {
+    this.setSettingsOpen(true);
+    console.log(this.settingsOpen);
+  }
+
   render() {
     return html`
       <div class="dropdown">
@@ -84,10 +123,15 @@ export class DropDown extends LitElement {
           <p onclick="menuSelection()">
             <span class="content__item--status-inactive">Share</span>
           </p>
-          <p onclick="menuSelection()">Settings</p>
-          <p onclick="menuSelection()">Help</p>
+          <p @click="${this.handleSettingsOpening}">Settings</p>
+          <p @click="${this.handleHelpOpening}">Help</p>
         </div>
       </div>
+      ${this.helpOpen
+        ? html`<help-menu></help-menu>`
+        : this.settingsOpen
+        ? html`<settings-menu></settings-menu>`
+        : null}
     `;
   }
 }
