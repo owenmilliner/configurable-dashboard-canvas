@@ -45,7 +45,6 @@ function drop(event) {
       event.path.forEach((item) => {
         if (/web-component/.test(item.id)) {
           localStorage.setItem("selectedComponentId", item.id);
-          console.log("Target selected: ", item.id);
         }
       });
     });
@@ -106,6 +105,9 @@ function toggleBorders() {
   const componentsWithBorders = canvas
     .querySelector("#canvas")
     .shadowRoot.querySelectorAll("[id*='web-component']");
+  document.getElementById("reflow-chart").addEventListener("click", () => {
+    chart.reflow();
+  });
   if (!borderView) {
     componentsWithBorders.forEach((component) => {
       component.style.border = "none";
