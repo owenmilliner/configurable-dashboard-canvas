@@ -43,6 +43,7 @@ export class HelpMenu extends ConsumerMixin(LitElement) {
         color: white;
         border: none;
         background-color: transparent;
+        font-size: 1.5vw;
         width: 100%;
       }
 
@@ -154,7 +155,7 @@ export class HelpMenu extends ConsumerMixin(LitElement) {
               toggle found within the applications 'Settings Menu'. By doing
               this, the grid-lines which can be seen on the canvas will
               disappear. Note: the grid will still be active and accessible for
-              interaction - the toggling is aesthetic only.
+              interaction - the toggling is visual only.
             </p>
 
             <li class="content__subheading">Border Toggling.</li>

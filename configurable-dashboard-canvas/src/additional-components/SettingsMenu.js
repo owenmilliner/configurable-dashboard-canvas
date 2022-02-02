@@ -43,6 +43,7 @@ export class SettingsMenu extends ConsumerMixin(LitElement) {
         color: white;
         border: none;
         background-color: transparent;
+        font-size: 1.5vw;
         width: 100%;
       }
 
@@ -73,16 +74,8 @@ export class SettingsMenu extends ConsumerMixin(LitElement) {
         font-size: 1vw;
       }
 
-      #header__gridToggle {
+      .content__toggle {
         grid-area: toggleGrid;
-        display: inline-block;
-        margin: auto;
-        font-weight: 300;
-        font-size: 1.5vh;
-      }
-
-      #header__borderToggle {
-        grid-area: toggleBorder;
         display: inline-block;
         margin: auto;
         font-weight: 300;
@@ -91,12 +84,12 @@ export class SettingsMenu extends ConsumerMixin(LitElement) {
 
       #toggle__checkbox {
         margin: auto;
-        width: 1vh;
+        width: 2vh;
       }
 
       input {
-        height: 1vh;
-        width: 1vh;
+        height: 2vh;
+        width: 2vh;
       }
     `;
   }
@@ -126,42 +119,45 @@ export class SettingsMenu extends ConsumerMixin(LitElement) {
           </button>
         </div>
         <div id="settingsMenu__content">
-          <ul class="content__list">
-            <h2 class="content__heading">Canvas Manipulation.</h2>
-            <li class="content__subheading">Grid Toggle.</li>
-            <p class="content__body">PUT GRID TOGGLE HERE.</p>
+          <h2 class="content__heading">Canvas Manipulation.</h2>
 
-            <div id="header__gridToggle">
-              <label id="toggle__gridLabel" for="switch">Grid</label>
-              <input
-                type="checkbox"
-                id="toggle__checkbox"
-                name="switch"
-                min="0"
-                max="1"
-                value="1"
-                checked
-                onchange="toggleGrid()"
-              />
-            </div>
+          <label id="toggle__gridLabel" for="grid__toggle">Grid Toggle.</label>
+          <input
+            type="checkbox"
+            id="toggle__checkbox"
+            name="grid__toggle"
+            min="0"
+            max="1"
+            value="1"
+            checked
+            onchange="toggleGrid()"
+          />
+          <p class="content__body">
+            Remove the grid lines from the canvas. This toggle function removes
+            any visible lines from the grid. Note: the grid's are still
+            accessible and used for component placement, this option is visual
+            only.
+          </p>
 
-            <li class="content__subheading">Border Toggle.</li>
-            <p class="content__body">PUT BORDER TOGGLE HERE.</p>
-
-            <div id="header__borderToggle">
-              <label id="toggle__borderLabel" for="switch">Borders</label>
-              <input
-                type="checkbox"
-                id="toggle__checkbox"
-                name="switch"
-                min="0"
-                max="1"
-                value="1"
-                checked
-                onchange="toggleBorders()"
-              />
-            </div>
-          </ul>
+          <label id="toggle__borderLabel" for="border__toggle"
+            >Border Toggle.</label
+          >
+          <input
+            type="checkbox"
+            id="toggle__checkbox"
+            name="border__toggle"
+            min="0"
+            max="1"
+            value="1"
+            checked
+            onchange="toggleBorders()"
+          />
+          <p class="content__body">
+            Remove the borders from the components. This toggle function removes
+            all borders from components, providing a visual representation of
+            the canvas outside of development. Note: when this is toggled off,
+            movement of the components is disabled.
+          </p>
         </div>
       </div>
     `;
