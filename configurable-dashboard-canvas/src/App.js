@@ -12,24 +12,27 @@ class App extends router(LitElement) {
   static get styles() {
     return [
       css`@import url('http://fonts.cdnfonts.com/css/whitney-2');
-    .landing{
+    .landing {
       display:grid;
       grid-template-areas: "header" "body";
       grid-template-columns:auto;
       grid-template-rows: 7vh 93vh;
       font-family: 'Whitney', sans-serif;
     }
-    .landing__header{
+
+    .landing__header {
       grid-area: header;
       background-color: #06162c;
     }
-    img{padding-top:30px;
-      padding-bottom:30px;
+
+    img {
+      display: block;
       margin: auto;
       margin-right: 1vw;
+      margin-top: 1.5vh;
       width: 5vw;
-      float: right;
     }
+
     .landing__body {
       grid-area: body;
       text-align: center;
@@ -40,9 +43,10 @@ class App extends router(LitElement) {
       grid-template-rows: 30vh 13vh 20vh 30vh;
       background-image: url('./approach-desk.jpg');
       background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
+
     .body__title{
       grid-area: title;
       font-size:5vw;
@@ -51,35 +55,38 @@ background-size: cover;
       margin:auto;
       margin-bottom: 1vh;
     }
-      .body__intro{
-        grid-area: intro;
-        font-weight: 300;
-        margin:auto;
+
+    .body__intro{
+      grid-area: intro;
+      font-weight: 300;
+      margin:auto;
+    }
+
+    .nav-container {
+      grid-area: nav;
+      margin:auto;
+    }
+
+    .body__footer{
+      grid-area: footer;
+      padding:0;
+      margin:auto;
+      margin-bottom: 0vh;
       }
-      .nav-container {
-        grid-area: nav;
-        margin:auto;
+
+    ul {
+      list-style-type:none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      margin-bottom:10%
       }
-        .body__footer{
-          grid-area: footer;
-          padding:0;
-          margin:auto;
-          margin-bottom: 0vh;
-        }
-        ul {
-          
-        list-style-type:none;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        margin-bottom:10%
-        }
-        li {
-        display: inline-block;
-        margin: 0 10px;
-        
-        padding: 5px;
-        }
+    li {
+      display: inline-block;
+      margin: 0 10px;
+      
+      padding: 5px;
+      }
       }`,
     ];
   }

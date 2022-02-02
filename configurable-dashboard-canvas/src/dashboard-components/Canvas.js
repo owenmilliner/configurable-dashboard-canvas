@@ -60,6 +60,7 @@ export class Canvas extends LitElement {
           .shadowRoot.getElementById(selectedComponentId);
 
         target.remove();
+        localStorage.removeItem("selectedComponentId");
       }
     });
   }
