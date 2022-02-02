@@ -11,6 +11,7 @@ export class AreaChart extends ProviderMixin(LitElement) {
     this.setTitle = (value) => {
       this.title = value;
     };
+
     this.subtitle = "";
     this.setSubtitle = (value) => {
       this.subtitle = value;
@@ -238,7 +239,7 @@ class AreaForm extends ConsumerMixin(LitElement) {
         </div>
 
         <div class="formInputItem">
-          <label>Sub Title:</label>
+          <label>Subtitle:</label>
           <input name="subtitle" value=${this.subtitle} />
         </div>
 
