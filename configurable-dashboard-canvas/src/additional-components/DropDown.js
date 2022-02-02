@@ -57,6 +57,11 @@ export class DropDown extends LitElement {
       .dropdown:hover .dropdown__content {
         display: block;
       }
+
+      .content__item--status-inactive {
+        text-decoration: line-through;
+        color: #9c9c9c;
+      }
     `;
   }
 
@@ -69,12 +74,17 @@ export class DropDown extends LitElement {
         </button>
         <div class="dropdown__content">
           <p onclick="clearCanvas()">Clear Canvas</p>
-          <p onclick="menuSelection()">New Canvas</p>
-          <p onclick="menuSelection()">New Project</p>
+          <p onclick="menuSelection()">
+            <span class="content__item--status-inactive">New Canvas</span>
+          </p>
+          <p onclick="menuSelection()">
+            <span class="content__item--status-inactive">New Project</span>
+          </p>
           <p onclick="pdf()">Export as PDF</p>
-          <p onclick="menuSelection()">Share</p>
+          <p onclick="menuSelection()">
+            <span class="content__item--status-inactive">Share</span>
+          </p>
           <p onclick="menuSelection()">Settings</p>
-          <p onclick="menuSelection()">Help</p>
         </div>
       </div>
     `;
