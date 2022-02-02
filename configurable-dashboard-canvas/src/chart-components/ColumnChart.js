@@ -11,6 +11,7 @@ export class ColumnChart extends ProviderMixin(LitElement) {
     this.setTitle = (value) => {
       this.title = value;
     };
+
     this.subtitle = "";
     this.setSubtitle = (value) => {
       this.subtitle = value;
@@ -89,8 +90,8 @@ export class ColumnChart extends ProviderMixin(LitElement) {
             type="column"
             class="chart"
             title="${this.title}"
-            @dblclick="${this.formPopUp}"
             subtitle="${this.subtitle}"
+            @dblclick="${this.formPopUp}"
             categories="${JSON.stringify(this.data.categories)}"
             additional-options='{
       "xAxis": {
@@ -248,7 +249,7 @@ class ColumnForm extends ConsumerMixin(LitElement) {
         </div>
 
         <div class="formInputItem">
-          <label>subtitle:</label>
+          <label>Subtitle:</label>
           <input name="subtitle" value=${this.subtitle} />
         </div>
 
