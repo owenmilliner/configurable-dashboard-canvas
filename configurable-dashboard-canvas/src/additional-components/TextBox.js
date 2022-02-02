@@ -88,6 +88,16 @@ export class TextBox extends ProviderMixin(LitElement) {
     ];
   }
 
+  static get styles() {
+    return css`
+      @import url("http://fonts.cdnfonts.com/css/whitney-2");
+
+      textarea {
+        font-family: "Whitney", sans-serif;
+      }
+    `;
+  }
+
   formPopUp(ev) {
     this.setTextContent(ev.target.value);
     this.popUp = !this.popUp;

@@ -79,16 +79,19 @@ class ImageForm extends ConsumerMixin(LitElement) {
 
   static get styles() {
     return css`
-      #imageUploadForm {
-        position: absolute;
-        padding: 10px;
-        top: 50%;
-        left: 50%;
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 10px;
-        text-align: centre;
-        opacity: 1;
+      input[type="file"]::file-selector-button {
+        width: 40%;
+        background-color: rgb(75, 216, 212);
+        border: 0.25vw solid rgb(75, 216, 212);
+        padding: 0.25vh;
+        color: white;
+      }
+
+      input[type="file"]::file-selector-button:hover {
+        background-color: #06152c;
+        border: 0.25vw solid rgb(75, 216, 212);
+        color: white;
+        cursor: pointer;
       }
     `;
   }
@@ -109,11 +112,12 @@ class ImageForm extends ConsumerMixin(LitElement) {
 
   render() {
     return html`
+      <link rel="stylesheet" href="./chart.css" />
       <input
         type="file"
         accept="image/*"
         name="image"
-        id="imageUploadForm"
+        class="chartInputForm"
         @change=${this.handleUpload}
       />
     `;
