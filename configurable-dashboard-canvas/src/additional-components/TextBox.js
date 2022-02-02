@@ -137,41 +137,6 @@ class TextForm extends ConsumerMixin(LitElement) {
 
   static get styles() {
     return css`
-      #chartInputForm {
-        position: absolute;
-        padding: 10px;
-        top: 50%;
-        left: 50%;
-        width: auto;
-        padding: 1vh;
-        background-color: #06152c;
-        color: white;
-        border: 0.25vw solid rgb(75, 216, 212);
-        border-radius: 1px;
-        text-align: centre;
-        font-family: "Whitney", sans-serif;
-      }
-
-      .formInputItem {
-        display: inline-block;
-        padding: 0.5vh;
-      }
-
-      button {
-        width: 100%;
-        background-color: rgb(75, 216, 212);
-        border: 0.25vw solid rgb(75, 216, 212);
-        padding: 0.25vh;
-        color: white;
-      }
-
-      button:hover {
-        background-color: #06152c;
-        border: 0.25vw solid rgb(75, 216, 212);
-        color: white;
-        cursor: pointer;
-      }
-
       label {
         white-space: nowrap;
       }
@@ -228,8 +193,8 @@ class TextForm extends ConsumerMixin(LitElement) {
   }
 
   render() {
-    return html`
-      <form id="chartInputForm" @submit=${this.handleSubmit}>
+    return html`<link rel="stylesheet" href="./chart.css" />
+      <form class="chartInputForm" @submit=${this.handleSubmit}>
         <div class="formInputItem">
           <label for="fontSize">Font Size:</label>
           <select id="fontSize" name="fontSize">
@@ -247,6 +212,7 @@ class TextForm extends ConsumerMixin(LitElement) {
             </option>
           </select>
         </div>
+
         <div class="formInputItem">
           <label for="fontColor">Font Color</label>
           <input
@@ -256,6 +222,7 @@ class TextForm extends ConsumerMixin(LitElement) {
             type="color"
           />
         </div>
+
         <div class="formInputItem">
           <label for="bold">Bold</label>
           <input
@@ -265,6 +232,7 @@ class TextForm extends ConsumerMixin(LitElement) {
             ?checked=${this.bold === "bold"}
           />
         </div>
+
         <div class="formInputItem">
           <label for="italic">Italic</label>
           <input
@@ -274,6 +242,7 @@ class TextForm extends ConsumerMixin(LitElement) {
             ?checked=${this.italic === "italic"}
           />
         </div>
+
         <div class="formInputItem">
           <label for="underline">Underline</label>
           <input
@@ -283,6 +252,7 @@ class TextForm extends ConsumerMixin(LitElement) {
             ?checked=${this.underline === "underline"}
           />
         </div>
+
         <div class="formInputItem">
           <label for="backColor">Background Color</label>
           <input
@@ -292,11 +262,11 @@ class TextForm extends ConsumerMixin(LitElement) {
             type="color"
           />
         </div>
+
         <div class="formInputItem">
           <button type="submit">Update Text Box</button>
         </div>
-      </form>
-    `;
+      </form> `;
   }
 }
 
