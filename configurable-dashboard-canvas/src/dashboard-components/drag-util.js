@@ -4,6 +4,7 @@ let count = 1;
 let gridView = true;
 let borderView = true;
 let canvasRoot = "";
+let page = [0, 0];
 
 function allowDrop(event) {
   event.preventDefault();
@@ -146,6 +147,7 @@ function toggleBorders() {
 }
 
 function pdf() {
+  console.log(page);
   let gridChanged = false;
   let borderChanged = false;
   if (gridView) {
@@ -169,7 +171,11 @@ function pdf() {
       filename: "myfile.pdf",
       image: { type: "png", quality: 0.98 },
       html2canvas: { scale: 1, allowTaint: true },
-      jsPDF: { unit: "mm", format: [231, 319], orientation: "portrait" },
+      jsPDF: {
+        unit: "mm",
+        format: [page[0], page[1]],
+        orientation: page[2],
+      },
     };
     html2pdf().set(opt).from(image).save();
   });

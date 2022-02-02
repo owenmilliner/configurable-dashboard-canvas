@@ -87,6 +87,10 @@ export class SettingsMenu extends ConsumerMixin(LitElement) {
         width: 2vh;
       }
 
+      #toggle__dropdown {
+        font-size: 1vw;
+      }
+
       input {
         height: 2vh;
         width: 2vh;
@@ -98,15 +102,26 @@ export class SettingsMenu extends ConsumerMixin(LitElement) {
     return {
       settingsOpen: Boolean,
       setSettingsOpen: Function,
+      setCanvasHeight: Function,
+      setCanvasWidth: Function,
     };
   }
 
   static get inject() {
-    return ["settingsOpen", "setSettingsOpen"];
+    return [
+      "settingsOpen",
+      "setSettingsOpen",
+      "setCanvasHeight",
+      "setCanvasWidth",
+    ];
   }
 
   handleSettingsMenuClose() {
     this.setSettingsOpen(false);
+  }
+
+  toggleOrientation(event) {
+    console.log(this.setCanvasHeight);
   }
 
   render() {
