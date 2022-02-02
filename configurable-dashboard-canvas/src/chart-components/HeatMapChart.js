@@ -31,8 +31,18 @@ export class HeatMapChart extends ProviderMixin(LitElement) {
         this.data[property] = value;
       }
     };
+
     this.resetData = () => {
       this.data = {};
+    };
+
+    this.formSelections = {};
+    this.setFormSelections = (property, value, nestedProperty) => {
+      if (nestedProperty) {
+        this.formSelections[property][nestedProperty] = value;
+      } else {
+        this.formSelections[property] = value;
+      }
     };
   }
 
@@ -47,6 +57,8 @@ export class HeatMapChart extends ProviderMixin(LitElement) {
       data: Object,
       setData: Function,
       resetData: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
@@ -61,6 +73,8 @@ export class HeatMapChart extends ProviderMixin(LitElement) {
       "data",
       "setData",
       "resetData",
+      "formSelections",
+      "setFormSelections",
     ];
   }
 
@@ -69,7 +83,6 @@ export class HeatMapChart extends ProviderMixin(LitElement) {
   }
 
   render() {
-    console.log(this.data);
     return this.popUp
       ? html`<heatmap-form></heatmap-form>`
       : html` <link rel="stylesheet" href="./chart.css" />
@@ -134,6 +147,8 @@ class HeatMapForm extends ConsumerMixin(LitElement) {
       data: Object,
       setData: Function,
       resetData: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
@@ -164,6 +179,8 @@ class HeatMapForm extends ConsumerMixin(LitElement) {
       "data",
       "setData",
       "resetData",
+      "formSelections",
+      "setFormSelections",
     ];
   }
 
@@ -173,11 +190,20 @@ class HeatMapForm extends ConsumerMixin(LitElement) {
 
     // Getting the form data.
     const dataHeading = event.path[0].dataHeading.value;
+    this.setFormSelections("dataHeading", dataHeading);
+
     const formData = [];
     formData.push(event.path[0].dataSourceOne.value);
     formData.push(event.path[0].dataSourceTwo.value);
     formData.push(event.path[0].dataSourceThree.value);
     formData.push(event.path[0].dataSourceFour.value);
+
+    this.setFormSelections("dataSources", {
+      dataSourceOne: formData[0],
+      dataSourceTwo: formData[1],
+      dataSourceThree: formData[2],
+      dataSourceFour: formData[3],
+    });
 
     // Setting values for data
     const updatedData = [];
@@ -216,46 +242,72 @@ class HeatMapForm extends ConsumerMixin(LitElement) {
       <form class="chartInputForm" @submit=${this.handleSubmit}>
         <div class="formInputItem">
           <label>Title:</label>
-          <input name="title" />
+          <input name="title" value=${this.title} />
         </div>
 
         <div class="formInputItem">
           <label>Subtitle:</label>
-          <input name="subtitle" />
+          <input name="subtitle" value=${this.subtitle} />
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceOne">Data Source One:</label>
           <select id="dataSourceOne" name="dataSourceOne">
-            <option value="volumeOfTweets">Number of tweets</option>
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceOne ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceTwo">Data Source Two:</label>
           <select id="dataSourceTwo" name="dataSourceTwo">
-            <option value="severityOne">Severity 1</option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceOne === "severityOne"}
+            >
+              Severity 1
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceThree">Data Source Three:</label>
           <select id="dataSourceThree" name="dataSourceThree">
-            <option value="severityTwo">Severity 2</option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceOne === "severityTwo"}
+            >
+              Severity 2
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceFour">Data Source Four:</label>
           <select id="dataSourceFour" name="dataSourceFour">
-            <option value="severityThree">Severity 3</option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceOne === "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataHeading">Data Headings:</label>
           <select id="dataHeading" name="dataHeading">
-            <option value="date">Date</option>
+            <option
+              value="date"
+              ?selected=${this.formSelections.dataSourceFour === "date"}
+            >
+              Date
+            </option>
           </select>
         </div>
 

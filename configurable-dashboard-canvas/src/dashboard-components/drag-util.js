@@ -45,7 +45,6 @@ function drop(event) {
       event.path.forEach((item) => {
         if (/web-component/.test(item.id)) {
           localStorage.setItem("selectedComponentId", item.id);
-          console.log("Target selected: ", item.id);
         }
       });
     });

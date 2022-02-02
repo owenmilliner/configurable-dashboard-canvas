@@ -12,6 +12,11 @@ export class PieChart extends ProviderMixin(LitElement) {
       this.title = value;
     };
 
+    this.subtitle = "";
+    this.setSubtitle = (value) => {
+      this.subtitle = value;
+    };
+
     this.values = [];
     this.setValues = (newValue) => {
       this.values = newValue;
@@ -21,21 +26,45 @@ export class PieChart extends ProviderMixin(LitElement) {
     this.setPopUp = (value) => {
       this.popUp = value;
     };
+
+    this.formSelections = {};
+    this.setFormSelections = (property, value, nestedProperty) => {
+      if (nestedProperty) {
+        this.formSelections[property][nestedProperty] = value;
+      } else {
+        this.formSelections[property] = value;
+      }
+    };
   }
 
   static get properties() {
     return {
       title: String,
       setTitle: Function,
+      subtitle: String,
+      setSubtitle: Function,
       values: Array,
       setValues: Function,
       popUp: Boolean,
       setPopUp: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
   static get provide() {
-    return ["title", "setTitle", "values", "setValues", "popUp", "setPopUp"];
+    return [
+      "title",
+      "setTitle",
+      "subtitle",
+      "setSubtitle",
+      "values",
+      "setValues",
+      "popUp",
+      "setPopUp",
+      "formSelections",
+      "setFormSelections",
+    ];
   }
 
   formPopUp() {
@@ -47,10 +76,11 @@ export class PieChart extends ProviderMixin(LitElement) {
       ? html`<pie-form></pie-form>`
       : html` <link rel="stylesheet" href="./chart.css" />
           <vaadin-chart
+            title="${this.title}"
+            subtitle="${this.subtitle}"
             @dblclick="${this.formPopUp}"
             type="pie"
             class="chart"
-            title="${this.title}"
             no-legend
           >
             <vaadin-chart-series
@@ -67,15 +97,30 @@ class PieForm extends ConsumerMixin(LitElement) {
     return {
       title: String,
       setTitle: Function,
+      subtitle: String,
+      setSubtitle: Function,
       values: Array,
       setValues: Function,
       popUp: Boolean,
       setPopUp: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
   static get inject() {
-    return ["title", "setTitle", "values", "setValues", "popUp", "setPopUp"];
+    return [
+      "title",
+      "setTitle",
+      "subtitle",
+      "setSubtitle",
+      "values",
+      "setValues",
+      "popUp",
+      "setPopUp",
+      "formSelections",
+      "setFormSelections",
+    ];
   }
 
   handleSubmit(event) {
@@ -84,6 +129,11 @@ class PieForm extends ConsumerMixin(LitElement) {
     // Getting the form data.
     const dataSource = event.path[0].data.value;
     const dataHeading = event.path[0].dataHeading.value;
+    this.setFormSelections("dataHeading", dataHeading);
+    this.setFormSelections("dataSources", {
+      dataSourceOne: "",
+    });
+    this.setFormSelections(`dataSourceOne`, dataSource);
 
     // Formatting of data to the *specific* chart.
     const updatedValues = demoTwitter2022Data.tweetData
@@ -103,6 +153,7 @@ class PieForm extends ConsumerMixin(LitElement) {
 
     // Setting Data
     this.setTitle(event.path[0].title.value);
+    this.setSubtitle(event.path[0].subtitle.value);
     this.setValues(updatedValues);
 
     // Close form.
@@ -114,23 +165,57 @@ class PieForm extends ConsumerMixin(LitElement) {
       <form class="chartInputForm" @submit=${this.handleSubmit}>
         <div class="formInputItem">
           <label>Title:</label>
-          <input name="title" />
+          <input name="title" value=${this.title} />
         </div>
+
+        <div class="formInputItem">
+          <label>Subtitle:</label>
+          <input name="subtitle" value=${this.subtitle} />
+        </div>
+
         <div class="formInputItem">
           <label for="dataSource">Data:</label>
           <select id="dataSource" name="data">
-            <option value="volumeOfTweets">Number of tweets</option>
-            <option value="severityOne">Severity 1</option>
-            <option value="severityTwo">Severity 2</option>
-            <option value="severityThree">Severity 3</option>
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceOne ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceOne === "severityOne"}
+            >
+              Severity 1
+            </option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceOne === "severityTwo"}
+            >
+              Severity 2
+            </option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceOne === "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
+
         <div class="formInputItem">
-          <label for="dataSource">Data Headings:</label>
+          <label for="dataHeading">Data Headings:</label>
           <select id="dataHeading" name="dataHeading">
-            <option value="date">Date</option>
+            <option
+              value="date"
+              ?selected=${this.formSelections.dataSourceFour === "date"}
+            >
+              Date
+            </option>
           </select>
         </div>
+
         <div class="formInputItem">
           <button type="submit">Update Chart</button>
         </div>
