@@ -23,7 +23,8 @@ export class Navigation extends LitElement {
         overflow-x: hidden;
       }
 
-      #nav__generic {
+      #nav__generic,
+      #nav__chart {
         display: grid;
         grid-template-rows: 5vh;
       }
@@ -109,7 +110,7 @@ export class Navigation extends LitElement {
             : null}
         </div>
       </div>
-      <div id="chart__section">
+      <div id="nav__chart">
         <button id="chart__button" @click="${this.displayCharts}">
           Charts ⌄
         </button>

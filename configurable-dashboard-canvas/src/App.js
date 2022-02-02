@@ -53,13 +53,14 @@ class App extends router(LitElement) {
       font-weight:300;
       padding:0;
       margin:auto;
-      margin-bottom: 1vh;
+      margin-bottom: 1vw;
     }
 
     .body__intro{
       grid-area: intro;
       font-weight: 300;
       margin:auto;
+      font-size:2vw;
     }
 
     .nav-container {
@@ -67,11 +68,13 @@ class App extends router(LitElement) {
       margin:auto;
     }
 
+
     .body__footer{
       grid-area: footer;
       padding:0;
       margin:auto;
-      margin-bottom: 0vh;
+      margin-bottom: 0vw;
+      font-size:1.5vw;
       }
 
     ul {
@@ -83,9 +86,9 @@ class App extends router(LitElement) {
       }
     li {
       display: inline-block;
-      margin: 0 10px;
+      margin: 0 2vw;
       
-      padding: 5px;
+      padding: 1vw;
       }
       }`,
     ];
@@ -146,8 +149,8 @@ class App extends router(LitElement) {
           <div class="landing__body">
             <h1 class="body__title">CONFIGURABLE DASHBOARD CANVAS</h1>
             <h2 class="body__intro">
-              This tool allows you to prepare reports using off the shelf
-              charting web components to create an exportable report
+              Prepare reports using off the shelf charting web components to
+              create an exportable report
             </h2>
             <div class="nav-container">
               <nav-link class="link" href="/cdc" onclick=${this.removeLanding()}
