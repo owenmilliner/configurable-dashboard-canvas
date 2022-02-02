@@ -106,7 +106,15 @@ export class Canvas extends LitElement {
           height: ${this._gridSlotHeight}mm;
           overflow: visible;
         }
-        #display__bin {
+
+        #display__bin--os-win {
+          height: 7vh;
+          position: absolute;
+          right: 1.5%;
+          bottom: 2.5%;
+        }
+
+        #display__bin--os-other {
           height: 7vh;
           position: absolute;
           right: 0.5%;
@@ -114,7 +122,9 @@ export class Canvas extends LitElement {
         }
       </style>
       <img
-        id="display__bin"
+        id=${navigator.appVersion.indexOf("Win") != -1
+          ? "display__bin--os-win"
+          : "display__bin--os-other"}
         src="../src/images/blue-bin.png"
         alt="Recycle bin"
         ondragover="allowDrop(event)"
