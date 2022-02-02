@@ -31,8 +31,18 @@ export class PolarChart extends ProviderMixin(LitElement) {
         this.data[property] = value;
       }
     };
+
     this.resetData = () => {
       this.data = {};
+    };
+
+    this.formSelections = {};
+    this.setFormSelections = (property, value, nestedProperty) => {
+      if (nestedProperty) {
+        this.formSelections[property][nestedProperty] = value;
+      } else {
+        this.formSelections[property] = value;
+      }
     };
   }
 
@@ -47,6 +57,8 @@ export class PolarChart extends ProviderMixin(LitElement) {
       data: Object,
       setData: Function,
       resetData: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
@@ -61,6 +73,8 @@ export class PolarChart extends ProviderMixin(LitElement) {
       "data",
       "setData",
       "resetData",
+      "formSelections",
+      "setFormSelections",
     ];
   }
 
@@ -139,6 +153,8 @@ class PolarForm extends ConsumerMixin(LitElement) {
       data: Object,
       setData: Function,
       resetData: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
@@ -169,6 +185,8 @@ class PolarForm extends ConsumerMixin(LitElement) {
       "data",
       "setData",
       "resetData",
+      "formSelections",
+      "setFormSelections",
     ];
   }
 
@@ -179,6 +197,12 @@ class PolarForm extends ConsumerMixin(LitElement) {
     // Getting the form data.
     const dataHeading = event.path[0].dataHeading.value;
     const dataSource = event.path[0].data.value;
+    this.setFormSelections("dataHeading", dataHeading);
+    this.setFormSelections("dataSources", {
+      dataSourceOne: "",
+    });
+    this.setFormSelections(`dataSourceOne`, dataSource);
+
     const chosenDataSource = demoTwitter2022Data.tweetData.map(
       (tweet) => tweet[dataSource]
     );
@@ -244,28 +268,54 @@ class PolarForm extends ConsumerMixin(LitElement) {
       <form class="chartInputForm" @submit=${this.handleSubmit}>
         <div class="formInputItem">
           <label>Title:</label>
-          <input name="title" />
+          <input name="title" value=${this.title} />
         </div>
 
         <div class="formInputItem">
           <label>Subtitle:</label>
-          <input name="subtitle" />
+          <input name="subtitle" value=${this.subtitle} />
         </div>
 
         <div class="formInputItem">
-          <label for="data">Data Source One:</label>
-          <select id="data" name="data">
-            <option value="volumeOfTweets">Number of tweets</option>
-            <option value="severityOne">Severity 1</option>
-            <option value="severityTwo">Severity 2</option>
-            <option value="severityThree">Severity 3</option>
+          <label for="dataSource">Data:</label>
+          <select id="dataSource" name="data">
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceOne ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceOne === "severityOne"}
+            >
+              Severity 1
+            </option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceOne === "severityTwo"}
+            >
+              Severity 2
+            </option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceOne === "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataHeading">Data Headings:</label>
           <select id="dataHeading" name="dataHeading">
-            <option value="date">Date</option>
+            <option
+              value="date"
+              ?selected=${this.formSelections.dataSourceFour === "date"}
+            >
+              Date
+            </option>
           </select>
         </div>
 
