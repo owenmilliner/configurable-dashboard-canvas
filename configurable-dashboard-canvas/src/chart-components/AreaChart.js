@@ -68,18 +68,28 @@ export class AreaChart extends ProviderMixin(LitElement) {
   }
 
   reflowFunc(event) {
-    console.log(event);
-    const nodeId = event.path[10].id;
-    const canvas = document
-      .querySelector("app-container")
-      .shadowRoot.querySelector("router-outlet")
-      .querySelector("cdc-page").shadowRoot;
-    const chartToUpdate = canvas
-      .getElementById("canvas")
-      .shadowRoot.getElementById(nodeId);
-    console.log(chartToUpdate);
+    let nodeId = "";
+    event.path.forEach((item) => {
+      if (/web-component/.test(item.id)) {
+        nodeId = item.id;
+      }
+    });
 
-    chartToUpdate.reflow();
+    const target = document
+      .querySelector("app-container")
+      .shadowRoot.querySelector("cdc-page")
+      .shadowRoot.getElementById("canvas")
+      .shadowRoot.getElementById(nodeId).children[0];
+
+    console.log(target);
+    // Does nothing
+    // target.render();
+
+    // Not a function
+    // target.reflow();
+
+    // Does nothing
+    // target.update();
   }
 
   render() {
