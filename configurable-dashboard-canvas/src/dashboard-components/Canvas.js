@@ -50,10 +50,19 @@ export class Canvas extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     const localStorage = window.localStorage;
+    const keysPressed = {};
 
     window.addEventListener("keydown", (event) => {
+      keysPressed[event.key] = true;
+
       const selectedComponentId = localStorage.getItem("selectedComponentId");
-      if (event.key === "Backspace" && selectedComponentId) {
+
+      if (
+        (keysPressed["Backspace"] &&
+          event.key == "Alt" &&
+          selectedComponentId) ||
+        (keysPressed["Alt"] && event.key == "Backspace" && selectedComponentId)
+      ) {
         const target = document
           .querySelector("app-container")
           .shadowRoot.querySelector("cdc-page")
@@ -63,6 +72,10 @@ export class Canvas extends LitElement {
         target.remove();
         localStorage.removeItem("selectedComponentId");
       }
+    });
+
+    window.addEventListener("keyup", (event) => {
+      delete keysPressed[event.key];
     });
   }
 

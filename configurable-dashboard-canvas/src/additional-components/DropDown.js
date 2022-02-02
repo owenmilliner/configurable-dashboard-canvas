@@ -85,6 +85,7 @@ export class DropDown extends LitElement {
             <span class="content__item--status-inactive">Share</span>
           </p>
           <p onclick="menuSelection()">Settings</p>
+          <p onclick="menuSelection()">Help</p>
         </div>
       </div>
     `;
