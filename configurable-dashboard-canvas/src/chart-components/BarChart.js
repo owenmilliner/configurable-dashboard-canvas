@@ -31,8 +31,18 @@ export class BarChart extends ProviderMixin(LitElement) {
         this.data[property] = value;
       }
     };
+
     this.resetData = () => {
       this.data = {};
+    };
+
+    this.formSelections = {};
+    this.setFormSelections = (property, value, nestedProperty) => {
+      if (nestedProperty) {
+        this.formSelections[property][nestedProperty] = value;
+      } else {
+        this.formSelections[property] = value;
+      }
     };
   }
 
@@ -47,6 +57,8 @@ export class BarChart extends ProviderMixin(LitElement) {
       data: Object,
       setData: Function,
       resetData: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
@@ -61,6 +73,8 @@ export class BarChart extends ProviderMixin(LitElement) {
       "data",
       "setData",
       "resetData",
+      "formSelections",
+      "setFormSelections",
     ];
   }
 
@@ -141,6 +155,8 @@ class BarForm extends ConsumerMixin(LitElement) {
       data: Object,
       setData: Function,
       resetData: Function,
+      formSelections: Object,
+      setFormSelections: Function,
     };
   }
 
@@ -171,6 +187,8 @@ class BarForm extends ConsumerMixin(LitElement) {
       "data",
       "setData",
       "resetData",
+      "formSelections",
+      "setFormSelections",
     ];
   }
 
@@ -180,6 +198,8 @@ class BarForm extends ConsumerMixin(LitElement) {
 
     // Getting the form data.
     const dataHeading = event.path[0].dataHeading.value;
+    this.setFormSelections("dataHeading", dataHeading);
+
     const numberTranslate = ["One", "Two", "Three", "Four"];
     const formData = [];
     formData.push(event.path[0].dataSourceOne.value);
@@ -188,7 +208,15 @@ class BarForm extends ConsumerMixin(LitElement) {
     formData.push(event.path[0].dataSourceFour.value);
 
     // Setting values for each dataSet
+    this.setFormSelections("dataSources", {
+      dataSourceOne: "",
+      dataSourceTwo: "",
+      dataSourceThree: "",
+      dataSourceFour: "",
+    });
+
     for (let i = 0; i < formData.length; i++) {
+      this.setFormSelections(`dataSource${numberTranslate[i]}`, formData[i]);
       if (formData[i] !== "none") {
         this.setData(`set${numberTranslate[i]}`, { title: "", values: [] });
         this.setData(`set${numberTranslate[i]}`, formData[i], "title");
@@ -220,61 +248,167 @@ class BarForm extends ConsumerMixin(LitElement) {
       <form class="chartInputForm" @submit=${this.handleSubmit}>
         <div class="formInputItem">
           <label>Title:</label>
-          <input name="title" />
+          <input name="title" value=${this.title} />
         </div>
 
         <div class="formInputItem">
           <label>Subtitle:</label>
-          <input name="subtitle" />
+          <input name="subtitle" value=${this.subtitle} />
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceOne">Data Source One:</label>
           <select id="dataSourceOne" name="dataSourceOne">
-            <option value="volumeOfTweets">Number of tweets</option>
-            <option value="severityOne">Severity 1</option>
-            <option value="severityTwo">Severity 2</option>
-            <option value="severityThree">Severity 3</option>
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceOne ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceOne === "severityOne"}
+            >
+              Severity 1
+            </option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceOne === "severityTwo"}
+            >
+              Severity 2
+            </option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceOne === "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceTwo">Data Source Two:</label>
           <select id="dataSourceTwo" name="dataSourceTwo">
-            <option value="none">None</option>
-            <option value="volumeOfTweets">Number of tweets</option>
-            <option value="severityOne">Severity 1</option>
-            <option value="severityTwo">Severity 2</option>
-            <option value="severityThree">Severity 3</option>
+            <option
+              value="none"
+              ?selected=${this.formSelections.dataSourceTwo === "none"}
+            >
+              None
+            </option>
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceTwo ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceTwo === "severityOne"}
+            >
+              Severity 1
+            </option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceTwo === "severityTwo"}
+            >
+              Severity 2
+            </option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceTwo === "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceThree">Data Source Three:</label>
           <select id="dataSourceThree" name="dataSourceThree">
-            <option value="none">None</option>
-            <option value="volumeOfTweets">Number of tweets</option>
-            <option value="severityOne">Severity 1</option>
-            <option value="severityTwo">Severity 2</option>
-            <option value="severityThree">Severity 3</option>
+            <option
+              value="none"
+              ?selected=${this.formSelections.dataSourceThree === "none"}
+            >
+              None
+            </option>
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceThree ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceThree === "severityOne"}
+            >
+              Severity 1
+            </option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceThree === "severityTwo"}
+            >
+              Severity 2
+            </option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceThree ===
+              "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataSourceFour">Data Source Four:</label>
           <select id="dataSourceFour" name="dataSourceFour">
-            <option value="none">None</option>
-            <option value="volumeOfTweets">Number of tweets</option>
-            <option value="severityOne">Severity 1</option>
-            <option value="severityTwo">Severity 2</option>
-            <option value="severityThree">Severity 3</option>
+            <option
+              value="none"
+              ?selected=${this.formSelections.dataSourceFour === "none"}
+            >
+              None
+            </option>
+            <option
+              value="volumeOfTweets"
+              ?selected=${this.formSelections.dataSourceFour ===
+              "volumeOfTweets"}
+            >
+              Number of tweets
+            </option>
+            <option
+              value="severityOne"
+              ?selected=${this.formSelections.dataSourceFour === "severityOne"}
+            >
+              Severity 1
+            </option>
+            <option
+              value="severityTwo"
+              ?selected=${this.formSelections.dataSourceFour === "severityTwo"}
+            >
+              Severity 2
+            </option>
+            <option
+              value="severityThree"
+              ?selected=${this.formSelections.dataSourceFour ===
+              "severityThree"}
+            >
+              Severity 3
+            </option>
           </select>
         </div>
 
         <div class="formInputItem">
           <label for="dataHeading">Data Headings:</label>
           <select id="dataHeading" name="dataHeading">
-            <option value="date">Date</option>
+            <option
+              value="date"
+              ?selected=${this.formSelections.dataSourceFour === "date"}
+            >
+              Date
+            </option>
           </select>
         </div>
 
