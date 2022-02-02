@@ -88,9 +88,9 @@ export class PolarChart extends ProviderMixin(LitElement) {
       : html` <link rel="stylesheet" href="./chart.css" />
           <vaadin-chart
             title="${this.title}"
+            subtitle="${this.subtitle}"
             @dblclick="${this.formPopUp}"
             class="chart"
-            subtitle="${this.subtitle}"
             polar
             additional-options='{
       "xAxis": {
