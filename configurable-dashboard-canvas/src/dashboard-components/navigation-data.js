@@ -1,7 +1,7 @@
 export const genericData = [
   {
     name: "Text Box",
-    id: "<textarea><textarea>",
+    id: "<text-chart><text-chart>",
     img: "../src/images/textbox.jpg",
   },
   {
