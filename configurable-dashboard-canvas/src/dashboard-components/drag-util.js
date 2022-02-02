@@ -55,6 +55,35 @@ function drop(event) {
     const chartToMove = canvasRoot
       .getElementById("canvas")
       .shadowRoot.getElementById(nodeId);
+
+    chartToMove.addEventListener("mouseup", (event) => {
+      const canvasRoot = document
+        .querySelector("app-container")
+        .shadowRoot.querySelector("router-outlet")
+        .querySelector("cdc-page").shadowRoot;
+
+      const page = canvasRoot
+        .querySelector("#canvas")
+        .shadowRoot.querySelector("#page");
+
+      const chart = page.querySelector("#canvas").querySelector(`#${nodeId}`);
+
+      // need to make a wildcard
+      const dimensions =
+        chart.children[0].shadowRoot.querySelector("vaadin-chart");
+
+      let height = dimensions.style.height;
+      let width = dimensions.style.width;
+
+      const svg = dimensions.shadowRoot
+        .querySelector("#chart")
+        .querySelector("svg");
+
+      svg.setAttribute("height", `${height}`);
+      svg.setAttribute("width", `${width}`);
+
+      // svg.setAttribute("viewBox", `0 0 ${widthNopx} ${heightNopx}`);
+    });
     event.target.appendChild(chartToMove);
   }
 }
