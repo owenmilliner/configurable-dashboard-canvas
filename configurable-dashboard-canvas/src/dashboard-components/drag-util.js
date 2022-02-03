@@ -173,7 +173,7 @@ function pdf() {
       html2canvas: { scale: 1, allowTaint: true },
       jsPDF: {
         unit: "mm",
-        format: [page[0], page[1]],
+        format: [page[1], page[0]],
         orientation: page[2],
       },
     };
