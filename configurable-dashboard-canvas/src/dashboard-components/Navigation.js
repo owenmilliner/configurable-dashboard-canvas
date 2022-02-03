@@ -56,25 +56,29 @@ export class Navigation extends LitElement {
       }
 
       .list__tag {
-        /* width: 100%; */
         color: #06162c;
         font-family: "Whitney", sans-serif;
         font-weight: 300;
         font-size: 2vh;
-        /* height: 5vh; */
         text-align: center;
         background-color: #4bd8d4;
         margin: auto;
         padding-top: 1.5vh;
         padding-bottom: 1.5vh;
+        border: 0.25vw solid rgb(75, 216, 212);
+        border-bottom: none;
+      }
+
+      .list__tag:hover {
+        color: white;
+        background-color: #06152c;
+        border: 0.25vw solid rgb(75, 216, 212);
+        border-bottom: none;
       }
 
       img {
         width: 100%;
-        /* margin-right: 10px;
-        margin-left: 20px; */
         height: 10vh;
-        /* padding-bottom: 1vh; */
       }
     `;
   }
